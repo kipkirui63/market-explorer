@@ -22,12 +22,7 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <div className="h-10 w-10 bg-gradient-to-r from-primary to-primary-light rounded-full flex items-center justify-center mr-2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-6 h-6">
-              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/>
-            </svg>
-          </div>
-          <span className="text-xl font-bold text-primary">CrispAI</span>
+          <img src="/media/crispai_logo.png" alt="CrispAI Logo" className="h-10 mr-2" />
         </Link>
         
         {/* Desktop Navigation */}

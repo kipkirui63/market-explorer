@@ -8,12 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center mr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077cc" className="w-6 h-6">
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/>
-                </svg>
-              </div>
-              <span className="text-xl font-bold">CrispAI</span>
+              <img src="/media/crispai_logo.png" alt="CrispAI Logo" className="h-10 mr-2 bg-white rounded p-1" />
             </div>
             <p className="text-sm text-gray-300 mb-4">
               Empowering businesses with intelligent AI solutions that drive growth and innovation.

@@ -171,12 +171,8 @@ export default function AIReadinessAssessment() {
         transition={{ duration: 0.6 }}
       >
         <div className="flex flex-col items-start mb-6 gap-2">
-          <div className="h-16 w-45 mb-2 flex items-center">
-            <div className="h-12 w-12 bg-gradient-to-r from-primary to-primary-light rounded-full flex items-center justify-center mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-7 h-7">
-                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 15v-4H7l5-7v4h4l-5 7z"/>
-              </svg>
-            </div>
+          <div className="h-16 w-full mb-2 flex items-center">
+            <img src="/media/crispai_logo.png" alt="CrispAI Logo" className="h-12 mr-3" />
             <div>
               <h1 className="text-2xl font-extrabold text-[#003366] leading-tight">AI Readiness</h1>
               <h2 className="text-lg font-semibold text-[#003366]">Assessment</h2>
