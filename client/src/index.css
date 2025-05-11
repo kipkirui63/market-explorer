@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .bg-gradient-custom {
+    background: linear-gradient(135deg, #0099cc 0%, #003366 100%);
+  }
+  
+  .shadow-custom {
+    box-shadow: 0 10px 25px -5px rgba(0, 153, 204, 0.2), 0 10px 10px -5px rgba(0, 51, 102, 0.1);
+  }
+}
+
 :root {
       --background: 0 0% 100%;
 --foreground: 20 14.3% 4.1%;
