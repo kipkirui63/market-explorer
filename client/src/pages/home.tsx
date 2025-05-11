@@ -183,25 +183,21 @@ export default function Home() {
         <div className="container mx-auto px-4 z-10 relative">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex justify-center mb-6">
-              <div className="w-32 h-32">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077cc" className="w-full h-full">
-                  <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16zm0 2a1 1 0 011 1v3.268l2.095 1.95a1 1 0 01-1.368 1.464l-2.3-2.15a1 1 0 01-.427-.814V7a1 1 0 011-1zm-3.75 1.5a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zm7.5 0a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zM9 11a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z"/>
-                </svg>
-              </div>
+              <img src="/media/brain-image.jpg" alt="AI Brain" className="w-32 h-32 object-cover rounded-full border-4 border-blue-500" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary-dark">Crisp AI</h1>
-            <h2 className="text-2xl md:text-3xl text-primary mb-6">Artificial Intelligence</h2>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#003366]">Crisp AI</h1>
+            <h2 className="text-2xl md:text-3xl text-[#0077cc] mb-6">Artificial Intelligence</h2>
             <div className="w-full max-w-xl mx-auto h-2 bg-blue-500 mb-8"></div>
             <p className="text-lg mb-3 text-gray-700">No longer just a futuristic concept—AI is here to revolutionize your business. Whether you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the true potential of Artificial Intelligence.</p>
             <p className="text-lg mb-8 text-gray-700">AI isn't one-size-fits-all, and neither are we.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/services" className="btn px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
+              <Link href="/services" className="btn px-6 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
                 Get Started with Crisp AI Today!
               </Link>
-              <Link href="/services" className="btn px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
+              <Link href="/services" className="btn px-6 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
                 Multi-Agent Resume Analyzer
               </Link>
-              <Link href="/services" className="btn px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
+              <Link href="/services" className="btn px-6 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
                 AI Recruitment Assistant
               </Link>
             </div>
