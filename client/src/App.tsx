@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import About from "@/pages/About";
-import Services from "@/pages/services";
+import Services from "@/pages/Services";
 import Contact from "@/pages/contact";
 import Assessment from "@/pages/assessment";
 import Marketplace from "@/pages/marketplace";
