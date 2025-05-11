@@ -5,7 +5,7 @@ import { Link } from 'wouter';
 export default function HeroSection() {
   return (
     <div className="relative bg-gradient-to-br from-primary-50 via-primary-100 to-white pt-16">
-      <div className="absolute inset-0 bg-[url('/media/brain-image.jpg')] opacity-5 bg-cover bg-center" />
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')] opacity-5 bg-cover bg-center" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center relative">
         <div className="inline-flex items-center justify-center space-x-4 mb-8">
           <Brain className="h-20 w-20 text-primary-600" />
