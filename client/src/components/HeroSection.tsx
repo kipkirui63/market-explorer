@@ -8,19 +8,19 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')] opacity-5 bg-cover bg-center" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center relative">
         <div className="inline-flex items-center justify-center space-x-4 mb-8">
-          <Brain className="h-20 w-20 text-primary-600" />
+          <Brain className="h-20 w-20 text-[#0099cc]" />
           <div className="text-left">
-            <h1 className="text-5xl font-bold text-primary-900 mb-2">Crisp AI</h1>
-            <p className="text-xl text-primary-700">Artificial Intelligence</p>
+            <h1 className="text-5xl font-bold text-[#003366] mb-2">Crisp AI</h1>
+            <p className="text-xl text-[#0099cc]">Artificial Intelligence</p>
           </div>
         </div>
-        <h2 className="text-4xl font-bold text-primary-900 mb-6 bg-clip-text text-transparent bg-gradient-custom">
+        <h2 className="text-4xl font-bold text-[#003366] mb-6 bg-clip-text text-transparent bg-gradient-custom">
           Turning Complex Problems into Intelligent Solutions
         </h2>
-        <p className="text-xl text-primary-800 max-w-3xl mx-auto mb-8">
+        <p className="text-xl text-[#4a5568] max-w-3xl mx-auto mb-8">
           No longer just a futuristic concept—AI is here to revolutionize your business. Whether you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the true potential of Artificial Intelligence.
         </p>
-        <p className="text-lg text-primary-700 mb-8">
+        <p className="text-lg text-[#6b7280] mb-8">
           AI isn't one-size-fits-all, and neither are we.
         </p>
         <div className="flex flex-wrap justify-center gap-2">
