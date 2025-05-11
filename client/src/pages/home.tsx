@@ -5,6 +5,7 @@ import WaveBackground from "@/components/WaveBackground";
 import TestimonialCard from "@/components/TestimonialCard";
 import SolutionCard from "@/components/SolutionCard";
 import ContactForm from "@/components/ContactForm";
+import BrainIcon from "@/components/BrainIcon";
 
 export default function Home() {
   const testimonials = [
@@ -179,31 +180,29 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 bg-gradient-to-b from-white to-blue-50">
+      <section className="relative overflow-hidden py-12 bg-[#f4faff]">
         <div className="container mx-auto px-4 z-10 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-32 h-32 rounded-full border-4 border-blue-500 flex items-center justify-center">
-                <span className="text-blue-500 font-medium">AI Brain</span>
-              </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-4">
+              <BrainIcon className="w-32 h-32" />
             </div>
-            <h1 className="text-5xl font-bold mb-2 text-[#003366]">Crisp AI</h1>
-            <h2 className="text-3xl text-[#0099cc] mb-8">Artificial Intelligence</h2>
-            <div className="w-full max-w-xl mx-auto h-2 bg-blue-500 mb-8"></div>
-            <p className="text-lg mb-6 text-gray-600 max-w-2xl mx-auto">
+            <h1 className="text-5xl font-bold mb-1 text-[#003366]">Crisp AI</h1>
+            <h2 className="text-2xl text-[#0099cc] mb-6">Artificial Intelligence</h2>
+            <div className="w-full max-w-2xl mx-auto h-2 bg-[#0099cc] mb-8"></div>
+            <p className="text-base mb-4 text-[#4a5568] max-w-2xl mx-auto">
               No longer just a futuristic concept—AI is here to revolutionize your business. Whether you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the true potential of Artificial Intelligence.
             </p>
-            <p className="text-lg mb-12 text-gray-600">
+            <p className="text-base mb-10 text-[#4a5568]">
               AI isn't one-size-fits-all, and neither are we.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link href="/services" className="w-64 px-6 py-4 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
                 Get Started with Crisp AI Today!
               </Link>
-              <Link href="/services" className="w-64 px-6 py-4 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
+              <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
                 Multi-Agent Resume Analyzer
               </Link>
-              <Link href="/services" className="w-64 px-6 py-4 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition shadow-md">
+              <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
                 AI Recruitment Assistant
               </Link>
             </div>
