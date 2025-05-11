@@ -5,7 +5,7 @@ import WaveBackground from "@/components/WaveBackground";
 import TestimonialCard from "@/components/TestimonialCard";
 import SolutionCard from "@/components/SolutionCard";
 import ContactForm from "@/components/ContactForm";
-import BrainIcon from "@/components/BrainIcon";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   const testimonials = [
@@ -180,35 +180,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-12 bg-[#f4faff]">
-        <div className="container mx-auto px-4 z-10 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-4">
-              <BrainIcon className="w-32 h-32" />
-            </div>
-            <h1 className="text-5xl font-bold mb-1 text-[#003366]">Crisp AI</h1>
-            <h2 className="text-2xl text-[#0099cc] mb-6">Artificial Intelligence</h2>
-            <div className="w-full max-w-2xl mx-auto h-2 bg-[#0099cc] mb-8"></div>
-            <p className="text-base mb-4 text-[#4a5568] max-w-2xl mx-auto">
-              No longer just a futuristic concept—AI is here to revolutionize your business. Whether you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the true potential of Artificial Intelligence.
-            </p>
-            <p className="text-base mb-10 text-[#4a5568]">
-              AI isn't one-size-fits-all, and neither are we.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
-                Get Started with Crisp AI Today!
-              </Link>
-              <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
-                Multi-Agent Resume Analyzer
-              </Link>
-              <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
-                AI Recruitment Assistant
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* Industry Solutions Section */}
       <section className="py-16 bg-white">
