@@ -23,7 +23,19 @@
 --destructive-foreground: 60 9.1% 97.8%;
 --ring: 20 14.3% 4.1%;
 --radius: 0.5rem;
+
+--primary-50: 195 100% 95%;
+--primary-100: 195 100% 90%;
+--primary-200: 195 100% 80%;
+--primary-300: 195 100% 70%;
+--primary-400: 195 100% 60%;
+--primary-500: 195 100% 50%;
+--primary-600: 195 100% 40%;
+--primary-700: 195 100% 35%;
+--primary-800: 195 100% 30%;
+--primary-900: 195 100% 25%;
   }
+  
   .dark {
       --background: 240 10% 3.9%;
 --foreground: 0 0% 98%;
@@ -55,4 +67,12 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(90deg, #0099cc 0%, #33b1dd 100%);
+}
+
+.shadow-custom {
+  box-shadow: 0 4px 14px 0 rgba(0, 153, 204, 0.39);
 }
