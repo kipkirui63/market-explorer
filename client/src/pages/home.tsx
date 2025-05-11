@@ -5,7 +5,7 @@ import WaveBackground from "@/components/WaveBackground";
 import TestimonialCard from "@/components/TestimonialCard";
 import SolutionCard from "@/components/SolutionCard";
 import ContactForm from "@/components/ContactForm";
-import Hero from "@/components/Hero";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   const testimonials = [
@@ -180,7 +180,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <Hero />
+      <HeroSection />
 
       {/* Industry Solutions Section */}
       <section className="py-16 bg-white">
