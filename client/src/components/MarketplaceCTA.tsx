@@ -1,22 +1,46 @@
-import React from 'react';
-import { Link } from 'wouter';
-import { ArrowRight } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 
-export default function MarketplaceCTA() {
+const MarketplaceCTA = () => {
+  const scrollToMarketplace = () => {
+    const marketplaceSection = document.getElementById("marketplace");
+    if (marketplaceSection) {
+      marketplaceSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="bg-gradient-to-r from-primary-600 to-primary-900 text-white py-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">Check Out Our AI Marketplace</h2>
-        <p className="text-xl mb-8 max-w-3xl mx-auto">
-          Discover a curated collection of AI tools and solutions for every business need.
-        </p>
-        <Link href="/marketplace">
-          <span className="inline-flex items-center px-6 py-3 border-2 border-white text-lg font-medium rounded-md text-white bg-transparent hover:bg-white hover:text-primary-900 transition-colors duration-200 cursor-pointer">
-            Visit the Marketplace
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </span>
-        </Link>
+    <section className="bg-gradient-to-r from-[#0076c6] to-[#0076c6]/90 text-white py-12 md:py-20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2 mb-10 md:mb-0">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4">
+              Find the Perfect Digital Tools
+            </h1>
+            <p className="text-lg md:text-xl opacity-90 mb-8">
+              Discover and purchase powerful applications and AI agents to enhance your workflow
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                className="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold h-auto"
+                onClick={scrollToMarketplace}
+              >
+                Browse Marketplace
+              </Button>
+            </div>
+          </div>
+          <div className="md:w-1/2 flex justify-center">
+            <img
+              src="https://crispai.crispvision.org/media/crisp-logo.png"
+              alt="CrispAI Logo"
+              className="rounded-xl shadow-2xl w-3/4 h-auto 
+                       filter brightness-0 invert 
+                       sepia-[100%] saturate-[500%] hue-rotate-[172deg]"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default MarketplaceCTA;
