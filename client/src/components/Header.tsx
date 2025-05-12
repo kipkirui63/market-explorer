@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
+import crispAILogo from "@/assets/crispai_logo.png";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <img src="/media/crispai_logo.png" alt="CrispAI Logo" className="h-10 mr-2" />
+          <img src={crispAILogo} alt="CrispAI Logo" className="h-10 mr-2" />
         </Link>
         
         {/* Desktop Navigation */}
