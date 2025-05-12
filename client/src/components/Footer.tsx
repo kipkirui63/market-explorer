@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
+import crispAILogo from "@/assets/crispai_logo.png";
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center text-center">
           <div className="mb-6">
-            <img src="/media/crispai_logo.png" alt="CrispAI Logo" className="h-10 bg-white rounded p-1" />
+            <img src={crispAILogo} alt="CrispAI Logo" className="h-10 bg-white rounded p-1" />
           </div>
           <p className="text-sm text-gray-300 mb-6 max-w-xl">
             Empowering businesses with intelligent AI solutions that drive growth and innovation.
