@@ -1,111 +1,86 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "@/components/Layout";
-import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search, Filter } from "lucide-react";
 
 export default function Marketplace() {
-  // State for categories
-  const [activeCategory, setActiveCategory] = useState("All Apps");
-  
   return (
     <Layout>
-      {/* Header with search bar */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="text-[#0077cc] w-6 h-6">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>
-                <path d="M12 2V8" stroke="currentColor" strokeWidth="2"/>
-                <path d="M12 16V22" stroke="currentColor" strokeWidth="2"/>
-              </svg>
+      {/* Hero Section */}
+      <div className="relative">
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            AI Solutions Marketplace
+          </h1>
+          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            Discover, evaluate, and implement powerful AI tools to transform your
+            business operations.
+          </p>
+
+          {/* Search bar */}
+          <div className="relative max-w-xl mx-auto">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-gray-400" />
             </div>
-            <span className="text-xl font-semibold text-[#0077cc]">CrispAI Marketplace</span>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search applications..."
-                className="pl-10 pr-3 py-2 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0077cc] focus:border-transparent"
-              />
-            </div>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-medium">Home</a>
-            <a href="#" className="text-gray-700 hover:text-gray-900">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </a>
-            <Button className="bg-[#0077cc] hover:bg-[#0099cc]">Sign in</Button>
+            <input
+              type="text"
+              placeholder="Search for AI tools and solutions..."
+              className="pl-10 pr-4 py-3 w-full rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
           </div>
         </div>
-      </header>
 
-      {/* Blue Hero Section */}
-      <section className="bg-[#0077cc] text-white">
-        <div className="container mx-auto px-4 py-16 flex flex-col lg:flex-row items-center">
-          <div className="lg:w-1/2 mb-8 lg:mb-0">
-            <h1 className="text-4xl font-bold mb-4">Find the Perfect Digital Tools</h1>
-            <p className="text-xl mb-8">
-              Discover and purchase powerful applications and AI agents to enhance your workflow
-            </p>
-            <button className="bg-white text-[#0077cc] px-6 py-2 rounded-md font-medium hover:bg-gray-100">
-              Browse Marketplace
-            </button>
-          </div>
-          <div className="lg:w-1/2 flex justify-center lg:justify-end">
-            <div className="bg-white rounded-full p-6 flex items-center justify-center">
-              <svg viewBox="0 0 250 250" width="180" height="180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="125" cy="125" r="120" stroke="#0077cc" strokeWidth="10" fill="white"/>
-                <circle cx="125" cy="125" r="60" stroke="#0077cc" strokeWidth="10" fill="white"/>
-                <path d="M125 5V65" stroke="#0077cc" strokeWidth="10"/>
-                <path d="M125 185V245" stroke="#0077cc" strokeWidth="10"/>
-                <text x="165" y="130" fontFamily="Arial" fontSize="60" fontWeight="bold" fill="#0077cc">AI</text>
-              </svg>
-            </div>
-          </div>
+        {/* Wave background */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
+          <svg
+            className="w-full h-24 fill-[#e6f7ff]"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            ></path>
+          </svg>
         </div>
-      </section>
+      </div>
 
-      {/* Browse Categories */}
-      <section className="py-8">
+      {/* Categories Section */}
+      <div className="bg-[#e6f7ff] py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-4">Browse Categories</h2>
-          <div className="flex flex-wrap gap-3">
-            <Button 
-              className={activeCategory === "All Apps" ? "bg-[#0077cc]" : "bg-gray-200 text-gray-800 hover:bg-gray-300"}
-              onClick={() => setActiveCategory("All Apps")}
-            >
-              All Apps
-            </Button>
-            <Button 
-              className={activeCategory === "AI Agents" ? "bg-[#0077cc]" : "bg-gray-200 text-gray-800 hover:bg-gray-300"}
-              onClick={() => setActiveCategory("AI Agents")}
-            >
-              AI Agents
-            </Button>
-            <Button 
-              className={activeCategory === "Development" ? "bg-[#0077cc]" : "bg-gray-200 text-gray-800 hover:bg-gray-300"}
-              onClick={() => setActiveCategory("Development")}
-            >
-              Development
-            </Button>
+          <div className="flex items-center gap-2 mb-6">
+            <Filter className="h-5 w-5 text-gray-700" />
+            <h2 className="text-2xl font-bold text-gray-800">Categories</h2>
+          </div>
+
+          <div className="space-y-3">
+            <CategoryItem name="AI Chatbots" count={24} />
+            <CategoryItem name="Data Analytics" count={18} />
+            <CategoryItem name="Computer Vision" count={12} />
+            <CategoryItem name="Natural Language Processing" count={16} />
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Featured Applications */}
-      <section className="py-8">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-6">Featured Applications</h2>
-          <p className="text-gray-500">Applications will be displayed here</p>
+      {/* Featured Products Section */}
+      <div className="py-12 container mx-auto px-4">
+        <h2 className="text-2xl font-bold mb-8 text-gray-800">Featured Solutions</h2>
+        
+        {/* Placeholder for actual products */}
+        <div className="text-center py-8 text-gray-500">
+          <p>Featured AI solutions will be displayed here.</p>
         </div>
-      </section>
+      </div>
     </Layout>
+  );
+}
+
+// Category Item Component
+function CategoryItem({ name, count }: { name: string; count: number }) {
+  return (
+    <div className="flex justify-between items-center py-3 px-4 bg-white rounded-lg shadow-sm hover:shadow transition cursor-pointer">
+      <span className="font-medium text-gray-800">{name}</span>
+      <span className="bg-gray-200 text-gray-600 rounded-full py-1 px-3 text-sm">
+        {count}
+      </span>
+    </div>
   );
 }
