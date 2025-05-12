@@ -4,6 +4,7 @@ import {
   Server, Heart, Factory, Stethoscope, Building2, GraduationCap, Landmark 
 } from 'lucide-react';
 import ServiceDetail from '@/components/ServiceDetail';
+import MarketplaceCTA from '@/components/MarketplaceCTA';
 import Layout from '@/components/Layout';
 
 const services = [
@@ -226,6 +227,8 @@ export default function Services() {
           </div>
         </div>
       </section>
+      
+      <MarketplaceCTA />
     </Layout>
   );
 }
