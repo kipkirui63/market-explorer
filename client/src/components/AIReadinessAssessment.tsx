@@ -149,7 +149,7 @@ export default function AIReadinessAssessment() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f4faff] px-4 py-10 text-[#003366] font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#90CBFF] to-[#f4faff] px-4 py-10 text-[#003366] font-sans relative overflow-hidden">
       {/* Wave Backgrounds */}
       {['Top', 'Bottom', 'Left', 'Right'].map(position => (
         <div 
@@ -172,11 +172,11 @@ export default function AIReadinessAssessment() {
         transition={{ duration: 0.6 }}
       >
         <div className="flex flex-col items-start mb-6 gap-2">
-          <div className="h-16 w-full mb-2 flex items-center">
-            <img src={crispAILogo} alt="CrispAI Logo" className="h-12 mr-3" />
-            <div>
-              <h1 className="text-2xl font-extrabold text-[#003366] leading-tight">AI Readiness</h1>
-              <h2 className="text-lg font-semibold text-[#003366]">Assessment</h2>
+          <div className="w-full mb-6">
+            <img src={crispAILogo} alt="CrispAI Logo" className="h-14 mb-4" />
+            <div className="text-left">
+              <h1 className="text-2xl font-bold text-[#003366] leading-tight">AI Readiness</h1>
+              <h2 className="text-xl font-medium text-[#003366]">Assessment</h2>
             </div>
           </div>
         </div>
