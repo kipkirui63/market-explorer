@@ -45,8 +45,8 @@ export default function Marketplace() {
         </div>
       </section>
 
-      <section className="py-8 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="pt-4 pb-0 bg-white">
+        <div className="container mx-auto px-0 md:px-4">
           {/* Loading spinner */}
           {loading && (
             <div className="flex justify-center items-center py-20">
@@ -59,7 +59,7 @@ export default function Marketplace() {
             <iframe
               id="marketplace-iframe"
               src={EXTERNAL_MARKETPLACE_URL}
-              className="w-full min-h-[800px] border-0 rounded-lg shadow-sm"
+              className="w-full min-h-[1200px] border-0 rounded-lg shadow-sm"
               title="CrispAI Marketplace"
               allow="autoplay; camera; microphone; fullscreen; payment"
               loading="lazy"
@@ -68,30 +68,7 @@ export default function Marketplace() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#F4FAFF]">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Need a Custom AI Solution?</h2>
-            <p className="text-lg text-gray-700 mb-8">
-              Don't see exactly what you need? Our team can build custom AI solutions tailored to your unique business requirements.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a 
-                href="/contact" 
-                className="px-8 py-3 bg-gradient-to-r from-[#0077cc] to-[#0099ff] text-white rounded-lg font-medium hover:opacity-90 transition shadow-md"
-              >
-                Contact for Custom Solutions
-              </a>
-              <a 
-                href="/assessment" 
-                className="px-8 py-3 border border-[#0077cc] text-[#0077cc] rounded-lg font-medium hover:bg-[#0077cc] hover:text-white transition"
-              >
-                Take AI Readiness Assessment
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* This CTA section is now handled by the marketplace iframe */}
     </div>
   );
 }
