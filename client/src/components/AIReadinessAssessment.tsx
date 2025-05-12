@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import crispAILogo from '@/assets/crispai_logo.png';
 
 interface Section {
   title: string;
@@ -172,7 +173,7 @@ export default function AIReadinessAssessment() {
       >
         <div className="flex flex-col items-start mb-6 gap-2">
           <div className="h-16 w-full mb-2 flex items-center">
-            <img src="/media/crispai_logo.png" alt="CrispAI Logo" className="h-12 mr-3" />
+            <img src={crispAILogo} alt="CrispAI Logo" className="h-12 mr-3" />
             <div>
               <h1 className="text-2xl font-extrabold text-[#003366] leading-tight">AI Readiness</h1>
               <h2 className="text-lg font-semibold text-[#003366]">Assessment</h2>
