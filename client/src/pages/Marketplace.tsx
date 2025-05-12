@@ -1,74 +1,62 @@
+import React from "react";
+import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
-import WaveBackground from "@/components/WaveBackground";
-import { useState, useEffect } from "react";
-
-// External marketplace URL
-const EXTERNAL_MARKETPLACE_URL = "https://96e9df22-27ec-4c16-abd0-10ac17f3d0b8-00-3kmky1mi4qc55.janeway.replit.dev/";
 
 export default function Marketplace() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Add event listener to handle iframe load event
-    const handleIframeLoad = () => {
-      setLoading(false);
-    };
-
-    const iframe = document.getElementById('marketplace-iframe') as HTMLIFrameElement;
-    if (iframe) {
-      iframe.addEventListener('load', handleIframeLoad);
-    }
-
-    return () => {
-      if (iframe) {
-        iframe.removeEventListener('load', handleIframeLoad);
-      }
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-[#F4FAFF]">
-      <section className="relative overflow-hidden py-16">
-        <WaveBackground position="bottom" />
-        <div className="container mx-auto px-4 z-10 relative">
-          <motion.div 
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
+    <Layout>
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <motion.h1 
+            className="text-4xl md:text-5xl font-bold mb-6 text-[#003366]"
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#003366]">AI Marketplace</h1>
-            <p className="text-lg mb-8 text-gray-700">
-              Discover our curated collection of AI tools designed to transform how your business operates.
-            </p>
-          </motion.div>
+            AI Solutions Marketplace
+          </motion.h1>
+          <motion.p 
+            className="text-lg text-gray-700"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Discover our curated collection of AI-powered tools and solutions designed to transform your business operations.
+          </motion.p>
         </div>
-      </section>
 
-      <section className="pt-4 pb-0 bg-white">
-        <div className="container mx-auto px-0 md:px-4">
-          {/* Loading spinner */}
-          {loading && (
-            <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0077cc]"></div>
-            </div>
-          )}
+        <motion.div
+          className="bg-white rounded-xl shadow-md p-8 mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-center text-xl mb-8">Coming soon - Our marketplace is under development</p>
           
-          {/* Iframe container */}
-          <div className={`w-full transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-            <iframe
-              id="marketplace-iframe"
-              src={EXTERNAL_MARKETPLACE_URL}
-              className="w-full min-h-[1200px] border-0 rounded-lg shadow-sm"
-              title="CrispAI Marketplace"
-              allow="autoplay; camera; microphone; fullscreen; payment"
-              loading="lazy"
-            ></iframe>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Placeholder content will go here */}
+          </div>
+        </motion.div>
+
+        <div className="text-center mt-12">
+          <h2 className="text-2xl font-bold mb-4">Need a Custom AI Solution?</h2>
+          <p className="mb-6">Contact us to discuss how we can build a tailored AI solution for your specific needs.</p>
+          <div className="flex justify-center gap-4 flex-wrap">
+            <a 
+              href="/contact" 
+              className="px-6 py-3 bg-gradient-to-r from-[#0077cc] to-[#0099ff] text-white rounded-lg font-medium hover:opacity-90 transition"
+            >
+              Contact Us
+            </a>
+            <a 
+              href="/assessment" 
+              className="px-6 py-3 border border-[#0077cc] text-[#0077cc] rounded-lg font-medium hover:bg-[#0077cc] hover:text-white transition"
+            >
+              Take AI Readiness Assessment
+            </a>
           </div>
         </div>
-      </section>
-
-      {/* This CTA section is now handled by the marketplace iframe */}
-    </div>
+      </div>
+    </Layout>
   );
 }
