@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from "@/components/Layout";
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Award, BookOpen, Users, Code, Clock, ArrowUpRight } from 'lucide-react';
+import WaveBackground from '@/components/WaveBackground';
 
 export default function About() {
   return (
