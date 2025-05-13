@@ -93,9 +93,17 @@ export default function Marketplace() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </a>
-            <button className="bg-blue-500 text-white px-4 py-1 rounded">
-              Sign in
-            </button>
+            {user ? (
+              <span className="text-gray-700 flex items-center">
+                {user.username}
+              </span>
+            ) : (
+              <Link href="/auth">
+                <Button className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">
+                  Sign in
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
