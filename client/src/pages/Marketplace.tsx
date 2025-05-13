@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import { Link } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
 import ProductCard from "@/components/ProductCard";
 
 export default function Marketplace() {
   const [activeCategory, setActiveCategory] = useState("All Apps");
+  const { user } = useAuth();
   
   // Product data based on the provided productUrlMap
   const products = [
