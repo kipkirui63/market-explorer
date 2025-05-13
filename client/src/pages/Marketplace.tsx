@@ -1,9 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 
 export default function Marketplace() {
+  const [activeCategory, setActiveCategory] = useState("All Apps");
+  
+  // Product data based on the provided productUrlMap
+  const products = [
+    {
+      id: "1",
+      name: "Text to SQL",
+      description: "Convert natural language queries into optimized SQL code instantly with AI-powered translation.",
+      price: "59.99",
+      rating: "5.0",
+      reviewCount: 7,
+      image: ""
+    },
+    {
+      id: "2",
+      name: "AI Recruitment Assistant",
+      description: "Intelligent assistant that streamlines your recruitment process with automated candidate screening and ranking.",
+      price: "39.99",
+      rating: "5.0",
+      reviewCount: 11,
+      badge: "NEW",
+      image: ""
+    },
+    {
+      id: "3",
+      name: "CrispWrite",
+      description: "AI-powered writing tool that helps you create clear, concise, and professional documents effortlessly.",
+      price: "89.99",
+      rating: "4.0",
+      reviewCount: 6,
+      badge: "BESTSELLER",
+      image: ""
+    },
+    {
+      id: "4",
+      name: "SOP Assistant",
+      description: "Specialized tool for creating and optimizing Standard Operating Procedures with AI-powered templates.",
+      price: "69.99",
+      rating: "5.0",
+      reviewCount: 5,
+      image: ""
+    },
+    {
+      id: "5",
+      name: "Multi-Agent Resume Analyzer",
+      description: "Advanced AI system that uses multiple agents to comprehensively analyze and score resumes for optimal hiring.",
+      price: "79.99",
+      rating: "5.0",
+      reviewCount: 10,
+      image: ""
+    }
+  ];
+
   return (
     <Layout>
       {/* Header Nav */}
@@ -56,6 +110,7 @@ export default function Marketplace() {
               </p>
               <Button 
                 className="bg-white text-blue-500 hover:bg-gray-100 px-6 py-2"
+                onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Browse Marketplace
               </Button>
@@ -77,24 +132,42 @@ export default function Marketplace() {
       </div>
 
       {/* Categories */}
-      <div className="py-8 bg-gray-50">
+      <div className="py-8 bg-gray-50" id="categories">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Browse Categories</h2>
           <div className="flex flex-wrap gap-3">
-            <Button className="bg-blue-500 hover:bg-blue-600">All Apps</Button>
-            <Button variant="outline" className="bg-gray-200 text-gray-700 border-none hover:bg-gray-300">AI Agents</Button>
-            <Button variant="outline" className="bg-gray-200 text-gray-700 border-none hover:bg-gray-300">Development</Button>
+            <Button 
+              className={activeCategory === "All Apps" ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}
+              onClick={() => setActiveCategory("All Apps")}
+            >
+              All Apps
+            </Button>
+            <Button 
+              variant={activeCategory === "AI Agents" ? "default" : "outline"} 
+              className={activeCategory === "AI Agents" ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-200 text-gray-700 border-none hover:bg-gray-300"}
+              onClick={() => setActiveCategory("AI Agents")}
+            >
+              AI Agents
+            </Button>
+            <Button 
+              variant={activeCategory === "Development" ? "default" : "outline"} 
+              className={activeCategory === "Development" ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-200 text-gray-700 border-none hover:bg-gray-300"}
+              onClick={() => setActiveCategory("Development")}
+            >
+              Development
+            </Button>
           </div>
         </div>
       </div>
 
       {/* Featured Applications */}
-      <div className="py-8">
+      <div className="py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-6">Featured Applications</h2>
-          <div className="text-center text-gray-500">
-            {/* We'll add actual applications here later */}
-            Featured applications will be displayed here.
+          <h2 className="text-2xl font-bold mb-8">Featured Applications</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
         </div>
       </div>

@@ -3,10 +3,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import Contact from "@/pages/Contact";
-import Assessment from "@/pages/Assessment";
+import About from "@/pages/about";
+import Services from "@/pages/services";
+import Contact from "@/pages/contact";
+import Assessment from "@/pages/assessment";
 import Marketplace from "@/pages/Marketplace";
 
 function Router() {
