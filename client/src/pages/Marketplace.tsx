@@ -16,7 +16,7 @@ export default function Marketplace() {
       price: "59.99",
       rating: "5.0",
       reviewCount: 7,
-      image: "/img/text-to-sql.svg"
+      image: ""
     },
     {
       id: "2",
@@ -26,7 +26,7 @@ export default function Marketplace() {
       rating: "5.0",
       reviewCount: 11,
       badge: "NEW",
-      image: "/img/recruitment-assistant.svg"
+      image: ""
     },
     {
       id: "3",
@@ -36,7 +36,7 @@ export default function Marketplace() {
       rating: "4.0",
       reviewCount: 6,
       badge: "BESTSELLER",
-      image: "/img/crisp-write.svg"
+      image: ""
     },
     {
       id: "4",
@@ -45,7 +45,7 @@ export default function Marketplace() {
       price: "69.99",
       rating: "5.0",
       reviewCount: 5,
-      image: "/img/sop-assistant.svg"
+      image: ""
     },
     {
       id: "5",
@@ -54,7 +54,7 @@ export default function Marketplace() {
       price: "79.99",
       rating: "5.0",
       reviewCount: 10,
-      image: "/img/resume-analyzer.svg"
+      image: ""
     }
   ];
 

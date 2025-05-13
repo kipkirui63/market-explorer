@@ -98,13 +98,60 @@ const ProductCard = ({ product }: ProductCardProps) => {
     >
       <div className="relative">
         <div
-          className="w-full h-48 bg-white flex items-center justify-center overflow-hidden"
+          className="w-full h-48 bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center overflow-hidden"
         >
-          <img 
-            src={product.image} 
-            alt={product.name}
-            className="w-full h-full object-contain" 
-          />
+          {product.name === "Text to SQL" && (
+            <div className="flex flex-col items-center">
+              <code className="text-blue-700 text-lg font-mono">SELECT * FROM</code>
+              <span className="text-blue-800 text-xl font-semibold mt-2">{product.name}</span>
+            </div>
+          )}
+          {product.name === "AI Recruitment Assistant" && (
+            <div className="flex flex-col items-center">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 mb-2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span className="text-blue-800 text-lg font-semibold">{product.name}</span>
+            </div>
+          )}
+          {product.name === "CrispWrite" && (
+            <div className="flex flex-col items-center">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 mb-2">
+                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                <path d="M2 2l7.586 7.586"></path>
+                <circle cx="11" cy="11" r="2"></circle>
+              </svg>
+              <span className="text-blue-800 text-lg font-semibold">{product.name}</span>
+            </div>
+          )}
+          {product.name === "SOP Assistant" && (
+            <div className="flex flex-col items-center">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 mb-2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span className="text-blue-800 text-lg font-semibold">{product.name}</span>
+            </div>
+          )}
+          {product.name === "Multi-Agent Resume Analyzer" && (
+            <div className="flex flex-col items-center">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 mb-2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+              <span className="text-blue-800 text-lg font-semibold">{product.name}</span>
+            </div>
+          )}
+          {!["Text to SQL", "AI Recruitment Assistant", "CrispWrite", "SOP Assistant", "Multi-Agent Resume Analyzer"].includes(product.name) && (
+            <span className="text-blue-800 text-xl font-semibold">{product.name}</span>
+          )}
         </div>
         {product.badge && (
           <div className={`absolute top-3 right-3 ${
