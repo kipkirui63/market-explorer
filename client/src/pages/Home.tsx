@@ -1,9 +1,8 @@
 import Hero from "@/components/sections/Hero";
 import IndustrySolutions from "@/components/sections/IndustrySolutions";
 import Testimonials from "@/components/sections/Testimonials";
-// Temporarily remove marketplace teaser for now
-// import MarketplaceTeaser from "@/components/sections/MarketplaceTeaser";
-import ContactForm from "@/components/ContactForm";
+import MarketplaceTeaser from "@/components/sections/MarketplaceTeaser";
+import ContactForm from "@/components/ui/ContactForm";
 
 export default function Home() {
   return (
@@ -22,7 +21,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* <MarketplaceTeaser /> */}
+      <MarketplaceTeaser />
     </div>
   );
 }
