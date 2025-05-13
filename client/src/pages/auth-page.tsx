@@ -77,7 +77,7 @@ export default function AuthPage() {
         });
         navigate("/");
       },
-      onError: (error) => {
+      onError: (error: Error) => {
         setIsLoading(false);
         toast({
           title: "Login failed",
@@ -99,7 +99,7 @@ export default function AuthPage() {
         });
         navigate("/");
       },
-      onError: (error) => {
+      onError: (error: Error) => {
         setIsLoading(false);
         toast({
           title: "Registration failed",

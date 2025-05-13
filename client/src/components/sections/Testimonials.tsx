@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import TestimonialCard from "@/components/ui/TestimonialCard";
+import TestimonialCard from "@/components/TestimonialCard";
 
 export default function Testimonials() {
   const testimonials = [

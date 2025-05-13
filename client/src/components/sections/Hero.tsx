@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import WaveBackground from "@/components/ui/WaveBackground";
+import WaveBackground from "@/components/WaveBackground";
 
 export default function Hero() {
   return (

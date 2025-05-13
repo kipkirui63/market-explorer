@@ -7,11 +7,11 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 
 import NotFound from "@/pages/not-found";
-import Home from "@/pages/home";
-import About from "@/pages/about";
-import Services from "@/pages/services";
-import Contact from "@/pages/contact";
-import Assessment from "@/pages/assessment";
+import Home from "@/pages/Home";
+import About from "@/pages/About";
+import Services from "@/pages/Services";
+import Contact from "@/pages/Contact";
+import Assessment from "@/pages/Assessment";
 import Marketplace from "@/pages/Marketplace";
 import AuthPage from "@/pages/auth-page";
 
