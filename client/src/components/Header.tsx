@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location] = useLocation();
+  const { user, logoutMutation } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,6 +16,10 @@ export default function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
   };
 
   const isActive = (path: string) => {
@@ -35,6 +40,26 @@ export default function Header() {
           <Link href="/contact" className={`transition ${isActive("/contact")}`}>Contact</Link>
           <Link href="/assessment" className={`transition ${isActive("/assessment")}`}>AI Readiness Assessment</Link>
           <Link href="/marketplace" className={`transition ${isActive("/marketplace")}`}>Marketplace</Link>
+          
+          {user ? (
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <User className="h-4 w-4 text-primary" />
+                <span className="text-primary font-medium">{user.username}</span>
+              </div>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="flex items-center gap-1 text-gray-600 hover:text-primary"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </Button>
+            </div>
+          ) : (
+            <Link href="/auth" className="text-primary font-medium hover:underline">Sign in</Link>
+          )}
         </nav>
         
         {/* Mobile Navigation Toggle */}
@@ -60,6 +85,35 @@ export default function Header() {
           <Link href="/contact" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Contact</Link>
           <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>AI Readiness Assessment</Link>
           <Link href="/marketplace" className="block py-2 text-gray-600 hover:text-primary font-medium" onClick={closeMenu}>Marketplace</Link>
+          
+          {user ? (
+            <>
+              <div className="py-2 border-t border-gray-100">
+                <div className="flex items-center gap-2 py-1 text-primary">
+                  <User className="h-4 w-4" />
+                  <span className="font-medium">{user.username}</span>
+                </div>
+                <button 
+                  className="flex items-center gap-2 py-1 text-gray-600 hover:text-primary"
+                  onClick={() => {
+                    handleLogout();
+                    closeMenu();
+                  }}
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </button>
+              </div>
+            </>
+          ) : (
+            <Link 
+              href="/auth" 
+              className="block py-2 text-primary font-medium border-t border-gray-100" 
+              onClick={closeMenu}
+            >
+              Sign in
+            </Link>
+          )}
         </div>
       </div>
     </header>
