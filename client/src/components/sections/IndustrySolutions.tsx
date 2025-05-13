@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import SolutionCard from "@/components/ui/SolutionCard";
+import SolutionCard from "@/components/SolutionCard";
 
 export default function IndustrySolutions() {
   const solutions = [
