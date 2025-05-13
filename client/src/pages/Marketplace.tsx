@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "@/components/Layout";
 import { Search } from "lucide-react";
 import crispAILogo from "@/assets/crispai_logo.png";
+import MarketplaceCTA from "@/components/MarketplaceCTA";
 
 export default function Marketplace() {
   return (
@@ -50,34 +51,11 @@ export default function Marketplace() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="bg-[#0099cc] flex-grow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl font-bold text-white mb-4">
-                Find the Perfect Digital Tools
-              </h1>
-              <p className="text-xl text-white mb-8">
-                Discover and purchase powerful applications and AI agents to enhance your workflow
-              </p>
-              <button className="px-6 py-2 bg-white text-[#0099cc] rounded-md font-medium hover:bg-gray-100">
-                Browse Marketplace
-              </button>
-            </div>
-            <div className="md:w-1/2 flex justify-center md:justify-end">
-              <img 
-                src={crispAILogo} 
-                alt="CrispAI Logo" 
-                className="h-40 object-contain" 
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Hero Section - Using MarketplaceCTA component */}
+      <MarketplaceCTA />
 
       {/* Categories */}
-      <div className="bg-white py-8">
+      <div id="marketplace" className="bg-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold mb-4">Browse Categories</h2>
           <div className="flex space-x-3">
