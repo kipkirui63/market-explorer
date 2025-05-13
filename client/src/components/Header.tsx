@@ -29,23 +29,22 @@ export default function Header() {
   };
 
   const isActive = (path: string) => {
-    return location === path ? "text-primary font-medium" : "text-gray-600 hover:text-primary";
+    return location === path ? "text-[#0099ff] font-medium" : "text-gray-600 hover:text-[#0099ff]";
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white sticky top-0 z-50 border-b border-gray-100">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <img src={crispAILogo} alt="CrispAI Logo" className="h-10 mr-2" />
+          <img src={crispAILogo} alt="CrispAI Logo" className="h-8 mr-2" />
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-8">
           <Link href="/about" className={`transition ${isActive("/about")}`}>About</Link>
           <Link href="/services" className={`transition ${isActive("/services")}`}>Services</Link>
           <Link href="/contact" className={`transition ${isActive("/contact")}`}>Contact</Link>
           <Link href="/assessment" className={`transition ${isActive("/assessment")}`}>AI Readiness Assessment</Link>
-          <Link href="/marketplace" className={`transition ${isActive("/marketplace")}`}>Marketplace</Link>
           
           {user ? (
             <DropdownMenu>
@@ -71,7 +70,7 @@ export default function Header() {
         
         {/* Mobile Navigation Toggle */}
         <button 
-          className="md:hidden text-gray-600 hover:text-primary"
+          className="md:hidden text-gray-600 hover:text-[#0099ff]"
           onClick={toggleMenu}
           aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
@@ -87,11 +86,10 @@ export default function Header() {
       {/* Mobile Navigation Menu */}
       <div className={`md:hidden bg-white shadow-md ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="container mx-auto px-4 py-3 space-y-3">
-          <Link href="/about" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>About</Link>
-          <Link href="/services" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Services</Link>
-          <Link href="/contact" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Contact</Link>
-          <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>AI Readiness Assessment</Link>
-          <Link href="/marketplace" className="block py-2 text-gray-600 hover:text-primary font-medium" onClick={closeMenu}>Marketplace</Link>
+          <Link href="/about" className="block py-2 text-gray-600 hover:text-[#0099ff]" onClick={closeMenu}>About</Link>
+          <Link href="/services" className="block py-2 text-gray-600 hover:text-[#0099ff]" onClick={closeMenu}>Services</Link>
+          <Link href="/contact" className="block py-2 text-gray-600 hover:text-[#0099ff]" onClick={closeMenu}>Contact</Link>
+          <Link href="/assessment" className="block py-2 text-gray-600 hover:text-[#0099ff]" onClick={closeMenu}>AI Readiness Assessment</Link>
           
           <div className="pt-2 border-t border-gray-100">
             {user ? (
