@@ -117,11 +117,15 @@ export default function Marketplace() {
             </div>
             <div className="md:w-1/2 flex justify-center md:justify-end">
               <div className="bg-blue-600/20 rounded-lg p-4 border border-blue-400/30">
-                <img 
-                  src="/img/crispai-logo-white.svg" 
-                  alt="CrispAI Logo" 
-                  className="w-48 h-auto"
-                />
+                <div className="flex items-center">
+                  <div className="relative w-16 h-16 mr-3">
+                    <div className="w-16 h-16 rounded-full border-2 border-white"></div>
+                    <div className="w-6 h-6 rounded-full border-2 border-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-3 bg-white"></div>
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 h-3 bg-white"></div>
+                  </div>
+                  <div className="text-white text-3xl font-bold">CrispAI</div>
+                </div>
               </div>
             </div>
           </div>
