@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Circle with line -->
+    <circle cx="30" cy="40" r="25" stroke="white" stroke-width="4" fill="none"/>
+    <circle cx="30" cy="40" r="10" stroke="white" stroke-width="4" fill="none"/>
+    <line x1="30" y1="15" x2="30" y2="5" stroke="white" stroke-width="4"/>
+    <line x1="30" y1="75" x2="30" y2="65" stroke="white" stroke-width="4"/>
+    
+    <!-- Text -->
+    <text x="75" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">CrispAI</text>
+  </g>
+</svg>
