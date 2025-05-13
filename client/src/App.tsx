@@ -7,7 +7,7 @@ import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Contact from "@/pages/Contact";
 import Assessment from "@/pages/Assessment";
-import Marketplace from "@/pages/marketplace";
+import Marketplace from "@/pages/Marketplace";
 
 function Router() {
   return (
