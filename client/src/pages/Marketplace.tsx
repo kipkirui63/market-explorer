@@ -116,15 +116,12 @@ export default function Marketplace() {
               </Button>
             </div>
             <div className="md:w-1/2 flex justify-center md:justify-end">
-              <div className="bg-white rounded-full p-6">
-                <div className="text-blue-500 w-32 h-32">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M12 2V8" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M12 16V22" stroke="currentColor" strokeWidth="2"/>
-                  </svg>
-                </div>
+              <div className="bg-blue-600/20 rounded-lg p-4 border border-blue-400/30">
+                <img 
+                  src="/img/crispai-logo-white.svg" 
+                  alt="CrispAI Logo" 
+                  className="w-48 h-auto"
+                />
               </div>
             </div>
           </div>
