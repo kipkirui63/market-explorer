@@ -43,7 +43,7 @@ export default function Hero() {
             className="rounded-3xl overflow-hidden bg-white shadow-lg p-1"
           >
             <img 
-              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+              src="https://img.freepik.com/premium-photo/ai-robot-s-white-hand-reaching-out-clean-white-background-futuristic-concept-artificial-intelligence-robotic-human-connection_670147-11932.jpg" 
               alt="AI Robotic Hand" 
               className="w-full h-auto rounded-2xl"
             />
