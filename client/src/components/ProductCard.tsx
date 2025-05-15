@@ -21,7 +21,7 @@ interface ProductCardProps {
 const productUrlMap: Record<string, string> = {
   "CrispWrite": "https://13258e34-e96c-4122-8dca-b63edcb236d1-00-9ajfnadifwon.picard.replit.dev/",
   "SOP Assistant": "https://workflow.getmindpal.com/sop-agent-workflow-AvLKGRHAD7x0XAZm",
-  "Multi-Agent Resume Analyzer": "https://workflow.mindpal.space/67751e695156e8aaefc0c8de",
+  "Resume Analyzer": "https://workflow.mindpal.space/67751e695156e8aaefc0c8de",
   "Text to SQL": "https://d7617397-c7d3-46e6-97ac-d777e7022280-00-1gdi5a1buq1x0.worf.replit.dev/",
   "AI Recruitment Assistant": "https://workflow.mindpal.space/67751913f9c93fd0de68fa31"
 };
@@ -140,7 +140,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <span className="text-blue-800 text-lg font-semibold">{product.name}</span>
             </div>
           )}
-          {product.name === "Multi-Agent Resume Analyzer" && (
+          {product.name === "Resume Analyzer" && (
             <div className="flex flex-col items-center">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 mb-2">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -149,7 +149,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <span className="text-blue-800 text-lg font-semibold">{product.name}</span>
             </div>
           )}
-          {!["Text to SQL", "AI Recruitment Assistant", "CrispWrite", "SOP Assistant", "Multi-Agent Resume Analyzer"].includes(product.name) && (
+          {!["Text to SQL", "AI Recruitment Assistant", "CrispWrite", "SOP Assistant", "Resume Analyzer"].includes(product.name) && (
             <span className="text-blue-800 text-xl font-semibold">{product.name}</span>
           )}
         </div>
