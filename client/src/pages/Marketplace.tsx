@@ -52,8 +52,8 @@ export default function Marketplace() {
     },
     {
       id: "5",
-      name: "Multi-Agent Resume Analyzer",
-      description: "Advanced AI system that uses multiple agents to comprehensively analyze and score resumes for optimal hiring.",
+      name: "Resume Analyzer",
+      description: "Advanced AI system that comprehensively analyzes and scores resumes for optimal hiring decisions.",
       price: "79.99",
       rating: "5.0",
       reviewCount: 10,
