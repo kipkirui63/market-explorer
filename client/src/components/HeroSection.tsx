@@ -36,7 +36,7 @@ export default function HeroSection() {
             href="/services"
             className="inline-flex items-center px-8 py-4 mb-2 text-base font-medium rounded-full text-white bg-gradient-custom hover:opacity-90 transition-all shadow-custom hover:shadow-lg"
           >
-            Multi-Agent Resume Analyzer
+            Resume Analyzer
           </Link>
           <Link
             style={{margin: '20px'}}

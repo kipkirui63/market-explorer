@@ -24,7 +24,7 @@ export default function Hero() {
             Get Started with Crisp AI Today!
           </Link>
           <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
-            Multi-Agent Resume Analyzer
+            Resume Analyzer
           </Link>
           <Link href="/services" className="w-56 px-5 py-3 bg-[#0099cc] text-white rounded-full font-medium hover:bg-blue-600 transition">
             AI Recruitment Assistant
