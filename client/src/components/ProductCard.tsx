@@ -21,7 +21,7 @@ interface ProductCardProps {
 const productUrlMap: Record<string, string> = {
   "CrispWrite": "https://13258e34-e96c-4122-8dca-b63edcb236d1-00-9ajfnadifwon.picard.replit.dev/",
   "SOP Assistant": "https://workflow.getmindpal.com/sop-agent-workflow-avlkgrhad7x0xazm",
-  "Resume Analyzer": "https://workflow.mindpal.space/67751e695156e8aaefc0c8de",
+  "Resume Analyzer": "https://workflow.getmindpal.com/67751e695156e8aaefc0c8de",
   "Text to SQL": "https://d7617397-c7d3-46e6-97ac-d777e7022280-00-1gdi5a1buq1x0.worf.replit.dev/",
   "AI Recruitment Assistant": "https://workflow.mindpal.space/67751913f9c93fd0de68fa31"
 };
