@@ -163,67 +163,7 @@ export default function Services() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 bg-gradient-to-b from-white to-background-light">
-        <div className="container mx-auto px-4 z-10 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary-dark">Our AI Services</h1>
-            <p className="text-lg mb-8 text-gray-700">
-              We provide end-to-end AI solutions designed to transform your operations, enhance 
-              decision-making, and drive innovation across your organization.
-            </p>
-          </div>
-        </div>
-        <WaveBackground />
-      </section>
 
-      {/* Services Overview */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-center">How We Deliver AI Excellence</h2>
-            <p className="text-gray-700 text-center">
-              Our comprehensive approach ensures that your AI implementation is strategic, effective, 
-              and delivers lasting value. We partner with you through every stage of the AI journey.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-background-light rounded-lg p-6 text-center">
-              <div className="bg-primary-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white text-2xl font-bold">1</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Strategy & Assessment</h3>
-              <p className="text-gray-700">
-                We evaluate your readiness for AI, identify high-impact opportunities, and develop a 
-                strategic roadmap tailored to your unique business objectives.
-              </p>
-            </div>
-            
-            <div className="bg-background-light rounded-lg p-6 text-center">
-              <div className="bg-primary-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white text-2xl font-bold">2</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Solution Development</h3>
-              <p className="text-gray-700">
-                Our experts design and develop custom AI solutions that integrate seamlessly with your 
-                existing systems, whether through algorithm development or platform integration.
-              </p>
-            </div>
-            
-            <div className="bg-background-light rounded-lg p-6 text-center">
-              <div className="bg-primary-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white text-2xl font-bold">3</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Implementation & Growth</h3>
-              <p className="text-gray-700">
-                We deploy your solution, provide comprehensive training, and establish metrics to track 
-                success. We then help you scale and optimize as your needs evolve.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Industry Solutions Section */}
       <section className="py-16 bg-background-light">
