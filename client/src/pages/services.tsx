@@ -2,14 +2,65 @@ import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import WaveBackground from "@/components/WaveBackground";
 import SolutionCard from "@/components/SolutionCard";
-import { Settings, Users, Server, Briefcase, Beaker, Heart, ShoppingCart, GraduationCap, Building } from "lucide-react";
+import { ShoppingCart, Users, Server, Heart, BarChart3, Headphones, ShoppingBag, Building, GraduationCap, Beaker } from "lucide-react";
 
 export default function Services() {
   const solutions = [
     {
+      title: "AI for Sales",
+      description: "Transform your sales process with AI-powered insights and automation.",
+      icon: <ShoppingBag className="h-8 w-8" />,
+      benefits: [
+        "Reduce sales cycle by up to 40%",
+        "Increase conversion rate by 35%",
+        "Automate lead qualification and scoring",
+        "Predict customer lifetime value"
+      ],
+      useCases: [
+        "AI-powered sales forecasting",
+        "Intelligent lead prioritization",
+        "Automated follow-up sequences",
+        "Smart deal insights and recommendations"
+      ]
+    },
+    {
+      title: "AI for Marketing",
+      description: "Revolutionize your marketing strategies with AI-driven insights.",
+      icon: <BarChart3 className="h-8 w-8" />,
+      benefits: [
+        "Increase marketing ROI by 30%",
+        "Personalize customer experiences",
+        "Optimize campaign performance",
+        "Predict market trends"
+      ],
+      useCases: [
+        "Dynamic content personalization",
+        "Predictive audience targeting",
+        "AI-powered A/B testing",
+        "Automated social media optimization"
+      ]
+    },
+    {
+      title: "AI for Customer Support",
+      description: "Deliver exceptional customer service with AI assistance.",
+      icon: <Headphones className="h-8 w-8" />,
+      benefits: [
+        "Reduce response time by 60%",
+        "Available 24/7/365",
+        "Handle multiple queries simultaneously",
+        "Improve customer satisfaction"
+      ],
+      useCases: [
+        "Intelligent chatbots",
+        "Automated ticket routing",
+        "Sentiment analysis",
+        "Predictive customer needs"
+      ]
+    },
+    {
       title: "AI for Operations",
       description: "Optimize your operations with AI-powered automation.",
-      icon: <Settings className="h-10 w-10" />,
+      icon: <Server className="h-8 w-8" />,
       benefits: [
         "Reduce operational costs by 25%",
         "Improve efficiency by 40%",
@@ -26,10 +77,10 @@ export default function Services() {
     {
       title: "AI for HR",
       description: "Transform your HR processes with AI-powered solutions.",
-      icon: <Users className="h-10 w-10" />,
+      icon: <Users className="h-8 w-8" />,
       benefits: [
         "Reduce hiring time by 50%",
-        "Improve candidate selection",
+        "Improve candidate quality",
         "Automate routine tasks",
         "Enhance employee experience"
       ],
@@ -43,7 +94,7 @@ export default function Services() {
     {
       title: "AI for IT",
       description: "Modernize your IT infrastructure with AI capabilities.",
-      icon: <Server className="h-10 w-10" />,
+      icon: <Server className="h-8 w-8" />,
       benefits: [
         "Reduce downtime by 70%",
         "Automate routine maintenance",
@@ -60,7 +111,7 @@ export default function Services() {
     {
       title: "AI for Nonprofits",
       description: "Maximize social impact with AI-driven solutions.",
-      icon: <Briefcase className="h-10 w-10" />,
+      icon: <Heart className="h-8 w-8" />,
       benefits: [
         "Increase donor engagement",
         "Optimize resource allocation",
@@ -77,7 +128,7 @@ export default function Services() {
     {
       title: "AI for Manufacturing",
       description: "Revolutionize manufacturing with AI-powered solutions.",
-      icon: <Beaker className="h-10 w-10" />,
+      icon: <Beaker className="h-8 w-8" />,
       benefits: [
         "Reduce waste by 30%",
         "Improve quality control",
@@ -94,7 +145,7 @@ export default function Services() {
     {
       title: "AI for Healthcare",
       description: "Transform patient care with AI-powered healthcare solutions.",
-      icon: <Heart className="h-10 w-10" />,
+      icon: <Heart className="h-8 w-8" />,
       benefits: [
         "Improve diagnosis accuracy",
         "Reduce administrative burden",
@@ -111,7 +162,7 @@ export default function Services() {
     {
       title: "AI for Retail",
       description: "Enhance retail operations with AI-powered insights.",
-      icon: <ShoppingCart className="h-10 w-10" />,
+      icon: <ShoppingCart className="h-8 w-8" />,
       benefits: [
         "Increase sales by 25%",
         "Optimize inventory management",
@@ -128,7 +179,7 @@ export default function Services() {
     {
       title: "AI for Education",
       description: "Transform learning with AI-powered educational solutions.",
-      icon: <GraduationCap className="h-10 w-10" />,
+      icon: <GraduationCap className="h-8 w-8" />,
       benefits: [
         "Personalize learning paths",
         "Improve student engagement",
@@ -145,7 +196,7 @@ export default function Services() {
     {
       title: "AI for Government",
       description: "Modernize public services with AI solutions.",
-      icon: <Building className="h-10 w-10" />,
+      icon: <Building className="h-8 w-8" />,
       benefits: [
         "Improve service delivery",
         "Reduce processing time",
@@ -163,8 +214,6 @@ export default function Services() {
 
   return (
     <Layout>
-
-
       {/* Industry Solutions Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -183,8 +232,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
-
     </Layout>
   );
 }
