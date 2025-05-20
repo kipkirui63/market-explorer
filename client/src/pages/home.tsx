@@ -235,18 +235,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Marketplace Teaser Section */}
-      <section className="py-16 bg-gradient-to-b from-background-light to-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Check Out Our AI Marketplace</h2>
-            <p className="text-lg text-gray-700 mb-8">Discover a curated collection of AI tools and solutions for every business need.</p>
-            <Link href="/marketplace" className="inline-block px-8 py-3 bg-gradient-to-r from-primary to-primary-light text-white rounded-lg font-medium hover:opacity-90 transition shadow-md">
-              Visit the Marketplace
-            </Link>
-          </div>
-        </div>
-      </section>
+
     </Layout>
   );
 }
