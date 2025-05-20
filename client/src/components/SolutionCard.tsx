@@ -11,35 +11,30 @@ interface SolutionCardProps {
 
 export default function SolutionCard({ title, description, icon, benefits, useCases }: SolutionCardProps) {
   return (
-    <div className="bg-blue-50 rounded-lg p-6">
-      <div className="text-primary mb-4">
+    <div className="bg-white rounded-lg p-6 shadow-sm">
+      <div className="text-primary mb-5 flex justify-center">
         {icon}
       </div>
       
-      <h3 className="text-lg font-semibold text-primary mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4 text-sm">{description}</p>
+      <h3 className="text-xl font-semibold text-primary mb-3 text-center">{title}</h3>
+      <p className="text-gray-600 mb-6 text-sm text-center">{description}</p>
       
-      <div className="space-y-4">
+      {/* These sections are only visible on the expanded view */}
+      <div className="hidden">
         <div>
           <h4 className="font-semibold mb-2 text-sm text-gray-700">Key Benefits:</h4>
-          <ul className="space-y-1">
+          <ul className="list-disc pl-5 space-y-1">
             {benefits.map((benefit, index) => (
-              <li key={index} className="flex items-start text-sm">
-                <span className="text-primary mr-2 flex-shrink-0">•</span>
-                <span className="text-gray-600">{benefit}</span>
-              </li>
+              <li key={index} className="text-sm text-gray-600">{benefit}</li>
             ))}
           </ul>
         </div>
         
-        <div>
+        <div className="mt-4">
           <h4 className="font-semibold mb-2 text-sm text-gray-700">Use Cases:</h4>
-          <ul className="space-y-1">
+          <ul className="list-disc pl-5 space-y-1">
             {useCases.map((useCase, index) => (
-              <li key={index} className="flex items-start text-sm">
-                <span className="text-primary mr-2 flex-shrink-0">•</span>
-                <span className="text-gray-600">{useCase}</span>
-              </li>
+              <li key={index} className="text-sm text-gray-600">{useCase}</li>
             ))}
           </ul>
         </div>
