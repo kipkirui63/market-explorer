@@ -238,26 +238,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-white relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business with AI?</h2>
-            <p className="text-lg text-gray-700 mb-8">
-              Start your AI journey today. Take our readiness assessment to discover where your organization 
-              stands and how we can help you leverage AI for maximum impact.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="/assessment" className="px-6 py-3 bg-gradient-to-r from-primary to-primary-light text-white rounded-lg font-medium hover:opacity-90 transition shadow-md">
-                Take AI Readiness Assessment
-              </Link>
-              <Link href="/contact" className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </Layout>
   );
 }
