@@ -11,7 +11,7 @@ interface SolutionCardProps {
 
 export default function SolutionCard({ title, description, icon, benefits, useCases }: SolutionCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="bg-blue-50 bg-opacity-30 rounded-lg shadow-sm p-6">
       <div className="text-primary mb-4">
         {icon}
       </div>
