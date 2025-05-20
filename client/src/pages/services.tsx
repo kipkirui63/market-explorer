@@ -215,14 +215,10 @@ export default function Services() {
   return (
     <Layout>
       {/* Industry Solutions Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-blue-50/50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-6">AI Solutions for Every Industry</h2>
-            <p className="text-lg text-gray-700">
-              Our AI solutions are designed to meet the unique needs of various industries, 
-              providing tailored approaches to maximize impact and value.
-            </p>
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-6 text-blue-900">AI Solutions for Every Industry</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
