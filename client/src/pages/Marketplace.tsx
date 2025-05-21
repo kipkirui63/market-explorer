@@ -88,9 +88,38 @@ export default function Marketplace() {
               />
             </div>
             <a href="#" className="text-gray-700">Home</a>
-            <a href="#" className="text-gray-700">
-              <ShoppingCart className="h-5 w-5" />
-            </a>
+            <div className="relative">
+              <a href="#" className="text-gray-700" onClick={(e) => {
+                e.preventDefault();
+                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
+                const totalAmount = cart.reduce((total: number, item: any) => 
+                  total + parseFloat(item.price) * (item.quantity || 1), 0).toFixed(2);
+                
+                alert(`Your Cart (${itemCount} items):\n\n${
+                  cart.map((item: any) => 
+                    `${item.name} - $${item.price} x ${item.quantity || 1} = $${
+                      (parseFloat(item.price) * (item.quantity || 1)).toFixed(2)
+                    }`
+                  ).join('\n')
+                }\n\nTotal: $${totalAmount}`);
+              }}>
+                <ShoppingCart className="h-5 w-5" />
+                {(() => {
+                  try {
+                    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                    const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
+                    return itemCount > 0 ? (
+                      <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                        {itemCount}
+                      </span>
+                    ) : null;
+                  } catch {
+                    return null;
+                  }
+                })()}
+              </a>
+            </div>
             
             {user ? (
               <div className="flex items-center gap-2">
