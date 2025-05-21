@@ -130,15 +130,13 @@ export default function Marketplace() {
               </Button>
             </div>
             <div className="md:w-1/2 flex justify-center md:justify-end">
-              <div className="bg-blue-600/20 p-6 rounded-lg">
-                <div className="flex items-center">
-                  <img
-                    src="https://crispai.crispvision.org/media/crisp-logo.png"
-                    alt="CrispAI Logo"
-                    className="h-16 w-auto filter brightness-0 invert"
-                  />
-                  <div className="text-white text-4xl font-bold ml-3">CrispAI</div>
-                </div>
+              <div className="flex items-center">
+                <img
+                  src="https://crispai.crispvision.org/media/crisp-logo.png"
+                  alt="CrispAI Logo"
+                  className="h-16 w-auto filter brightness-0 invert"
+                />
+                <div className="text-white text-4xl font-bold ml-3">CrispAI CrispAI</div>
               </div>
             </div>
           </div>
