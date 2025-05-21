@@ -38,7 +38,7 @@ export default function Header() {
           <Link href="/about" className={`transition ${isActive("/about")}`}>About</Link>
           <Link href="/services" className={`transition ${isActive("/services")}`}>Services</Link>
           <Link href="/contact" className={`transition ${isActive("/contact")}`}>Contact</Link>
-          <Link href="/assessment" className={`transition ${isActive("/assessment")}`}>AI Readiness Assessment</Link>
+          <Link href="/assessment" className={`transition ${isActive("/assessment")}`}>Assessment</Link>
           <Link href="/marketplace" className={`transition ${isActive("/marketplace")}`}>Marketplace</Link>
         </nav>
         
@@ -63,7 +63,7 @@ export default function Header() {
           <Link href="/about" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>About</Link>
           <Link href="/services" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Services</Link>
           <Link href="/contact" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Contact</Link>
-          <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>AI Readiness Assessment</Link>
+          <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Assessment</Link>
           <Link href="/marketplace" className="block py-2 text-gray-600 hover:text-primary font-medium" onClick={closeMenu}>Marketplace</Link>
         </div>
       </div>
