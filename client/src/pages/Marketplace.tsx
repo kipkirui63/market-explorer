@@ -15,7 +15,7 @@ export default function Marketplace() {
     {
       id: "1",
       name: "Business Intelligence Agent",
-      description: "Convert natural language queries into optimized SQL code instantly with AI-powered translation.",
+      description: "Intelligent agent that converts natural language queries into optimized SQL code instantly with AI-powered translation.",
       price: "39.00",
       rating: "5.0",
       reviewCount: 7,
