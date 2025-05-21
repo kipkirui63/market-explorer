@@ -62,9 +62,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
     // Save updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(existingCart));
     
-    // Show success message
-    const cartCount = existingCart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
-    alert(`Added ${product.name} to cart! Your cart now has ${cartCount} item(s).`);
+    // Don't show alert message as requested by user
+    // Just update the cart silently
   };
 
   const renderRatingStars = (rating: string) => {
