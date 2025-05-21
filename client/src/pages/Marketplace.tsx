@@ -122,12 +122,19 @@ export default function Marketplace() {
               <p className="text-xl mb-8">
                 Discover and purchase powerful applications and AI agents to enhance your workflow
               </p>
-              <Button 
-                className="bg-white text-blue-500 hover:bg-gray-100 px-6 py-2"
-                onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Browse Marketplace
-              </Button>
+              <div className="flex items-center space-x-4">
+                <Button 
+                  className="bg-white text-blue-500 hover:bg-gray-100 px-6 py-2"
+                  onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Browse Marketplace
+                </Button>
+                <img
+                  src="https://crispai.crispvision.org/media/crisp-logo.png"
+                  alt="CrispAI Logo"
+                  className="h-12 w-auto filter brightness-0 invert"
+                />
+              </div>
             </div>
             <div className="md:w-1/2 flex justify-center md:justify-end">
               <div className="bg-blue-600/20 rounded-lg p-4 border border-blue-400/30">
