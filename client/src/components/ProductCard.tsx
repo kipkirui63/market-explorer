@@ -38,8 +38,33 @@ const ProductCard = ({ product }: ProductCardProps) => {
     // Prevent the click from bubbling up to the parent card
     e.stopPropagation();
     
-    // Simplified cart functionality for now
-    alert(`Added ${product.name} to cart!`);
+    // Get existing cart items from localStorage or initialize empty array
+    const existingCart = localStorage.getItem('cart') 
+      ? JSON.parse(localStorage.getItem('cart') || '[]') 
+      : [];
+    
+    // Check if this product is already in cart
+    const existingItem = existingCart.find((item: any) => item.id === product.id);
+    
+    if (existingItem) {
+      // Increment quantity if already in cart
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+      // Add new item to cart with quantity 1
+      existingCart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1
+      });
+    }
+    
+    // Save updated cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+    
+    // Show success message
+    const cartCount = existingCart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
+    alert(`Added ${product.name} to cart! Your cart now has ${cartCount} item(s).`);
   };
 
   const renderRatingStars = (rating: string) => {
