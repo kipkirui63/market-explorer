@@ -91,6 +91,15 @@ export default function Marketplace() {
             <div className="relative">
               <a href="#" className="text-gray-700" onClick={(e) => {
                 e.preventDefault();
+                
+                if (!user) {
+                  // If not logged in, redirect to auth page
+                  alert("Please sign in to view your cart.");
+                  window.location.href = "/auth";
+                  return;
+                }
+                
+                // Only show cart contents if user is logged in
                 const cart = JSON.parse(localStorage.getItem('cart') || '[]');
                 const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
                 const totalAmount = cart.reduce((total: number, item: any) => 
