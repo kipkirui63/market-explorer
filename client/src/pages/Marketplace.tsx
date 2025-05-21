@@ -136,7 +136,6 @@ export default function Marketplace() {
                   alt="CrispAI Logo"
                   className="h-16 w-auto filter brightness-0 invert"
                 />
-                <div className="text-white text-4xl font-bold ml-3">CrispAI CrispAI</div>
               </div>
             </div>
           </div>
