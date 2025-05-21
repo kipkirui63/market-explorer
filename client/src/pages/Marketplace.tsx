@@ -122,30 +122,22 @@ export default function Marketplace() {
               <p className="text-xl mb-8">
                 Discover and purchase powerful applications and AI agents to enhance your workflow
               </p>
-              <div className="flex items-center space-x-4">
-                <Button 
-                  className="bg-white text-blue-500 hover:bg-gray-100 px-6 py-2"
-                  onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Browse Marketplace
-                </Button>
-                <img
-                  src="https://crispai.crispvision.org/media/crisp-logo.png"
-                  alt="CrispAI Logo"
-                  className="h-12 w-auto filter brightness-0 invert"
-                />
-              </div>
+              <Button 
+                className="bg-white text-blue-500 hover:bg-gray-100 px-6 py-2"
+                onClick={() => document.getElementById('categories')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Browse Marketplace
+              </Button>
             </div>
             <div className="md:w-1/2 flex justify-center md:justify-end">
-              <div className="bg-blue-600/20 rounded-lg p-4 border border-blue-400/30">
+              <div className="bg-blue-600/20 p-6 rounded-lg">
                 <div className="flex items-center">
-                  <div className="relative w-16 h-16 mr-3">
-                    <div className="w-16 h-16 rounded-full border-2 border-white"></div>
-                    <div className="w-6 h-6 rounded-full border-2 border-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-3 bg-white"></div>
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 h-3 bg-white"></div>
-                  </div>
-                  <div className="text-white text-3xl font-bold">CrispAI</div>
+                  <img
+                    src="https://crispai.crispvision.org/media/crisp-logo.png"
+                    alt="CrispAI Logo"
+                    className="h-16 w-auto filter brightness-0 invert"
+                  />
+                  <div className="text-white text-4xl font-bold ml-3">CrispAI</div>
                 </div>
               </div>
             </div>
