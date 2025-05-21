@@ -93,8 +93,7 @@ export default function Marketplace() {
                 e.preventDefault();
                 
                 if (!user) {
-                  // If not logged in, redirect to auth page
-                  alert("Please sign in to view your cart.");
+                  // If not logged in, redirect to auth page without alert
                   window.location.href = "/auth";
                   return;
                 }
