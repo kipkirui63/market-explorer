@@ -101,6 +101,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div
           className="w-full h-48 bg-gradient-to-r from-blue-50 to-blue-100 flex items-center justify-center overflow-hidden"
         >
+          {/* We'll use our ProductImage component which shows nice icons for each product */}
           <ProductImage id={product.id} />
         </div>
         {product.badge && (
