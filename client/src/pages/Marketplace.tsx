@@ -14,9 +14,9 @@ export default function Marketplace() {
   const products = [
     {
       id: "1",
-      name: "Text to SQL",
+      name: "Business Intelligence Agent",
       description: "Convert natural language queries into optimized SQL code instantly with AI-powered translation.",
-      price: "59.99",
+      price: "39.00",
       rating: "5.0",
       reviewCount: 7,
       image: ""
@@ -25,7 +25,7 @@ export default function Marketplace() {
       id: "2",
       name: "AI Recruitment Assistant",
       description: "Intelligent assistant that streamlines your recruitment process with automated candidate screening and ranking.",
-      price: "39.99",
+      price: "19.00",
       rating: "5.0",
       reviewCount: 11,
       badge: "NEW",
@@ -45,7 +45,7 @@ export default function Marketplace() {
       id: "4",
       name: "SOP Assistant",
       description: "Specialized tool for creating and optimizing Standard Operating Procedures with AI-powered templates.",
-      price: "69.99",
+      price: "19.00",
       rating: "5.0",
       reviewCount: 5,
       image: ""
@@ -54,7 +54,7 @@ export default function Marketplace() {
       id: "5",
       name: "Resume Analyzer",
       description: "Advanced AI system that comprehensively analyzes and scores resumes for optimal hiring decisions.",
-      price: "79.99",
+      price: "19.00",
       rating: "5.0",
       reviewCount: 10,
       image: ""
