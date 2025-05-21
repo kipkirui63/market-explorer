@@ -1,5 +1,8 @@
 import React from 'react';
 import { Database, Users, FileText, FileCheck, FileSearch } from 'lucide-react';
+import ResumeAnalyzerImage from './ResumeAnalyzerImage';
+import SOPAssistantImage from './SOPAssistantImage';
+import BusinessIntelligentAgentImage from './BusinessIntelligentAgentImage';
 
 // Component to display product-specific icon based on product id
 export const ProductIcon = ({ id, size = 80, className = "" }: { id: string, size?: number, className?: string }) => {
@@ -24,21 +27,30 @@ export const ProductIcon = ({ id, size = 80, className = "" }: { id: string, siz
   }
 };
 
-// Enhanced product image display with illustrative background
+// Enhanced product image display with detailed illustrations for each product
 export const ProductImage = ({ id }: { id: string }) => {
-  // Create a more visually appealing background for each product type
+  // Use custom detailed illustrations for specific products
+  switch (id) {
+    case "1": // Business Intelligent Agent
+      return <BusinessIntelligentAgentImage />;
+    case "4": // SOP Assistant
+      return <SOPAssistantImage />;
+    case "5": // Resume Analyzer
+      return <ResumeAnalyzerImage />;
+    default:
+      return <ProductIconDisplay id={id} />;
+  }
+};
+
+// Fallback icon display for products without custom illustrations
+const ProductIconDisplay = ({ id }: { id: string }) => {
+  // Create a visually appealing background for each product type
   const getBackgroundStyle = (productId: string) => {
     switch (productId) {
-      case "1": // Business Intelligent Agent
-        return "bg-gradient-to-br from-blue-50 to-cyan-100 border-b-4 border-blue-400";
       case "2": // AI Recruitment Assistant
         return "bg-gradient-to-br from-blue-50 to-indigo-100 border-b-4 border-indigo-400";
       case "3": // CrispWrite
         return "bg-gradient-to-br from-blue-50 to-purple-100 border-b-4 border-purple-400";
-      case "4": // SOP Assistant
-        return "bg-gradient-to-br from-blue-50 to-teal-100 border-b-4 border-teal-400";
-      case "5": // Resume Analyzer
-        return "bg-gradient-to-br from-blue-50 to-blue-100 border-b-4 border-blue-500";
       default:
         return "bg-gradient-to-r from-blue-50 to-blue-100";
     }
@@ -47,11 +59,8 @@ export const ProductImage = ({ id }: { id: string }) => {
   // Get product name based on ID
   const getProductName = (productId: string) => {
     switch (productId) {
-      case "1": return "Business Intelligent Agent";
       case "2": return "AI Recruitment Assistant";
       case "3": return "CrispWrite";
-      case "4": return "SOP Assistant";
-      case "5": return "Resume Analyzer";
       default: return "AI Product";
     }
   };
@@ -59,11 +68,8 @@ export const ProductImage = ({ id }: { id: string }) => {
   // Get product descriptions
   const getProductDescription = (productId: string) => {
     switch (productId) {
-      case "1": return "Natural language to SQL";
       case "2": return "Automatic candidate screening";
       case "3": return "Professional document creation";
-      case "4": return "Streamlined process documentation";
-      case "5": return "Detailed resume analysis";
       default: return "AI-powered solution";
     }
   };
