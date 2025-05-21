@@ -192,19 +192,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <ThumbsUp className="h-4 w-4 mr-1" /> Rate
           </Button>
         </div>
-        <div className="flex space-x-3">
+        <div className="flex">
           <Button
             onClick={handleAddToCart}
-            className="bg-blue-500 hover:bg-blue-600 text-white flex-1"
+            className="bg-blue-500 hover:bg-blue-600 text-white w-full"
           >
             Add to Cart
-          </Button>
-          <Button
-            onClick={showDemo}
-            variant="outline"
-            className="border-gray-300"
-          >
-            <Play className="h-4 w-4 mr-1" /> Demo
           </Button>
         </div>
       </div>
