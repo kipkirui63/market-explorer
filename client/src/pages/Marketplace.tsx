@@ -14,7 +14,7 @@ export default function Marketplace() {
   const products = [
     {
       id: "1",
-      name: "Business IntelligentAgent",
+      name: "Business Intelligent Agent",
       description: "Intelligent agent that converts natural language queries into optimized SQL code instantly with AI-powered translation.",
       price: "39.00",
       rating: "5.0",
