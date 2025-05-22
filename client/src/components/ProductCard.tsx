@@ -74,6 +74,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
     
     // Save updated cart to localStorage with user-specific key
     localStorage.setItem(userCartKey, JSON.stringify(existingCart));
+    
+    // Dispatch storage event to notify other components that cart has changed
+    window.dispatchEvent(new Event('storage'));
   };
 
   const renderRatingStars = (rating: string) => {
