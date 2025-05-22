@@ -83,50 +83,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="bg-background-light rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-2">What industries do you work with?</h3>
-              <p className="text-gray-700">
-                We work with clients across numerous industries including healthcare, retail, manufacturing, 
-                education, government, and financial services. Our AI solutions are customizable to address 
-                the unique challenges of each sector.
-              </p>
-            </div>
-            
-            <div className="bg-background-light rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-2">How long does it take to implement an AI solution?</h3>
-              <p className="text-gray-700">
-                Implementation timelines vary based on the complexity of the solution and your organization's 
-                readiness. Simple integrations can take as little as 4-6 weeks, while more complex custom 
-                solutions might require 3-6 months. We'll provide a detailed timeline during our consultation.
-              </p>
-            </div>
-            
-            <div className="bg-background-light rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-2">Do I need technical expertise to work with you?</h3>
-              <p className="text-gray-700">
-                No technical expertise is required. We handle the technical aspects while keeping you involved 
-                in the process with clear communication. Our solutions are designed to be user-friendly, and 
-                we provide comprehensive training to your team.
-              </p>
-            </div>
-            
-            <div className="bg-background-light rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-2">What's your approach to data privacy and security?</h3>
-              <p className="text-gray-700">
-                We take data privacy and security extremely seriously. All our solutions adhere to industry 
-                standards and regulations like GDPR and HIPAA where applicable. We implement robust security 
-                measures and can work within your existing security frameworks.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </Layout>
   );
 }
