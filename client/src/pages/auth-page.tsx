@@ -106,8 +106,13 @@ export default function AuthPage() {
                         <FormLabel>Username</FormLabel>
                         <FormControl>
                           <Input
+                            id="login-username"
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            ref={field.ref}
+                            name={field.name}
                             placeholder="admin"
-                            {...field}
                             autoComplete="username"
                             className="h-10"
                           />
@@ -125,9 +130,14 @@ export default function AuthPage() {
                         <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
+                            id="login-password"
                             type="password"
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            ref={field.ref}
+                            name={field.name}
                             placeholder="password123"
-                            {...field}
                             autoComplete="current-password"
                             className="h-10"
                           />
@@ -161,7 +171,12 @@ export default function AuthPage() {
                         <FormLabel>Username</FormLabel>
                         <FormControl>
                           <Input
-                            {...field}
+                            id="register-username"
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            ref={field.ref}
+                            name={field.name}
                             autoComplete="username"
                             className="h-10"
                             placeholder="Choose a username"
@@ -180,8 +195,13 @@ export default function AuthPage() {
                         <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
+                            id="register-password"
                             type="password"
-                            {...field}
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            ref={field.ref}
+                            name={field.name}
                             autoComplete="new-password"
                             className="h-10"
                             placeholder="Create a password"
@@ -200,8 +220,13 @@ export default function AuthPage() {
                         <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
                           <Input
+                            id="register-confirm-password"
                             type="password"
-                            {...field}
+                            value={field.value}
+                            onChange={field.onChange}
+                            onBlur={field.onBlur}
+                            ref={field.ref}
+                            name={field.name}
                             autoComplete="new-password"
                             className="h-10" 
                             placeholder="Confirm your password"
