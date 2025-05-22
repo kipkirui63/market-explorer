@@ -76,15 +76,15 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen">
       {/* Form Column */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>
+      <div className="w-full md:w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8 order-2 md:order-1">
+        <Card className="w-full max-w-md shadow-lg">
+          <CardHeader className="pb-6">
+            <CardTitle className="text-xl sm:text-2xl text-center">
               {isLogin ? "Sign in to your account" : "Create a new account"}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-center">
               {isLogin
                 ? "Enter your credentials to access the marketplace"
                 : "Fill out the form to create your account"}
@@ -109,6 +109,7 @@ export default function AuthPage() {
                             placeholder="Enter your username"
                             {...field}
                             autoComplete="username"
+                            className="h-10"
                           />
                         </FormControl>
                         <FormMessage />
@@ -128,6 +129,7 @@ export default function AuthPage() {
                             placeholder="Enter your password"
                             {...field}
                             autoComplete="current-password"
+                            className="h-10"
                           />
                         </FormControl>
                         <FormMessage />
@@ -137,7 +139,7 @@ export default function AuthPage() {
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full h-10 mt-6"
                     disabled={loginMutation.isPending}
                   >
                     {loginMutation.isPending ? "Signing in..." : "Sign In"}
@@ -162,6 +164,7 @@ export default function AuthPage() {
                             placeholder="Choose a username"
                             {...field}
                             autoComplete="username"
+                            className="h-10"
                           />
                         </FormControl>
                         <FormMessage />
@@ -181,6 +184,7 @@ export default function AuthPage() {
                             placeholder="Create a password"
                             {...field}
                             autoComplete="new-password"
+                            className="h-10"
                           />
                         </FormControl>
                         <FormMessage />
@@ -200,6 +204,7 @@ export default function AuthPage() {
                             placeholder="Confirm your password"
                             {...field}
                             autoComplete="new-password"
+                            className="h-10"
                           />
                         </FormControl>
                         <FormMessage />
@@ -209,7 +214,7 @@ export default function AuthPage() {
 
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full h-10 mt-6"
                     disabled={registerMutation.isPending}
                   >
                     {registerMutation.isPending
@@ -220,13 +225,13 @@ export default function AuthPage() {
               </Form>
             )}
           </CardContent>
-          <CardFooter className="flex flex-col gap-4">
+          <CardFooter className="flex flex-col gap-4 pt-0 pb-6">
             <div className="text-center text-sm text-gray-500">
               {isLogin ? "Don't have an account?" : "Already have an account?"}
               <Button
                 variant="link"
                 onClick={() => setIsLogin(!isLogin)}
-                className="pl-1.5"
+                className="pl-1"
               >
                 {isLogin ? "Sign up" : "Sign in"}
               </Button>
@@ -236,19 +241,18 @@ export default function AuthPage() {
       </div>
 
       {/* Hero/Info Column */}
-      <div className="hidden lg:block lg:w-1/2 bg-blue-600 text-white p-12 flex flex-col justify-center">
+      <div className="w-full md:w-full lg:w-1/2 bg-blue-600 text-white p-6 sm:p-8 md:p-12 flex flex-col justify-center order-1 md:order-2 min-h-[220px] md:min-h-0">
         <div className="max-w-md mx-auto">
-          <div className="mb-8 flex justify-center">
-            <div className="p-4 bg-white/10 rounded-full">
-              <Brain className="w-16 h-16" />
+          <div className="mb-4 md:mb-8 flex justify-center">
+            <div className="p-3 md:p-4 bg-white/10 rounded-full">
+              <Brain className="w-10 h-10 md:w-16 md:h-16" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold mb-6">Welcome to CrispAI Marketplace</h1>
-          <p className="text-xl mb-8">
-            Discover and purchase powerful AI applications to enhance your workflow and
-            boost productivity.
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-6 text-center md:text-left">Welcome to CrispAI Marketplace</h1>
+          <p className="text-lg md:text-xl mb-4 md:mb-8 text-center md:text-left">
+            Discover and purchase powerful AI applications to enhance your workflow.
           </p>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4 hidden md:block">
             <div className="flex items-start">
               <span className="bg-white/20 p-1 rounded mr-3 text-white">✓</span>
               <p>Access to premium AI tools and applications</p>
