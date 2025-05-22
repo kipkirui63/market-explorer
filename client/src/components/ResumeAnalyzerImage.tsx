@@ -2,92 +2,56 @@ import React from "react";
 
 const ResumeAnalyzerImage = () => {
   return (
-    <div className="w-full h-full bg-blue-50 p-4 flex flex-col items-center justify-center">
-      <div className="relative w-full max-w-xs">
-        {/* Resume Document */}
-        <div className="bg-white rounded-md shadow-md p-3 mb-2 mx-auto w-44">
-          <div className="bg-indigo-100 rounded py-1 px-2 mb-2">
-            <div className="text-indigo-700 text-xs font-semibold">Professional Resume</div>
-          </div>
-          <div className="text-xs text-left">
-            <div className="font-semibold">Sarah Johnson</div>
-            <div className="text-gray-600 text-xs">Software Engineer | Data Scientist</div>
-            <div className="mt-2 font-semibold">Experience</div>
-            <div className="mt-1">
-              <div className="font-medium">Senior Developer - ABC Tech</div>
-              <div className="text-gray-500 text-xs">2020 - Present</div>
-            </div>
-            <div className="mt-1">
-              <div className="font-medium">Software Engineer - XYZ Inc.</div>
-              <div className="text-gray-500 text-xs">2017 - 2020</div>
-            </div>
-            <div className="mt-2 font-semibold">Skills</div>
-            <div className="flex flex-wrap gap-1 mt-1">
-              <span className="bg-blue-100 px-2 rounded text-xs">Python</span>
-              <span className="bg-blue-100 px-2 rounded text-xs">ML/AI</span>
-              <span className="bg-blue-100 px-2 rounded text-xs">React</span>
-              <span className="bg-blue-100 px-2 rounded text-xs">AWS</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Analysis Circles */}
-        <div className="absolute top-5 right-0 transform translate-x-20">
-          <div className="flex flex-col gap-1">
-            <div className="bg-indigo-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-xs">Technical</div>
-                <div className="text-xs">Skills</div>
-              </div>
-            </div>
-            <div className="bg-indigo-400 text-white rounded-full w-16 h-16 flex items-center justify-center relative left-4">
-              <div className="text-center">
-                <div className="text-xs">Experience</div>
-                <div className="text-xs">Analysis</div>
-              </div>
-            </div>
-            <div className="bg-indigo-400 text-white rounded-full w-16 h-16 flex items-center justify-center relative left-0">
-              <div className="text-center">
-                <div className="text-xs">Culture</div>
-                <div className="text-xs">Fit</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dotted Lines */}
-        <div className="absolute top-10 right-7 w-14 border-t border-dashed border-indigo-300"></div>
-        <div className="absolute top-24 right-3 w-14 border-t border-dashed border-indigo-300 transform rotate-45"></div>
-        <div className="absolute top-40 right-7 w-14 border-t border-dashed border-indigo-300 transform -rotate-45"></div>
-
-        {/* Candidate Score Card */}
-        <div className="absolute bottom-0 right-2 bg-white rounded-md shadow-sm p-2 w-40">
-          <div className="text-indigo-700 font-semibold text-sm mb-1">Candidate Score</div>
-          <div className="text-xs">
-            <div className="flex items-center">
-              <span className="w-24 text-gray-600">Technical Skills:</span>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className="bg-indigo-500 h-2 rounded-full" style={{ width: '85%' }}></div>
-              </div>
-              <span className="ml-1 text-gray-600">85%</span>
-            </div>
-            <div className="flex items-center mt-1">
-              <span className="w-24 text-gray-600">Experience:</span>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className="bg-indigo-500 h-2 rounded-full" style={{ width: '90%' }}></div>
-              </div>
-              <span className="ml-1 text-gray-600">90%</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Title */}
-        <div className="absolute -bottom-10 left-0 right-0 text-center">
-          <div className="text-indigo-700 font-bold text-lg">Multi-Agent Resume Analyzer</div>
-          <div className="text-indigo-600 text-xs">AI-Powered Candidate Assessment</div>
-        </div>
-      </div>
-    </div>
+    <svg width="100%" height="100%" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      {/* Background with gradient */}
+      <rect width="500" height="300" rx="20" fill="url(#paint0_linear)" />
+      
+      {/* White card background */}
+      <rect x="50" y="50" width="400" height="200" rx="15" fill="white" />
+      
+      {/* Resume document icon */}
+      <g transform="translate(150, 100)">
+        {/* Document outline */}
+        <path d="M0 15C0 6.71573 6.71573 0 15 0H65C68.3137 0 71 2.68629 71 6V14L63 22H15C6.71573 22 0 15.2843 0 7V15Z" fill="#0076C6"/>
+        <path d="M0 15C0 6.71573 6.71573 0 15 0H65C68.3137 0 71 2.68629 71 6V94C71 97.3137 68.3137 100 65 100H15C6.71573 100 0 93.2843 0 85V15Z" stroke="#0076C6" strokeWidth="5"/>
+        
+        {/* Dog-ear corner */}
+        <path d="M71 14L63 22V14H71Z" fill="#0076C6"/>
+        
+        {/* Person icon */}
+        <circle cx="25" cy="25" r="12" fill="#0076C6"/>
+        <path d="M12 60C12 51.7157 18.7157 45 27 45H33C41.2843 45 48 51.7157 48 60V65H12V60Z" fill="#0076C6"/>
+        
+        {/* Lines representing text */}
+        <rect x="50" y="25" width="30" height="5" rx="2.5" fill="#0076C6"/>
+        <rect x="50" y="35" width="30" height="5" rx="2.5" fill="#0076C6"/>
+        <rect x="12" y="75" width="48" height="5" rx="2.5" fill="#0076C6"/>
+        <rect x="12" y="85" width="48" height="5" rx="2.5" fill="#0076C6"/>
+      </g>
+      
+      {/* Magnifying glass with checkmark */}
+      <g transform="translate(280, 100)">
+        {/* Magnifying glass outline */}
+        <circle cx="25" cy="25" r="24" stroke="#0076C6" strokeWidth="5" fill="none"/>
+        <path d="M42 42L55 55" stroke="#0076C6" strokeWidth="5" strokeLinecap="round"/>
+        
+        {/* Checkmark inside */}
+        <path d="M15 25L22 32L35 19" stroke="#0076C6" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+      </g>
+      
+      {/* Text at bottom */}
+      <g>
+        <text x="250" y="270" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="28" fontWeight="bold" fill="#00264D">Resume Analyzer Agent</text>
+      </g>
+      
+      {/* Define the gradient */}
+      <defs>
+        <linearGradient id="paint0_linear" x1="0" y1="0" x2="500" y2="300" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#C7E9FF"/>
+          <stop offset="1" stopColor="#7ACAFF"/>
+        </linearGradient>
+      </defs>
+    </svg>
   );
 };
 
