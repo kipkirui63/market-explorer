@@ -116,9 +116,10 @@ export default function Marketplace() {
                 <ShoppingCart className="h-5 w-5" />
                 {(() => {
                   try {
-                    // Show cart count only if logged in, with user-specific cart
+                    // Only show cart items when logged in
                     if (!user) return null;
                     
+                    // Use user-specific cart key
                     const userCartKey = `cart_${user.id}`;
                     const cart = JSON.parse(localStorage.getItem(userCartKey) || '[]');
                     const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
