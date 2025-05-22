@@ -40,6 +40,16 @@ export default function Header() {
           <Link href="/contact" className={`transition ${isActive("/contact")}`}>Contact</Link>
           <Link href="/assessment" className={`transition ${isActive("/assessment")}`}>Assessment</Link>
           <Link href="/marketplace" className={`transition ${isActive("/marketplace")}`}>Marketplace</Link>
+          {user && (
+            <Button 
+              variant="ghost" 
+              className="flex items-center text-gray-600 hover:text-primary"
+              onClick={handleLogout}
+            >
+              <LogOut className="h-4 w-4 mr-1" />
+              Logout
+            </Button>
+          )}
         </nav>
         
         {/* Mobile Navigation Toggle */}
@@ -65,6 +75,18 @@ export default function Header() {
           <Link href="/contact" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Contact</Link>
           <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Assessment</Link>
           <Link href="/marketplace" className="block py-2 text-gray-600 hover:text-primary font-medium" onClick={closeMenu}>Marketplace</Link>
+          {user && (
+            <button 
+              className="flex items-center py-2 text-gray-600 hover:text-primary" 
+              onClick={() => {
+                handleLogout();
+                closeMenu();
+              }}
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </header>
