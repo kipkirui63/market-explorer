@@ -56,7 +56,6 @@ const CheckoutForm = () => {
         });
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         // Clear the cart after successful payment
-        const { user } = useAuth();
         if (user) {
           localStorage.removeItem(`cart_${user.id}`);
         }
