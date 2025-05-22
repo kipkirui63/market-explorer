@@ -122,20 +122,7 @@ export default function Marketplace() {
               </a>
             </div>
             <div className="w-full md:w-2/5 flex justify-center md:justify-end">
-              <svg width="240" height="120" viewBox="0 0 240 120" className="h-24 md:h-32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="60" cy="60" r="36" fill="white"/>
-                <path d="M60 24V96M24 60H96" stroke="white" strokeWidth="12"/>
-                <path d="M120 42H130V46H120V42Z" fill="white"/>
-                <path d="M120 52H124V80H120V52Z" fill="white"/>
-                <path d="M132 52H136V80H132V52Z" fill="white"/>
-                <path d="M144 52H148V80H144V52Z" fill="white"/>
-                <path d="M156 52H160V66H156V52Z" fill="white"/>
-                <path d="M168 66H172V80H168V66Z" fill="white"/>
-                <path d="M156 80H172V76H156V80Z" fill="white"/>
-                <path d="M180 52H196V56H184V66H192V70H184V80H180V52Z" fill="white"/>
-                <path d="M204 42H208V46H204V42Z" fill="white"/>
-                <path d="M204 52H208V80H204V52Z" fill="white"/>
-              </svg>
+              <img src="/crispai-logo-fixed.svg" alt="CrispAI" className="h-24 md:h-32" />
             </div>
           </div>
         </div>
