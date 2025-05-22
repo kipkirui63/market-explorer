@@ -36,9 +36,9 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           <Link href="/" className={`transition ${isActive("/")}`}>Home</Link>
-          <Link href="/about" className={`transition ${isActive("/about")}`}>About</Link>
-          <Link href="/services" className={`transition ${isActive("/services")}`}>Services</Link>
-          <Link href="/contact" className={`transition ${isActive("/contact")}`}>Contact</Link>
+          <Link href="/#about" className="transition text-gray-600 hover:text-primary">About</Link>
+          <Link href="/#services" className="transition text-gray-600 hover:text-primary">Services</Link>
+          <Link href="/#contact" className="transition text-gray-600 hover:text-primary">Contact</Link>
           <Link href="/assessment" className={`transition ${isActive("/assessment")}`}>Assessment</Link>
           <Link href="/marketplace" className={`transition ${isActive("/marketplace")}`}>Marketplace</Link>
           {user && (
@@ -72,9 +72,9 @@ export default function Header() {
       <div className={`md:hidden bg-white shadow-md ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="container mx-auto px-4 py-3 space-y-3">
           <Link href="/" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Home</Link>
-          <Link href="/about" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>About</Link>
-          <Link href="/services" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Services</Link>
-          <Link href="/contact" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Contact</Link>
+          <Link href="/#about" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>About</Link>
+          <Link href="/#services" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Services</Link>
+          <Link href="/#contact" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Contact</Link>
           <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Assessment</Link>
           <Link href="/marketplace" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>Marketplace</Link>
           {user && (
