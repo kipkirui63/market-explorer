@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="160" height="60" viewBox="0 0 160 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circle -->
+  <circle cx="30" cy="30" r="28" fill="white"/>
+  
+  <!-- Text -->
+  <path d="M72 20H82V25H72V20Z" fill="white"/>
+  <path d="M72 28H77V50H72V28Z" fill="white"/>
+  <path d="M82 28H87V50H82V28Z" fill="white"/>
+  <path d="M92 28H97V50H92V28Z" fill="white"/>
+  <path d="M102 28H107V42H102V28Z" fill="white"/>
+  <path d="M112 42H117V50H112V42Z" fill="white"/>
+  <path d="M102 50H117V45H102V50Z" fill="white"/>
+  <path d="M122 28H137V33H127V38H135V43H127V50H122V28Z" fill="white"/>
+  <path d="M142 20H147V25H142V20Z" fill="white"/>
+  <path d="M142 28H147V50H142V28Z" fill="white"/>
+</svg>
