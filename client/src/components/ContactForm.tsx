@@ -236,10 +236,11 @@ export default function ContactForm() {
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
-                        onCheckedChange={field.onChange} 
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5" 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal text-blue-600">Other</FormLabel>
+                    <FormLabel className="font-normal text-blue-600 text-lg">Other</FormLabel>
                   </FormItem>
                 )}
               />
@@ -250,24 +251,24 @@ export default function ContactForm() {
             control={form.control}
             name="additionalInfo"
             render={({ field }) => (
-              <FormItem className="space-y-2">
-                <FormLabel className="text-blue-700">Anything else you want to share?</FormLabel>
+              <FormItem className="space-y-3 mt-4">
+                <FormLabel className="text-blue-700 text-lg">Anything else you want to share?</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="Your answer" 
-                    rows={3} 
+                    rows={4} 
                     {...field} 
-                    className="border-blue-200 focus:border-blue-400"
+                    className="border-blue-200 focus:border-blue-400 text-lg p-4"
                   />
                 </FormControl>
               </FormItem>
             )}
           />
           
-          <div className="flex justify-between items-center pt-4">
+          <div className="flex justify-between items-center pt-6">
             <Button 
               type="submit" 
-              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md"
+              className="px-8 py-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md text-lg font-medium"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -276,7 +277,7 @@ export default function ContactForm() {
               type="reset" 
               variant="ghost" 
               onClick={() => form.reset()} 
-              className="px-4 py-2 text-blue-600 hover:text-blue-800 hover:underline transition"
+              className="px-6 py-3 text-blue-600 hover:text-blue-800 hover:underline transition text-lg"
             >
               Clear form
             </Button>
