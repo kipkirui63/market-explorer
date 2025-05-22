@@ -161,10 +161,10 @@ export default function AuthPage() {
                         <FormLabel>Username</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Choose a username"
                             {...field}
                             autoComplete="username"
                             className="h-10"
+                            placeholder="Choose a username"
                           />
                         </FormControl>
                         <FormMessage />
@@ -181,10 +181,10 @@ export default function AuthPage() {
                         <FormControl>
                           <Input
                             type="password"
-                            placeholder="Create a password"
                             {...field}
                             autoComplete="new-password"
                             className="h-10"
+                            placeholder="Create a password"
                           />
                         </FormControl>
                         <FormMessage />
@@ -201,10 +201,10 @@ export default function AuthPage() {
                         <FormControl>
                           <Input
                             type="password"
-                            placeholder="Confirm your password"
                             {...field}
                             autoComplete="new-password"
-                            className="h-10"
+                            className="h-10" 
+                            placeholder="Confirm your password"
                           />
                         </FormControl>
                         <FormMessage />
