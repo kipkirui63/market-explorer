@@ -99,7 +99,8 @@ export default function Marketplace() {
                 }
                 
                 // Only show cart contents if user is logged in
-                const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                const userCartKey = `cart_${user.id}`;
+                const cart = JSON.parse(localStorage.getItem(userCartKey) || '[]');
                 const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
                 const totalAmount = cart.reduce((total: number, item: any) => 
                   total + parseFloat(item.price) * (item.quantity || 1), 0).toFixed(2);
@@ -115,7 +116,11 @@ export default function Marketplace() {
                 <ShoppingCart className="h-5 w-5" />
                 {(() => {
                   try {
-                    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                    // Show cart count only if logged in, with user-specific cart
+                    if (!user) return null;
+                    
+                    const userCartKey = `cart_${user.id}`;
+                    const cart = JSON.parse(localStorage.getItem(userCartKey) || '[]');
                     const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
                     return itemCount > 0 ? (
                       <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
