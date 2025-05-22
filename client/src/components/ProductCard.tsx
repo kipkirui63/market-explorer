@@ -131,7 +131,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div 
       id={`product-${product.id}`} 
-      className={`bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${hasExternalApp ? 'cursor-pointer' : ''}`}
+      className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${hasExternalApp ? 'cursor-pointer' : ''}`}
       onClick={hasExternalApp ? handleProductClick : undefined}
     >
       <div className="relative">
