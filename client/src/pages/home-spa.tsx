@@ -169,14 +169,32 @@ export default function HomeSPA() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-white">
+      <section id="testimonials" className="py-24 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 text-primary-900">What Our Clients Say</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 text-blue-800">What Our Clients Say</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} {...testimonial} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="text-5xl text-blue-400 mb-4">❝</div>
+              <p className="text-blue-700 mb-6">
+                Crisp AI transformed the way we operate. Their custom AI chatbot cut our customer response time by 40%, and the team made the entire process seamless.
+              </p>
+              <div>
+                <p className="font-semibold text-blue-800">Sarah L.</p>
+                <p className="text-blue-400">Retail Business Owner</p>
+              </div>
+            </div>
+            
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <div className="text-5xl text-blue-400 mb-4">❝</div>
+              <p className="text-blue-700 mb-6">
+                Thanks to Crisp AI's data analytics solutions, we uncovered new opportunities that increased our revenue by 25% in six months.
+              </p>
+              <div>
+                <p className="font-semibold text-blue-800">John M.</p>
+                <p className="text-blue-400">Manufacturing Manager</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
