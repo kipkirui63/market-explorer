@@ -87,7 +87,7 @@ export default function HomeSPA() {
             filter: 'brightness(0.9)'
           }}
         >
-          <div className="absolute inset-0 bg-blue-900 bg-opacity-70"></div>
+          <div className="absolute inset-0 bg-blue-900 bg-opacity-50"></div>
         </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
