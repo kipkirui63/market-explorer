@@ -4,25 +4,25 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-blue-700 to-blue-900 text-white pt-12 pb-6">
+    <footer className="bg-gray-900 text-white pt-12 pb-6">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-lg font-semibold mb-4">CrispAI</h3>
-            <p className="text-blue-200 mb-4">
+            <p className="text-gray-400 mb-4">
               The premier marketplace for digital applications and AI agents.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-blue-200 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="text-blue-200 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="text-blue-200 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="text-blue-200 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -35,7 +35,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="mailto:crispailtd@gmail.com" className="text-blue-200 hover:text-white flex items-center gap-2 transition-colors">
+                      <a href="mailto:crispailtd@gmail.com" className="text-gray-400 hover:text-white flex items-center gap-2">
                         <Mail size={16} /> Contact Us
                       </a>
                     </TooltipTrigger>
@@ -49,7 +49,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         FAQs
                       </a>
                     </TooltipTrigger>
@@ -63,7 +63,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         Developer Resources
                       </a>
                     </TooltipTrigger>
@@ -77,7 +77,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         API Documentation
                       </a>
                     </TooltipTrigger>
@@ -97,7 +97,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         Terms of Service
                       </a>
                     </TooltipTrigger>
@@ -111,7 +111,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         Privacy Policy
                       </a>
                     </TooltipTrigger>
@@ -125,7 +125,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         Cookie Policy
                       </a>
                     </TooltipTrigger>
@@ -139,7 +139,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         Refund Policy
                       </a>
                     </TooltipTrigger>
@@ -153,7 +153,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
+                      <a href="#" className="text-gray-400 hover:text-white">
                         License Information
                       </a>
                     </TooltipTrigger>
@@ -167,7 +167,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-blue-600 pt-6 mt-6 text-center text-blue-200 text-sm">
+        <div className="border-t border-gray-700 pt-6 mt-6 text-center text-gray-400 text-sm">
           <p>&copy; {new Date().getFullYear()} CrispAI. All rights reserved.</p>
         </div>
       </div>
