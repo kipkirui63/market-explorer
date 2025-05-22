@@ -1,73 +1,46 @@
 import React, { useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { Redirect } from "wouter";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Brain } from "lucide-react";
-
-const loginSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-});
-
-const registerSchema = loginSchema.extend({
-  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
-
-type LoginFormValues = z.infer<typeof loginSchema>;
-type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
+  
+  // Login state
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  
+  // Register state
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const loginForm = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
-  });
-
-  const registerForm = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
-
-  const onLoginSubmit = (data: LoginFormValues) => {
-    loginMutation.mutate(data);
+  const handleLoginSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    loginMutation.mutate({
+      username: loginUsername,
+      password: loginPassword
+    });
   };
 
-  const onRegisterSubmit = (data: RegisterFormValues) => {
-    // Remove confirmPassword as it's not part of the API schema
-    const { confirmPassword, ...registerData } = data;
-    registerMutation.mutate(registerData);
+  const handleRegisterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (registerPassword !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+    
+    setPasswordError("");
+    registerMutation.mutate({
+      username: registerUsername,
+      password: registerPassword
+    });
   };
 
   // If user is already logged in, redirect to home page
@@ -93,161 +66,102 @@ export default function AuthPage() {
           <CardContent>
             {isLogin ? (
               // Login Form
-              <Form {...loginForm}>
-                <form
-                  onSubmit={loginForm.handleSubmit(onLoginSubmit)}
-                  className="space-y-4"
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="login-username" className="text-sm font-medium">
+                    Username
+                  </label>
+                  <Input
+                    id="login-username"
+                    value={loginUsername}
+                    onChange={(e) => setLoginUsername(e.target.value)}
+                    placeholder="admin"
+                    autoComplete="username"
+                    className="h-10"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="login-password" className="text-sm font-medium">
+                    Password
+                  </label>
+                  <Input
+                    id="login-password"
+                    type="password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    placeholder="password123"
+                    autoComplete="current-password"
+                    className="h-10"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full h-10 mt-6"
+                  disabled={loginMutation.isPending}
                 >
-                  <FormField
-                    control={loginForm.control}
-                    name="username"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                          <Input
-                            id="login-username"
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            ref={field.ref}
-                            name={field.name}
-                            placeholder="admin"
-                            autoComplete="username"
-                            className="h-10"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={loginForm.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input
-                            id="login-password"
-                            type="password"
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            ref={field.ref}
-                            name={field.name}
-                            placeholder="password123"
-                            autoComplete="current-password"
-                            className="h-10"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button
-                    type="submit"
-                    className="w-full h-10 mt-6"
-                    disabled={loginMutation.isPending}
-                  >
-                    {loginMutation.isPending ? "Signing in..." : "Sign In"}
-                  </Button>
-                </form>
-              </Form>
+                  {loginMutation.isPending ? "Signing in..." : "Sign In"}
+                </Button>
+              </form>
             ) : (
               // Register Form
-              <Form {...registerForm}>
-                <form
-                  onSubmit={registerForm.handleSubmit(onRegisterSubmit)}
-                  className="space-y-4"
+              <form onSubmit={handleRegisterSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <label htmlFor="register-username" className="text-sm font-medium">
+                    Username
+                  </label>
+                  <Input
+                    id="register-username"
+                    value={registerUsername}
+                    onChange={(e) => setRegisterUsername(e.target.value)}
+                    placeholder="Choose a username"
+                    autoComplete="username"
+                    className="h-10"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="register-password" className="text-sm font-medium">
+                    Password
+                  </label>
+                  <Input
+                    id="register-password"
+                    type="password"
+                    value={registerPassword}
+                    onChange={(e) => setRegisterPassword(e.target.value)}
+                    placeholder="Create a password"
+                    autoComplete="new-password"
+                    className="h-10"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="confirm-password" className="text-sm font-medium">
+                    Confirm Password
+                  </label>
+                  <Input
+                    id="confirm-password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm your password"
+                    autoComplete="new-password"
+                    className="h-10"
+                  />
+                  {passwordError && (
+                    <p className="text-sm text-red-500">{passwordError}</p>
+                  )}
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full h-10 mt-6"
+                  disabled={registerMutation.isPending}
                 >
-                  <FormField
-                    control={registerForm.control}
-                    name="username"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                          <Input
-                            id="register-username"
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            ref={field.ref}
-                            name={field.name}
-                            autoComplete="username"
-                            className="h-10"
-                            placeholder="Choose a username"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={registerForm.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input
-                            id="register-password"
-                            type="password"
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            ref={field.ref}
-                            name={field.name}
-                            autoComplete="new-password"
-                            className="h-10"
-                            placeholder="Create a password"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={registerForm.control}
-                    name="confirmPassword"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Confirm Password</FormLabel>
-                        <FormControl>
-                          <Input
-                            id="register-confirm-password"
-                            type="password"
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            ref={field.ref}
-                            name={field.name}
-                            autoComplete="new-password"
-                            className="h-10" 
-                            placeholder="Confirm your password"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button
-                    type="submit"
-                    className="w-full h-10 mt-6"
-                    disabled={registerMutation.isPending}
-                  >
-                    {registerMutation.isPending
-                      ? "Creating account..."
-                      : "Create Account"}
-                  </Button>
-                </form>
-              </Form>
+                  {registerMutation.isPending ? "Creating account..." : "Create Account"}
+                </Button>
+              </form>
             )}
           </CardContent>
           <CardFooter className="flex flex-col gap-4 pt-0 pb-6">
@@ -273,7 +187,9 @@ export default function AuthPage() {
               <Brain className="w-10 h-10 md:w-16 md:h-16" />
             </div>
           </div>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-6 text-center md:text-left">Welcome to CrispAI Marketplace</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-6 text-center md:text-left">
+            Welcome to CrispAI Marketplace
+          </h1>
           <p className="text-lg md:text-xl mb-4 md:mb-8 text-center md:text-left">
             Discover and purchase powerful AI applications to enhance your workflow.
           </p>
