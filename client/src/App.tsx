@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import HomeSPA from "@/pages/home-spa";
 import About from "@/pages/about";
 import Services from "@/pages/services";
 import Contact from "@/pages/contact";
@@ -20,7 +21,8 @@ import { queryClient } from "@/lib/queryClient";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={HomeSPA} />
+      <Route path="/classic" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
       <Route path="/contact" component={Contact} />
