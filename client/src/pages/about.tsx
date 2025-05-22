@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from "@/components/Layout";
 import { Sparkles, Award, BookOpen, Users, Code, Clock, ArrowUpRight } from 'lucide-react';
 import WaveBackground from '@/components/WaveBackground';
+import LeadershipTeam from '@/components/LeadershipTeam';
 import OurValues from '@/components/OurValues';
 
 export default function About() {
@@ -63,7 +64,8 @@ export default function About() {
       {/* Our Values Section */}
       <OurValues />
 
-
+      {/* Our Team Section */}
+      <LeadershipTeam />
 
       {/* Why Choose Us Section */}
       <section className="py-16 bg-background-light">
@@ -101,7 +103,27 @@ export default function About() {
         </div>
       </section>
 
-
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-b from-white to-background-light relative">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6">Ready to Start Your AI Journey?</h2>
+            <p className="text-lg text-gray-700 mb-8">
+              Let's discuss how AI can transform your business. Schedule a free consultation 
+              with our experts to explore possibilities.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <button className="px-6 py-3 bg-gradient-to-r from-primary to-primary-light text-white rounded-lg font-medium hover:opacity-90 transition shadow-md">
+                Schedule a Consultation
+              </button>
+              <button className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-white transition">
+                Explore Our Services
+              </button>
+            </div>
+          </div>
+        </div>
+        <WaveBackground />
+      </section>
     </Layout>
   );
 }
