@@ -76,7 +76,26 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement />
+      <PaymentElement options={{
+        // Customize the appearance of the payment element
+        appearance: {
+          theme: 'stripe',
+          variables: {
+            colorPrimary: '#0076c6',
+            colorBackground: '#ffffff',
+            colorText: '#30313d',
+            colorDanger: '#df1b41',
+            fontFamily: 'Inter, system-ui, sans-serif',
+            spacingUnit: '4px',
+            borderRadius: '4px'
+          },
+          rules: {
+            '.Input': {
+              padding: '12px',
+            }
+          }
+        }
+      }} />
       
       <div className="flex items-center gap-2 text-sm text-gray-600 mt-4">
         <ShieldCheck className="h-4 w-4 text-green-500" />
@@ -196,7 +215,19 @@ export default function Checkout() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             <div className="md:col-span-3 bg-white p-6 rounded-lg shadow-md">
               <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
-              <Elements stripe={stripePromise} options={{ clientSecret }}>
+              <Elements 
+                stripe={stripePromise} 
+                options={{ 
+                  clientSecret,
+                  appearance: {
+                    theme: 'stripe',
+                    variables: {
+                      colorPrimary: '#0076c6',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    },
+                    labels: 'floating'
+                  },
+                }}>
                 <CheckoutForm />
               </Elements>
             </div>
