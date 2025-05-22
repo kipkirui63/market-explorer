@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import HomeSPA from "@/pages/home-spa";
-import About from "@/pages/about";
+import About from "@/pages/About";
 import Services from "@/pages/services";
 import Contact from "@/pages/contact";
 import Assessment from "@/pages/assessment";
@@ -23,7 +23,7 @@ function Router() {
     <Switch>
       <Route path="/" component={HomeSPA} />
       <Route path="/classic" component={Home} />
-      {/* Removed dedicated About page route to avoid confusion */}
+      <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
       <Route path="/contact" component={Contact} />
       <Route path="/assessment" component={Assessment} />
