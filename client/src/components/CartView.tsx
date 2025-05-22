@@ -76,7 +76,7 @@ export default function CartView() {
   };
   
   const checkout = () => {
-    alert("Checkout process would start here!");
+    window.location.href = "/checkout";
   };
   
   // If not logged in or cart is empty
