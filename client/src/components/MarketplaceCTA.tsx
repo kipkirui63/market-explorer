@@ -28,15 +28,7 @@ const MarketplaceCTA = () => {
               </Button>
             </div>
           </div>
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src="https://crispai.crispvision.org/media/crisp-logo.png"
-              alt="CrispAI Logo"
-              className="rounded-xl shadow-2xl w-3/4 h-auto 
-                       filter brightness-0 invert 
-                       sepia-[100%] saturate-[500%] hue-rotate-[172deg]"
-            />
-          </div>
+          
         </div>
       </div>
     </section>
