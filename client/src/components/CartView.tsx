@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Trash2, Plus, Minus } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/use-auth';
+import { ProductImage } from '@/components/ProductImages';
+import { Link } from 'wouter';
 
 interface CartItem {
   id: string;
@@ -13,7 +15,9 @@ interface CartItem {
 export default function CartView() {
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [totalAmount, setTotalAmount] = useState("0.00");
+  const [subtotal, setSubtotal] = useState(0);
+  const [tax, setTax] = useState(0);
+  const [total, setTotal] = useState(0);
   
   useEffect(() => {
     if (user) {
@@ -28,34 +32,19 @@ export default function CartView() {
     const items = JSON.parse(localStorage.getItem(userCartKey) || '[]');
     setCartItems(items);
     
-    // Calculate total amount
-    const total = items.reduce(
+    // Calculate subtotal
+    const subtotalAmount = items.reduce(
       (sum: number, item: CartItem) => sum + parseFloat(item.price) * (item.quantity || 1), 
       0
-    ).toFixed(2);
-    setTotalAmount(total);
-  };
-  
-  const updateQuantity = (itemId: string, newQuantity: number) => {
-    if (!user || newQuantity < 1) return;
+    );
+    setSubtotal(subtotalAmount);
     
-    const userCartKey = `cart_${user.id}`;
-    const updatedItems = cartItems.map(item => {
-      if (item.id === itemId) {
-        return { ...item, quantity: newQuantity };
-      }
-      return item;
-    });
+    // Calculate tax (7%)
+    const taxAmount = subtotalAmount * 0.07;
+    setTax(taxAmount);
     
-    localStorage.setItem(userCartKey, JSON.stringify(updatedItems));
-    setCartItems(updatedItems);
-    
-    // Recalculate total
-    const total = updatedItems.reduce(
-      (sum, item) => sum + parseFloat(item.price) * (item.quantity || 1), 
-      0
-    ).toFixed(2);
-    setTotalAmount(total);
+    // Calculate total
+    setTotal(subtotalAmount + taxAmount);
   };
   
   const removeItem = (itemId: string) => {
@@ -67,16 +56,22 @@ export default function CartView() {
     localStorage.setItem(userCartKey, JSON.stringify(updatedItems));
     setCartItems(updatedItems);
     
-    // Recalculate total
-    const total = updatedItems.reduce(
+    // Trigger update of cart counter in marketplace
+    window.dispatchEvent(new Event('storage'));
+    
+    // Recalculate totals
+    const subtotalAmount = updatedItems.reduce(
       (sum, item) => sum + parseFloat(item.price) * (item.quantity || 1), 
       0
-    ).toFixed(2);
-    setTotalAmount(total);
-  };
-  
-  const checkout = () => {
-    window.location.href = "/checkout";
+    );
+    setSubtotal(subtotalAmount);
+    
+    // Calculate tax (7%)
+    const taxAmount = subtotalAmount * 0.07;
+    setTax(taxAmount);
+    
+    // Calculate total
+    setTotal(subtotalAmount + taxAmount);
   };
   
   // If not logged in or cart is empty
@@ -104,58 +99,74 @@ export default function CartView() {
   }
   
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
-      <h2 className="text-xl font-bold mb-4">Your Cart</h2>
+    <div className="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+      <div className="flex justify-between items-center border-b pb-4">
+        <h2 className="text-xl font-bold">Your Cart</h2>
+        <span className="text-gray-500">{cartItems.length} item(s)</span>
+      </div>
       
       <div className="divide-y">
         {cartItems.map((item) => (
-          <div key={item.id} className="py-4 flex justify-between items-center">
+          <div key={item.id} className="py-4 flex items-center">
+            <div className="w-20 h-20 mr-4 bg-gray-100 rounded overflow-hidden">
+              <ProductImage id={item.id} />
+            </div>
+            
             <div className="flex-1">
-              <h3 className="font-medium">{item.name}</h3>
-              <p className="text-sm text-gray-500">
+              <h3 className="font-medium text-gray-800">{item.name}</h3>
+              <p className="text-gray-500">
                 ${parseFloat(item.price).toFixed(2)} x {item.quantity}
               </p>
             </div>
             
-            <div className="flex items-center gap-3">
-              <div className="flex items-center border rounded">
-                <button 
-                  onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                  className="px-2 py-1 hover:bg-gray-100"
-                >
-                  <Minus className="h-3 w-3" />
-                </button>
-                <span className="px-2">{item.quantity}</span>
-                <button 
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="px-2 py-1 hover:bg-gray-100"
-                >
-                  <Plus className="h-3 w-3" />
-                </button>
+            <div className="flex flex-col items-end gap-2">
+              <div className="font-medium text-blue-500">
+                ${(parseFloat(item.price) * item.quantity).toFixed(2)}
               </div>
               
               <button
                 onClick={() => removeItem(item.id)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-400 hover:text-red-600"
+                aria-label="Remove item"
               >
-                <Trash2 className="h-4 w-4" />
+                <Trash2 className="h-5 w-5" />
               </button>
             </div>
           </div>
         ))}
       </div>
       
-      <div className="pt-4 border-t mt-4">
-        <div className="flex justify-between items-center mb-4">
-          <span className="font-medium">Total:</span>
-          <span className="font-bold text-lg">${totalAmount}</span>
+      <div className="mt-6 space-y-2">
+        <div className="flex justify-between text-gray-600">
+          <span>Subtotal:</span>
+          <span className="font-medium">${subtotal.toFixed(2)}</span>
         </div>
         
+        <div className="flex justify-between text-gray-600">
+          <span>Tax (7%):</span>
+          <span className="font-medium">${tax.toFixed(2)}</span>
+        </div>
+        
+        <div className="flex justify-between text-gray-800 font-bold text-lg pt-2 border-t">
+          <span>Total:</span>
+          <span>${total.toFixed(2)}</span>
+        </div>
+      </div>
+      
+      <div className="mt-8 flex justify-between gap-4">
         <Button 
-          className="w-full bg-blue-600 hover:bg-blue-700" 
-          onClick={checkout}
+          variant="outline"
+          className="flex-1"
+          asChild
         >
-          Proceed to Checkout
+          <Link href="/marketplace">Continue Shopping</Link>
+        </Button>
+        
+        <Button 
+          className="flex-1 bg-blue-600 hover:bg-blue-700" 
+          asChild
+        >
+          <Link href="/checkout">Proceed to Checkout</Link>
         </Button>
       </div>
     </div>
