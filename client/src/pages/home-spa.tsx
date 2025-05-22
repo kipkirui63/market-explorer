@@ -75,8 +75,45 @@ export default function HomeSPA() {
   return (
     <SPALayout>
       {/* Hero Section */}
-      <section id="home">
-        <HeroSection />
+      <section id="home" className="relative pt-16 pb-24 bg-gradient-to-b from-blue-50 to-white overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center mb-4">
+            <img 
+              src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/brain.svg" 
+              alt="Crisp AI Logo" 
+              className="w-20 h-20 text-blue-500 filter"
+              style={{filter: 'invert(47%) sepia(85%) saturate(2467%) hue-rotate(177deg) brightness(100%) contrast(93%)'}}
+            />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mb-2">Crisp AI</h1>
+          <p className="text-blue-500 text-xl mb-8">Artificial Intelligence</p>
+          
+          <div className="w-full h-2 bg-blue-500 mb-12"></div>
+          
+          <div className="max-w-3xl mx-auto">
+            <p className="text-blue-800 text-lg mb-8 leading-relaxed">
+              No longer just a futuristic concept—AI is here to revolutionize your business. Whether
+              you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the
+              true potential of Artificial Intelligence.
+            </p>
+            
+            <p className="text-blue-800 text-lg mb-12">
+              AI isn't one-size-fits-all, and neither are we.
+            </p>
+            
+            <div className="flex flex-col md:flex-row justify-center gap-4">
+              <a href="#contact" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
+                Get Started with Crisp AI Today!
+              </a>
+              <Link href="/assessment" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
+                Multi-Agent Resume Analyzer
+              </Link>
+              <Link href="/marketplace" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
+                AI Recruitment Assistant
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* About Section */}
