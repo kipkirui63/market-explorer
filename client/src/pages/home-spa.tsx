@@ -153,11 +153,11 @@ export default function HomeSPA() {
                 <p className="font-medium text-blue-600">Smarter Solutions, Faster Results</p>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg">
+            <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80"
-                alt="AI Robot Hand"
-                className="w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80"
+                alt="AI Innovation"
+                className="rounded-2xl shadow-lg relative transform -rotate-3 hover:rotate-0 transition-transform duration-500"
               />
             </div>
           </div>
