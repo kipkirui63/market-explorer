@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import Layout from "@/components/Layout";
@@ -11,6 +11,35 @@ export default function Marketplace() {
   const [activeCategory, setActiveCategory] = useState("All Apps");
   const { user } = useAuth();
   const [cartOpen, setCartOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
+  
+  // Get cart item count when component mounts or user changes
+  useEffect(() => {
+    updateCartItemCount();
+    
+    // Set up a listener for localStorage changes within the same window
+    window.addEventListener('storage', updateCartItemCount);
+    
+    // Clean up event listener
+    return () => {
+      window.removeEventListener('storage', updateCartItemCount);
+    };
+  }, [user]);
+  
+  // Function to update the cart item count
+  const updateCartItemCount = () => {
+    if (!user) {
+      setCartItemCount(0);
+      return;
+    }
+    
+    const userCartKey = `cart_${user.id}`;
+    const cartItems = JSON.parse(localStorage.getItem(userCartKey) || '[]');
+    
+    // Calculate total quantity across all items
+    const totalQuantity = cartItems.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
+    setCartItemCount(totalQuantity);
+  };
   
   // Product data based on the provided productUrlMap
   const products = [
@@ -139,24 +168,11 @@ export default function Marketplace() {
                 }}
               >
                 <ShoppingCart className="h-5 w-5" />
-                {(() => {
-                  try {
-                    // Only show cart items when logged in
-                    if (!user) return null;
-                    
-                    // Use user-specific cart key
-                    const userCartKey = `cart_${user.id}`;
-                    const cart = JSON.parse(localStorage.getItem(userCartKey) || '[]');
-                    const itemCount = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
-                    return itemCount > 0 ? (
-                      <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                        {itemCount}
-                      </span>
-                    ) : null;
-                  } catch {
-                    return null;
-                  }
-                })()}
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
               </a>
             </div>
             
