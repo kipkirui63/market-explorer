@@ -3,10 +3,13 @@ import { Link } from 'wouter';
 
 export default function MarketplaceHero() {
   return (
-    <div style={{
-      backgroundColor: "#0076c6",
-      borderRadius: "0.75rem"
-    }} className="mb-12 overflow-hidden">
+    <div 
+      style={{
+        backgroundColor: "#0076c6",
+        borderRadius: "0.75rem"
+      }} 
+      className="mb-12 overflow-hidden"
+    >
       <div className="flex flex-col md:flex-row items-center p-8 md:p-12">
         <div className="w-full md:w-2/3 text-white mb-8 md:mb-0">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
