@@ -235,23 +235,7 @@ export default function HomeSPA() {
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">Ready to Transform Your Business with AI?</h2>
-          <p className="text-white text-lg mb-8 max-w-3xl mx-auto">
-            Join the hundreds of businesses leveraging our AI solutions to drive growth, efficiency, and innovation.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#contact" className="bg-white text-primary hover:bg-gray-100 font-medium py-3 px-6 rounded-full transition-colors">
-              Contact Us Today
-            </a>
-            <Link href="/marketplace" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-medium py-3 px-6 rounded-full transition-colors">
-              Explore AI Solutions
-            </Link>
-          </div>
-        </div>
-      </section>
+
     </SPALayout>
   );
 }
