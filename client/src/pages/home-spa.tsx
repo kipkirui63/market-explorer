@@ -211,6 +211,17 @@ export default function HomeSPA() {
             Let's talk about how AI can work for you. Fill out the form below, and one of our AI consultants will get back to you within 24 hours.
           </p>
           
+          <div className="flex justify-center items-center space-x-12 mb-10">
+            <a href="tel:+13435801393" className="flex items-center text-primary-700">
+              <Phone className="h-5 w-5 mr-2" />
+              <span>+1 (343) 580-1393</span>
+            </a>
+            <a href="mailto:ai@crispvision.org" className="flex items-center text-primary-700">
+              <Mail className="h-5 w-5 mr-2" />
+              <span>ai@crispvision.org</span>
+            </a>
+          </div>
+          
           <ContactForm />
         </div>
       </section>
