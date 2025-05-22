@@ -83,12 +83,16 @@ export default function SPAHeader() {
           >
             Home
           </a>
-          <Link 
-            href="/about" 
-            className="transition text-gray-600 hover:text-primary"
+          <a 
+            href="#about" 
+            className={`transition cursor-pointer ${isActive("about")}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('about');
+            }}
           >
             About
-          </Link>
+          </a>
           <a 
             href="#services" 
             className={`transition cursor-pointer ${isActive("services")}`}
@@ -99,12 +103,16 @@ export default function SPAHeader() {
           >
             Services
           </a>
-          <Link 
-            href="/contact" 
-            className="transition text-gray-600 hover:text-primary"
+          <a 
+            href="#contact" 
+            className={`transition cursor-pointer ${isActive("contact")}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('contact');
+            }}
           >
             Contact
-          </Link>
+          </a>
           <Link href="/assessment" className="transition text-gray-600 hover:text-primary">
             Assessment
           </Link>
@@ -151,13 +159,16 @@ export default function SPAHeader() {
           >
             Home
           </a>
-          <Link
-            href="/about"
+          <a 
+            href="#about" 
             className="block py-2 text-gray-600 hover:text-primary"
-            onClick={closeMenu}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('about');
+            }}
           >
             About
-          </Link>
+          </a>
           <a 
             href="#services" 
             className="block py-2 text-gray-600 hover:text-primary"
@@ -168,13 +179,16 @@ export default function SPAHeader() {
           >
             Services
           </a>
-          <Link 
-            href="/contact" 
+          <a 
+            href="#contact" 
             className="block py-2 text-gray-600 hover:text-primary"
-            onClick={closeMenu}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('contact');
+            }}
           >
             Contact
-          </Link>
+          </a>
           <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>
             Assessment
           </Link>

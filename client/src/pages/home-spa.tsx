@@ -204,6 +204,54 @@ export default function HomeSPA() {
       </section>
 
 
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-center mb-12 text-blue-800">Contact Us</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="flex flex-col justify-center">
+              <h3 className="text-2xl font-semibold text-blue-800 mb-6">Have questions about our AI solutions?</h3>
+              <p className="text-blue-700 mb-4">
+                Ready to start your AI journey? Our team of expert consultants is here to help you navigate the exciting world of AI implementation.
+              </p>
+              
+              <div className="space-y-6 mt-8">
+                <div className="flex items-center space-x-4">
+                  <Phone className="h-6 w-6 text-blue-500" />
+                  <span className="text-blue-700">+1 (343) 580-1393</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <Mail className="h-6 w-6 text-blue-500" />
+                  <span className="text-blue-700">ai@crispvision.org</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-blue-50 p-8 rounded-lg shadow-xl">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section className="py-20 bg-primary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">Ready to Transform Your Business with AI?</h2>
+          <p className="text-white text-lg mb-8 max-w-3xl mx-auto">
+            Join the hundreds of businesses leveraging our AI solutions to drive growth, efficiency, and innovation.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#contact" className="bg-white text-primary hover:bg-gray-100 font-medium py-3 px-6 rounded-full transition-colors">
+              Contact Us Today
+            </a>
+            <Link href="/marketplace" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-medium py-3 px-6 rounded-full transition-colors">
+              Explore AI Solutions
+            </Link>
+          </div>
+        </div>
+      </section>
     </SPALayout>
   );
 }
