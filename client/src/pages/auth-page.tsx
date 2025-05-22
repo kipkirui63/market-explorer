@@ -84,7 +84,7 @@ export default function AuthPage() {
                     id="login-username"
                     value={loginUsername}
                     onChange={(e) => setLoginUsername(e.target.value)}
-                    placeholder="admin"
+                    placeholder="test"
                     autoComplete="username"
                     className="h-10"
                   />
@@ -99,7 +99,7 @@ export default function AuthPage() {
                     type="password"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
-                    placeholder="password123"
+                    placeholder="test123"
                     autoComplete="current-password"
                     className="h-10"
                   />
