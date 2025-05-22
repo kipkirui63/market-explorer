@@ -74,9 +74,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
     
     // Save updated cart to localStorage with user-specific key
     localStorage.setItem(userCartKey, JSON.stringify(existingCart));
-    
-    // Don't show alert message as requested by user
-    // Just update the cart silently
   };
 
   const renderRatingStars = (rating: string) => {
