@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="220" height="80" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- CrispAI Logo -->
+  <!-- Circle with cross -->
+  <circle cx="40" cy="40" r="30" fill="white"/>
+  <path d="M40 10V70M10 40H70" stroke="#0076c6" stroke-width="10"/>
+  
+  <!-- Text "CrispAI" -->
+  <path d="M90 25H100V30H90V25Z" fill="white"/>
+  <path d="M90 35H95V60H90V35Z" fill="white"/>
+  <path d="M105 35H110V60H105V35Z" fill="white"/>
+  <path d="M120 35H125V60H120V35Z" fill="white"/>
+  <path d="M135 35H140V50H135V35Z" fill="white"/>
+  <path d="M150 50H155V60H150V50Z" fill="white"/>
+  <path d="M135 60H155V55H135V60Z" fill="white"/>
+  <path d="M165 35H185V40H170V50H180V55H170V60H165V35Z" fill="white"/>
+  <path d="M195 25H200V30H195V25Z" fill="white"/>
+  <path d="M195 35H200V60H195V35Z" fill="white"/>
+</svg>
