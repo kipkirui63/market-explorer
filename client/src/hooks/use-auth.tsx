@@ -65,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const res = await apiRequest("POST", "/api/register", credentials);
       return await res.json();
     },
-    onSuccess: (user: SelectUser) => {
+    onSuccess: (response: any) => {
       // Don't automatically set the user data after registration
       // This will prevent auto-login after registration
       toast({
