@@ -65,41 +65,7 @@ export default function Contact() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
-            <div>
-              <h2 className="text-2xl font-bold mb-6">Visit Our Office</h2>
-              <div className="flex items-start mb-4">
-                <MapPin className="h-5 w-5 text-primary-light mr-3 mt-1" />
-                <div>
-                  <p className="font-medium text-gray-900">Ottawa Headquarters</p>
-                  <p className="text-gray-700">
-                    123 Innovation Drive<br />
-                    Suite 301<br />
-                    Ottawa, ON K1A 0B1<br />
-                    Canada
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start mb-4">
-                <Clock className="h-5 w-5 text-primary-light mr-3 mt-1" />
-                <div>
-                  <p className="font-medium text-gray-900">Business Hours</p>
-                  <p className="text-gray-700">
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Saturday & Sunday: Closed
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-gray-200 h-64 rounded-lg">
-              {/* Placeholder for map */}
-              <div className="h-full w-full flex items-center justify-center">
-                <p className="text-gray-600 font-medium">Interactive Map</p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </section>
 
