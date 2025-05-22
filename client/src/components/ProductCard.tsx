@@ -21,6 +21,7 @@ interface ProductCardProps {
 
 // Map products to their respective external app URLs
 const productUrlMap: Record<string, string> = {
+  "Business Intelligent Agent": "https://5d7f171b-75bc-4079-8dfe-bf2efcdd2c9f-00-1r04f6yyvxkmn.picard.replit.dev/",
   "CrispWrite": "https://13258e34-e96c-4122-8dca-b63edcb236d1-00-9ajfnadifwon.picard.replit.dev/",
   "SOP Assistant": "https://workflow.getmindpal.com/sop-agent-workflow-avlkgrhad7x0xazm",
   "Resume Analyzer": "https://workflow.getmindpal.com/67751e695156e8aaefc0c8de",
