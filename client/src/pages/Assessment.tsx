@@ -1,10 +1,10 @@
 import React from 'react';
-import Layout from "@/components/Layout";
+import AssessmentLayout from "@/components/AssessmentLayout";
 import AIReadinessAssessment from "@/components/AIReadinessAssessment";
 
 export default function Assessment() {
   return (
-    <Layout>
+    <AssessmentLayout>
       <div className="py-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -22,6 +22,6 @@ export default function Assessment() {
           </div>
         </div>
       </div>
-    </Layout>
+    </AssessmentLayout>
   );
 }
