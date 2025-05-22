@@ -8,6 +8,7 @@ import Services from "@/pages/services";
 import Contact from "@/pages/contact";
 import Assessment from "@/pages/assessment";
 import Marketplace from "@/pages/Marketplace";
+import CartPage from "@/pages/CartPage";
 import AuthPage from "@/pages/auth-page";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/assessment" component={Assessment} />
       <Route path="/marketplace" component={Marketplace} />
+      <Route path="/cart" component={CartPage} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />
     </Switch>
