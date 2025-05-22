@@ -78,15 +78,8 @@ export default function CartPage() {
   };
   
   const checkout = () => {
-    alert("Thank you for your purchase!");
-    
-    // Clear cart after checkout
-    if (user) {
-      const userCartKey = `cart_${user.id}`;
-      localStorage.setItem(userCartKey, JSON.stringify([]));
-      setCartItems([]);
-      setTotalAmount("0.00");
-    }
+    // Redirect to checkout page
+    window.location.href = "/checkout";
   };
   
   return (
