@@ -37,6 +37,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return await res.json();
     },
     onSuccess: (user: SelectUser) => {
+      // Clear all cart data from any users
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('cart_')) {
+          localStorage.removeItem(key);
+        }
+      });
+      // Only then set the user data
       queryClient.setQueryData(["/api/user"], user);
       toast({
         title: "Login successful",
@@ -81,6 +88,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await apiRequest("POST", "/api/logout");
     },
     onSuccess: () => {
+      // Clear all cart data when logging out
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('cart_')) {
+          localStorage.removeItem(key);
+        }
+      });
       queryClient.setQueryData(["/api/user"], null);
       toast({
         title: "Logged out",
