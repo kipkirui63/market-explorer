@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from "@/components/Layout";
 import { Sparkles, Award, BookOpen, Users, Code, Clock, ArrowUpRight } from 'lucide-react';
 import WaveBackground from '@/components/WaveBackground';
-import LeadershipTeam from '@/components/LeadershipTeam';
 import OurValues from '@/components/OurValues';
 
 export default function About() {
@@ -64,8 +63,7 @@ export default function About() {
       {/* Our Values Section */}
       <OurValues />
 
-      {/* Our Team Section */}
-      <LeadershipTeam />
+
 
       {/* Why Choose Us Section */}
       <section className="py-16 bg-background-light">
