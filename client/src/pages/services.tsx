@@ -1,233 +1,236 @@
-import { Link } from "wouter";
-import Layout from "@/components/Layout";
-import WaveBackground from "@/components/WaveBackground";
-import SolutionCard from "@/components/SolutionCard";
-import { ShoppingCart, Users, Server, Heart, BarChart3, Headphones, ShoppingBag, Building, GraduationCap, Beaker } from "lucide-react";
+import React from 'react';
+import { 
+  ShoppingCart, Users, Headphones, Cog, UserCircle, 
+  Server, Heart, Factory, Stethoscope, Building2, GraduationCap, Landmark 
+} from 'lucide-react';
+import ServiceDetail from '@/components/ServiceDetail';
+import Layout from '@/components/Layout';
+import WaveBackground from '@/components/WaveBackground';
 
 export default function Services() {
-  const solutions = [
+  const services = [
     {
-      title: "AI for Sales",
-      description: "Transform your sales process with AI-powered insights and automation.",
-      icon: <ShoppingBag className="h-8 w-8" />,
+      icon: ShoppingCart,
+      title: 'AI for Sales',
+      description: 'Transform your sales process with AI-powered insights and automation.',
       benefits: [
-        "Reduce sales cycle by up to 40%",
-        "Increase conversion rate by 35%",
-        "Automate lead qualification and scoring",
-        "Predict customer lifetime value"
+        'Reduce sales cycle by up to 40%',
+        'Increase conversion rates by 35%',
+        'Automate lead qualification and scoring',
+        'Predict customer lifetime value'
       ],
       useCases: [
-        "AI-powered sales forecasting",
-        "Intelligent lead prioritization",
-        "Automated follow-up sequences",
-        "Smart deal insights and recommendations"
+        'AI-powered sales forecasting',
+        'Intelligent lead prioritization',
+        'Automated follow-up sequences',
+        'Smart deal insights and recommendations'
       ]
     },
     {
-      title: "AI for Marketing",
-      description: "Revolutionize your marketing strategies with AI-driven insights.",
-      icon: <BarChart3 className="h-8 w-8" />,
+      icon: Users,
+      title: 'AI for Marketing',
+      description: 'Revolutionize your marketing strategies with AI-driven insights.',
       benefits: [
-        "Increase marketing ROI by 30%",
-        "Personalize customer experiences",
-        "Optimize campaign performance",
-        "Predict market trends"
+        'Increase marketing ROI by 30%',
+        'Personalize customer experiences',
+        'Optimize campaign performance',
+        'Predict market trends'
       ],
       useCases: [
-        "Dynamic content personalization",
-        "Predictive audience targeting",
-        "AI-powered A/B testing",
-        "Automated social media optimization"
+        'Dynamic content personalization',
+        'Predictive audience targeting',
+        'AI-powered A/B testing',
+        'Automated social media optimization'
       ]
     },
     {
-      title: "AI for Customer Support",
-      description: "Deliver exceptional customer service with AI assistance.",
-      icon: <Headphones className="h-8 w-8" />,
+      icon: Headphones,
+      title: 'AI for Customer Support',
+      description: 'Deliver exceptional customer service with AI assistance.',
       benefits: [
-        "Reduce response time by 60%",
-        "Available 24/7/365",
-        "Handle multiple queries simultaneously",
-        "Improve customer satisfaction"
+        'Reduce response time by 60%',
+        'Available 24/7/365',
+        'Handle multiple queries simultaneously',
+        'Improve customer satisfaction'
       ],
       useCases: [
-        "Intelligent chatbots",
-        "Automated ticket routing",
-        "Sentiment analysis",
-        "Predictive customer needs"
+        'Intelligent chatbots',
+        'Automated ticket routing',
+        'Sentiment analysis',
+        'Predictive customer needs'
       ]
     },
     {
-      title: "AI for Operations",
-      description: "Optimize your operations with AI-powered automation.",
-      icon: <Server className="h-8 w-8" />,
+      icon: Cog,
+      title: 'AI for Operations',
+      description: 'Optimize your operations with AI-powered automation.',
       benefits: [
-        "Reduce operational costs by 25%",
-        "Improve efficiency by 40%",
-        "Minimize human error",
-        "Real-time process optimization"
+        'Reduce operational costs by 25%',
+        'Improve efficiency by 40%',
+        'Minimize human error',
+        'Real-time process optimization'
       ],
       useCases: [
-        "Predictive maintenance",
-        "Supply chain optimization",
-        "Quality control automation",
-        "Resource allocation"
+        'Predictive maintenance',
+        'Supply chain optimization',
+        'Quality control automation',
+        'Resource allocation'
       ]
     },
     {
-      title: "AI for HR",
-      description: "Transform your HR processes with AI-powered solutions.",
-      icon: <Users className="h-8 w-8" />,
+      icon: UserCircle,
+      title: 'AI for HR',
+      description: 'Transform your HR processes with AI-powered solutions.',
       benefits: [
-        "Reduce hiring time by 50%",
-        "Improve candidate quality",
-        "Automate routine tasks",
-        "Enhance employee experience"
+        'Reduce hiring time by 50%',
+        'Improve candidate quality',
+        'Automate routine tasks',
+        'Enhance employee experience'
       ],
       useCases: [
-        "AI-powered recruitment",
-        "Employee sentiment analysis",
-        "Performance prediction",
-        "Training recommendations"
+        'AI-powered recruitment',
+        'Employee sentiment analysis',
+        'Performance prediction',
+        'Training recommendations'
       ]
     },
     {
-      title: "AI for IT",
-      description: "Modernize your IT infrastructure with AI capabilities.",
-      icon: <Server className="h-8 w-8" />,
+      icon: Server,
+      title: 'AI for IT',
+      description: 'Modernize your IT infrastructure with AI capabilities.',
       benefits: [
-        "Reduce downtime by 70%",
-        "Automate routine maintenance",
-        "Enhance security",
-        "Optimize resource usage"
+        'Reduce downtime by 70%',
+        'Automate routine maintenance',
+        'Enhance security',
+        'Optimize resource usage'
       ],
       useCases: [
-        "Predictive system maintenance",
-        "Automated security response",
-        "Resource optimization",
-        "Intelligent monitoring"
+        'Predictive system maintenance',
+        'Automated security response',
+        'Resource optimization',
+        'Intelligent monitoring'
       ]
     },
     {
-      title: "AI for Nonprofits",
-      description: "Maximize social impact with AI-driven solutions.",
-      icon: <Heart className="h-8 w-8" />,
+      icon: Heart,
+      title: 'AI for Nonprofits',
+      description: 'Maximize social impact with AI-driven solutions.',
       benefits: [
-        "Increase donor engagement",
-        "Optimize resource allocation",
-        "Improve program effectiveness",
-        "Enhanced reporting capabilities"
+        'Increase donor engagement',
+        'Optimize resource allocation',
+        'Improve program effectiveness',
+        'Enhanced reporting capabilities'
       ],
       useCases: [
-        "Donor behavior analysis",
-        "Program impact assessment",
-        "Resource optimization",
-        "Automated reporting"
+        'Donor behavior analysis',
+        'Program impact assessment',
+        'Resource optimization',
+        'Automated reporting'
       ]
     },
     {
-      title: "AI for Manufacturing",
-      description: "Revolutionize manufacturing with AI-powered solutions.",
-      icon: <Beaker className="h-8 w-8" />,
+      icon: Factory,
+      title: 'AI for Manufacturing',
+      description: 'Revolutionize manufacturing with AI-powered solutions.',
       benefits: [
-        "Reduce waste by 30%",
-        "Improve quality control",
-        "Optimize production schedules",
-        "Predict equipment maintenance"
+        'Reduce waste by 30%',
+        'Improve quality control',
+        'Optimize production schedules',
+        'Predict equipment maintenance'
       ],
       useCases: [
-        "Predictive maintenance",
-        "Quality assurance automation",
-        "Production optimization",
-        "Supply chain management"
+        'Predictive maintenance',
+        'Quality assurance automation',
+        'Production optimization',
+        'Supply chain management'
       ]
     },
     {
-      title: "AI for Healthcare",
-      description: "Transform patient care with AI-powered healthcare solutions.",
-      icon: <Heart className="h-8 w-8" />,
+      icon: Stethoscope,
+      title: 'AI for Healthcare',
+      description: 'Transform patient care with AI-powered healthcare solutions.',
       benefits: [
-        "Improve diagnosis accuracy",
-        "Reduce administrative burden",
-        "Enhance patient monitoring",
-        "Optimize resource allocation"
+        'Improve diagnosis accuracy',
+        'Reduce administrative burden',
+        'Enhance patient monitoring',
+        'Optimize resource allocation'
       ],
       useCases: [
-        "Disease prediction",
-        "Patient monitoring",
-        "Treatment optimization",
-        "Administrative automation"
+        'Disease prediction',
+        'Patient monitoring',
+        'Treatment optimization',
+        'Administrative automation'
       ]
     },
     {
-      title: "AI for Retail",
-      description: "Enhance retail operations with AI-powered insights.",
-      icon: <ShoppingCart className="h-8 w-8" />,
+      icon: Building2,
+      title: 'AI for Retail',
+      description: 'Enhance retail operations with AI-powered insights.',
       benefits: [
-        "Increase sales by 25%",
-        "Optimize inventory management",
-        "Enhance customer experience",
-        "Reduce operational costs"
+        'Increase sales by 25%',
+        'Optimize inventory management',
+        'Enhance customer experience',
+        'Reduce operational costs'
       ],
       useCases: [
-        "Demand forecasting",
-        "Personalized recommendations",
-        "Inventory optimization",
-        "Customer behavior analysis"
+        'Demand forecasting',
+        'Personalized recommendations',
+        'Inventory optimization',
+        'Customer behavior analysis'
       ]
     },
     {
-      title: "AI for Education",
-      description: "Transform learning with AI-powered educational solutions.",
-      icon: <GraduationCap className="h-8 w-8" />,
+      icon: GraduationCap,
+      title: 'AI for Education',
+      description: 'Transform learning with AI-powered educational solutions.',
       benefits: [
-        "Personalize learning paths",
-        "Improve student engagement",
-        "Reduce administrative work",
-        "Track progress effectively"
+        'Personalize learning paths',
+        'Improve student engagement',
+        'Reduce administrative work',
+        'Track progress effectively'
       ],
       useCases: [
-        "Adaptive learning systems",
-        "Student performance prediction",
-        "Automated grading",
-        "Content recommendations"
+        'Adaptive learning systems',
+        'Student performance prediction',
+        'Automated grading',
+        'Content recommendations'
       ]
     },
     {
-      title: "AI for Government",
-      description: "Modernize public services with AI solutions.",
-      icon: <Building className="h-8 w-8" />,
+      icon: Landmark,
+      title: 'AI for Government',
+      description: 'Modernize public services with AI solutions.',
       benefits: [
-        "Improve service delivery",
-        "Reduce processing time",
-        "Enhance decision-making",
-        "Optimize resource allocation"
+        'Improve service delivery',
+        'Reduce processing time',
+        'Enhance decision-making',
+        'Optimize resource allocation'
       ],
       useCases: [
-        "Smart city management",
-        "Public service automation",
-        "Policy impact analysis",
-        "Resource optimization"
+        'Smart city management',
+        'Public service automation',
+        'Policy impact analysis',
+        'Resource optimization'
       ]
     }
   ];
 
   return (
     <Layout>
-      {/* Industry Solutions Section */}
-      <section className="py-16 bg-blue-50/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-blue-900">AI Solutions for Every Industry</h2>
+      <div className="relative">
+        <WaveBackground position="top" className="bg-blue-50" />
+        <section id="services" className="py-24 bg-blue-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-center mb-16 text-primary-900">AI Solutions for Every Industry</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <ServiceDetail key={index} {...service} />
+              ))}
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((solution, index) => (
-              <SolutionCard key={index} {...solution} />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+        <WaveBackground />
+      </div>
     </Layout>
   );
 }
