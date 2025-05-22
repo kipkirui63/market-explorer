@@ -105,26 +105,37 @@ export default function Marketplace() {
   return (
     <Layout>
       <main className="container mx-auto px-4 py-8">
-        <div className="bg-blue-600 rounded-2xl p-8 mb-12 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-90"></div>
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center">
-            <div className="md:w-2/3">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                CrispAI Marketplace
+        <div className="bg-blue-600 rounded-2xl overflow-hidden mb-12">
+          <div className="flex flex-col md:flex-row items-center p-8 md:p-12">
+            <div className="w-full md:w-3/5 text-white mb-8 md:mb-0">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Find the Perfect<br />
+                Digital Tools
               </h1>
-              <p className="text-xl md:text-2xl mb-6">
-                Discover powerful AI tools to transform your business
+              <p className="text-xl mb-8">
+                Discover and purchase powerful<br />
+                applications and AI agents to enhance<br />
+                your workflow
               </p>
-              <p className="mb-8 text-blue-100">
-                Browse our curated collection of advanced AI applications designed to enhance your workflow, automate tasks, and drive innovation.
-              </p>
+              <a href="#products" className="inline-block bg-white text-blue-600 font-medium py-3 px-8 rounded-md hover:bg-blue-50 transition-colors">
+                Browse Marketplace
+              </a>
             </div>
-            <div className="md:w-1/3 flex justify-center md:justify-end mt-6 md:mt-0">
-              <img 
-                src="/img/crispai-logo-white.svg" 
-                alt="CrispAI Marketplace" 
-                className="h-32 md:h-40"
-              />
+            <div className="w-full md:w-2/5 flex justify-center md:justify-end">
+              <svg width="240" height="120" viewBox="0 0 240 120" className="h-24 md:h-32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="36" fill="white"/>
+                <path d="M60 24V96M24 60H96" stroke="white" strokeWidth="12"/>
+                <path d="M120 42H130V46H120V42Z" fill="white"/>
+                <path d="M120 52H124V80H120V52Z" fill="white"/>
+                <path d="M132 52H136V80H132V52Z" fill="white"/>
+                <path d="M144 52H148V80H144V52Z" fill="white"/>
+                <path d="M156 52H160V66H156V52Z" fill="white"/>
+                <path d="M168 66H172V80H168V66Z" fill="white"/>
+                <path d="M156 80H172V76H156V80Z" fill="white"/>
+                <path d="M180 52H196V56H184V66H192V70H184V80H180V52Z" fill="white"/>
+                <path d="M204 42H208V46H204V42Z" fill="white"/>
+                <path d="M204 52H208V80H204V52Z" fill="white"/>
+              </svg>
             </div>
           </div>
         </div>
