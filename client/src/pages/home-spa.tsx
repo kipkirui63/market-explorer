@@ -7,7 +7,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import ServiceDetail from "@/components/ServiceDetail";
 import ContactForm from "@/components/ContactForm";
 import HeroSection from "@/components/HeroSection";
-import LeadershipTeam from "@/components/LeadershipTeam";
+
 import OurValues from "@/components/OurValues";
 
 export default function HomeSPA() {
@@ -103,9 +103,6 @@ export default function HomeSPA() {
 
       {/* Our Values Section */}
       <OurValues />
-
-      {/* Leadership Team Section */}
-      <LeadershipTeam />
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-blue-50">
