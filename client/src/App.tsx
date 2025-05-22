@@ -24,7 +24,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/assessment" component={Assessment} />
       <Route path="/marketplace" component={Marketplace} />
-      <Route path="/cart" component={CartPage} />
+      <ProtectedRoute path="/cart" component={CartPage} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />
     </Switch>
