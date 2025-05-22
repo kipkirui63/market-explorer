@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, ThumbsUp } from "lucide-react";
 import { ProductImage } from "@/components/ProductImages";
+import { useAuth } from "@/hooks/use-auth";
 
 interface Product {
   id: string;
@@ -31,6 +32,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [isRatingOpen, setIsRatingOpen] = useState(false);
   
+  // Get user from auth context
+  const { user } = useAuth();
+  
   // Check if this product has an external app URL
   const hasExternalApp = !!productUrlMap[product.name];
   
@@ -38,9 +42,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
     // Prevent the click from bubbling up to the parent card
     e.stopPropagation();
     
+    // If user is not logged in, redirect to auth page
+    if (!user) {
+      window.location.href = "/auth";
+      return;
+    }
+    
+    // Use user-specific cart key
+    const userCartKey = `cart_${user.id}`;
+    
     // Get existing cart items from localStorage or initialize empty array
-    const existingCart = localStorage.getItem('cart') 
-      ? JSON.parse(localStorage.getItem('cart') || '[]') 
+    const existingCart = localStorage.getItem(userCartKey) 
+      ? JSON.parse(localStorage.getItem(userCartKey) || '[]') 
       : [];
     
     // Check if this product is already in cart
@@ -59,8 +72,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
       });
     }
     
-    // Save updated cart to localStorage
-    localStorage.setItem('cart', JSON.stringify(existingCart));
+    // Save updated cart to localStorage with user-specific key
+    localStorage.setItem(userCartKey, JSON.stringify(existingCart));
     
     // Don't show alert message as requested by user
     // Just update the cart silently
