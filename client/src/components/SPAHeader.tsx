@@ -103,16 +103,12 @@ export default function SPAHeader() {
           >
             Services
           </a>
-          <a 
-            href="#contact" 
-            className={`transition cursor-pointer ${isActive("contact")}`}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('contact');
-            }}
+          <Link 
+            href="/contact" 
+            className="transition text-gray-600 hover:text-primary"
           >
             Contact
-          </a>
+          </Link>
           <Link href="/assessment" className="transition text-gray-600 hover:text-primary">
             Assessment
           </Link>
@@ -179,16 +175,13 @@ export default function SPAHeader() {
           >
             Services
           </a>
-          <a 
-            href="#contact" 
+          <Link 
+            href="/contact" 
             className="block py-2 text-gray-600 hover:text-primary"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('contact');
-            }}
+            onClick={closeMenu}
           >
             Contact
-          </a>
+          </Link>
           <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>
             Assessment
           </Link>
