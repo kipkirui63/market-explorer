@@ -29,6 +29,7 @@ const CheckoutForm = () => {
   const { toast } = useToast();
   const [processing, setProcessing] = useState(false);
   const [, setLocation] = useLocation();
+  const { user } = useAuth();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -137,22 +138,28 @@ export default function Checkout() {
       (sum: number, item: CartItem) => sum + parseFloat(item.price) * (item.quantity || 1), 
       0
     );
-    setTotalAmount(total.toFixed(2));
+    
+    // Add 7% tax
+    const tax = total * 0.07;
+    const totalWithTax = total + tax;
+    
+    setTotalAmount(totalWithTax.toFixed(2));
 
     // Create PaymentIntent on the server
     const createPaymentIntent = async () => {
       try {
         const response = await apiRequest("POST", "/api/create-payment-intent", { 
-          amount: total,
+          amount: totalWithTax,
           cartItems: items 
         });
         
         const data = await response.json();
         setClientSecret(data.clientSecret);
-      } catch (error) {
+      } catch (error: any) {
+        console.error("Payment intent error:", error);
         toast({
           title: "Error",
-          description: "Failed to initialize payment. Please try again.",
+          description: error?.message || "Failed to initialize payment. Please try again.",
           variant: "destructive",
         });
         setLocation("/cart");
@@ -215,11 +222,11 @@ export default function Checkout() {
                 <div className="border-t pt-4">
                   <div className="flex justify-between mb-2">
                     <span>Subtotal</span>
-                    <span>${totalAmount}</span>
+                    <span>${(parseFloat(totalAmount) / 1.07).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between mb-2">
-                    <span>Tax</span>
-                    <span>$0.00</span>
+                    <span>Tax (7%)</span>
+                    <span>${(parseFloat(totalAmount) * 0.07 / 1.07).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
