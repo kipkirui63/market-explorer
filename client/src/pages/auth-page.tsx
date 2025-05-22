@@ -106,7 +106,7 @@ export default function AuthPage() {
                         <FormLabel>Username</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Enter your username"
+                            placeholder="admin"
                             {...field}
                             autoComplete="username"
                             className="h-10"
@@ -126,7 +126,7 @@ export default function AuthPage() {
                         <FormControl>
                           <Input
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder="password123"
                             {...field}
                             autoComplete="current-password"
                             className="h-10"
