@@ -104,16 +104,6 @@ export default function SPAHeader() {
             Services
           </a>
           <a 
-            href="#testimonials" 
-            className={`transition cursor-pointer ${isActive("testimonials")}`}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('testimonials');
-            }}
-          >
-            Testimonials
-          </a>
-          <a 
             href="#contact" 
             className={`transition cursor-pointer ${isActive("contact")}`}
             onClick={(e) => {
@@ -123,6 +113,9 @@ export default function SPAHeader() {
           >
             Contact
           </a>
+          <Link href="/assessment" className="transition text-gray-600 hover:text-primary">
+            Assessment
+          </Link>
           <Link href="/marketplace" className="transition text-gray-600 hover:text-primary">
             Marketplace
           </Link>
@@ -187,16 +180,6 @@ export default function SPAHeader() {
             Services
           </a>
           <a 
-            href="#testimonials" 
-            className="block py-2 text-gray-600 hover:text-primary"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('testimonials');
-            }}
-          >
-            Testimonials
-          </a>
-          <a 
             href="#contact" 
             className="block py-2 text-gray-600 hover:text-primary"
             onClick={(e) => {
@@ -206,6 +189,9 @@ export default function SPAHeader() {
           >
             Contact
           </a>
+          <Link href="/assessment" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>
+            Assessment
+          </Link>
           <Link href="/marketplace" className="block py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>
             Marketplace
           </Link>
