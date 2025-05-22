@@ -1,9 +1,9 @@
-import Layout from "@/components/Layout";
+import AssessmentLayout from "@/components/AssessmentLayout";
 import AIReadinessAssessment from "@/components/AIReadinessAssessment";
 
 export default function Assessment() {
   return (
-    <Layout>
+    <AssessmentLayout>
       <div className="py-8 bg-background-light">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -19,6 +19,6 @@ export default function Assessment() {
           <AIReadinessAssessment />
         </div>
       </div>
-    </Layout>
+    </AssessmentLayout>
   );
 }
