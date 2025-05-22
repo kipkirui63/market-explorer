@@ -146,8 +146,8 @@ export default function HomeSPA() {
               
               <div className="bg-white p-4 rounded-lg shadow-sm inline-flex items-center">
                 <div className="text-blue-400 mr-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3V7M12 17V21M7 12H3M21 12H17M19.071 19.0711L16.2428 16.2429M19.071 4.92893L16.2428 7.75715M4.92896 19.0711L7.75718 16.2429M4.92896 4.92893L7.75718 7.75715" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
                 <p className="font-medium text-blue-600">Smarter Solutions, Faster Results</p>
