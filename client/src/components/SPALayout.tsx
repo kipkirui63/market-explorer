@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import SPAHeader from '@/components/SPAHeader';
-import Footer from '@/components/Footer';
+import Footer from '@/components/layout/Footer';
 
 interface SPALayoutProps {
   children: ReactNode;
