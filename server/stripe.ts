@@ -18,10 +18,7 @@ export async function createPaymentIntent(amount: number, metadata: any = {}) {
       metadata,
       automatic_payment_methods: {
         enabled: true,
-      },
-      // Include test payment method if in development
-      payment_method: process.env.NODE_ENV !== 'production' ? 'pm_card_visa' : undefined,
-      confirm: process.env.NODE_ENV !== 'production',
+      }
     });
     
     console.log(`Created payment intent for $${amount} (${amountInCents} cents)`);
