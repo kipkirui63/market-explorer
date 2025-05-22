@@ -83,11 +83,10 @@ export default function HomeSPA() {
             backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'brightness(0.9)'
+            backgroundRepeat: 'no-repeat'
           }}
         >
-          <div className="absolute inset-0 bg-blue-900 bg-opacity-50"></div>
+          <div className="absolute inset-0 bg-blue-50 bg-opacity-90"></div>
         </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
@@ -95,23 +94,23 @@ export default function HomeSPA() {
             <img 
               src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/brain.svg" 
               alt="Crisp AI Logo" 
-              className="w-20 h-20 text-blue-500 filter"
-              style={{filter: 'invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)'}}
+              className="w-20 h-20"
+              style={{filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(175deg) brightness(89%) contrast(101%)'}}
             />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">Crisp AI</h1>
-          <p className="text-blue-200 text-xl mb-8">Artificial Intelligence</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-2">Crisp AI</h1>
+          <p className="text-blue-500 text-xl mb-8">Artificial Intelligence</p>
           
           <div className="w-full h-2 bg-blue-500 mb-12"></div>
           
           <div className="max-w-3xl mx-auto">
-            <p className="text-white text-lg mb-8 leading-relaxed">
+            <p className="text-blue-800 text-lg mb-8 leading-relaxed">
               No longer just a futuristic concept—AI is here to revolutionize your business. Whether
               you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the
               true potential of Artificial Intelligence.
             </p>
             
-            <p className="text-white text-lg mb-12">
+            <p className="text-blue-800 text-lg mb-12">
               AI isn't one-size-fits-all, and neither are we.
             </p>
             
