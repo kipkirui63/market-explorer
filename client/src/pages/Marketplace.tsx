@@ -68,7 +68,7 @@ export default function Marketplace() {
       id: "3",
       name: "CrispWrite",
       description: "Advanced content creation tool that generates high-quality, SEO-optimized articles, blog posts, and marketing copy.",
-      price: "29.00",
+      price: "89.00",
       rating: "4.9",
       reviewCount: 124,
       badge: "BESTSELLER",
