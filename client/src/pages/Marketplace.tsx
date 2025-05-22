@@ -105,10 +105,7 @@ export default function Marketplace() {
   return (
     <Layout>
       <main className="container mx-auto px-4 py-8">
-        <div style={{
-          backgroundColor: "#1E75E5",
-          borderRadius: "0.75rem"
-        }} className="mb-12 overflow-hidden">
+        <div className="bg-[#1E75E5] rounded-xl mb-12 overflow-hidden">
           <div className="flex flex-col md:flex-row items-center p-8 md:p-12">
             <div className="w-full md:w-2/3 text-white mb-8 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -120,14 +117,14 @@ export default function Marketplace() {
                 applications and AI agents to enhance<br />
                 your workflow
               </p>
-              <a href="#products" className="inline-block bg-white text-blue-600 font-medium py-3 px-8 rounded-md hover:bg-blue-50 transition-colors">
+              <a href="#products" className="inline-block bg-white text-[#1E75E5] font-medium py-3 px-8 rounded-md hover:bg-blue-50 transition-colors">
                 Browse Marketplace
               </a>
             </div>
             <div className="w-full md:w-1/3 flex justify-center md:justify-end items-center">
               <div className="flex items-center">
                 <div className="bg-white rounded-full w-16 h-16"></div>
-                <div className="ml-4 text-white font-bold text-2xl tracking-wide">CrispAI</div>
+                <span className="ml-4 text-white text-3xl font-bold">CrispAI</span>
               </div>
             </div>
           </div>
