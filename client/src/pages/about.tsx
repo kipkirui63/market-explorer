@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from "@/components/Layout";
 import { Sparkles, Award, BookOpen, Users, Code, Clock, ArrowUpRight } from 'lucide-react';
 import WaveBackground from '@/components/WaveBackground';
+import LeadershipTeam from '@/components/LeadershipTeam';
 
 export default function About() {
   return (
@@ -105,24 +106,7 @@ export default function About() {
       </section>
 
       {/* Our Team Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Our Leadership Team</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map((index) => (
-              <div key={index} className="text-center">
-                <div className="bg-gray-200 h-48 w-48 mx-auto rounded-full mb-4"></div>
-                <h3 className="text-xl font-bold">Leadership Name</h3>
-                <p className="text-primary-light font-medium">Position Title</p>
-                <p className="text-gray-600 mt-2">
-                  Brief bio highlighting expertise and background in AI and business.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LeadershipTeam />
 
       {/* Why Choose Us Section */}
       <section className="py-16 bg-background-light">
