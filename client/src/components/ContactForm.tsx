@@ -92,9 +92,9 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-background-light rounded-lg shadow p-8 border border-gray-100">
-      <h3 className="text-xl font-bold mb-4">Let's Unlock Your Business Potential with AI!</h3>
-      <p className="text-gray-700 mb-6">
+    <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-sm p-8 border border-blue-100">
+      <h3 className="text-xl font-bold mb-4 text-blue-800">Let's Unlock Your Business Potential with AI!</h3>
+      <p className="text-blue-600 mb-6">
         Tell us about your business, your goals, and where AI can help make magic happen. 
         The more we know, the better we can tailor our solutions just for you. 
         Don't hold back—this is your space to shine.
@@ -130,16 +130,16 @@ export default function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>What's your Name? <span className="text-red-500">*</span></FormLabel>
+                <FormLabel className="text-blue-700">What's your Name? <span className="text-red-500">*</span></FormLabel>
                 <FormControl>
-                  <Input placeholder="Your answer" {...field} />
+                  <Input placeholder="Your answer" {...field} className="border-blue-200 focus:border-blue-400" />
                 </FormControl>
               </FormItem>
             )}
           />
           
           <div className="space-y-2">
-            <p className="block text-sm font-medium text-gray-700">
+            <p className="block text-sm font-medium text-blue-700">
               What's the biggest challenge or dream you'd love AI to tackle? Are there specific use cases you're curious about?
             </p>
             <div className="space-y-2">
@@ -154,7 +154,7 @@ export default function ContactForm() {
                         onCheckedChange={field.onChange} 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Automating repetitive tasks</FormLabel>
+                    <FormLabel className="font-normal text-blue-600">Automating repetitive tasks</FormLabel>
                   </FormItem>
                 )}
               />
@@ -170,7 +170,7 @@ export default function ContactForm() {
                         onCheckedChange={field.onChange} 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Personalizing customer experiences</FormLabel>
+                    <FormLabel className="font-normal text-blue-600">Personalizing customer experiences</FormLabel>
                   </FormItem>
                 )}
               />
@@ -186,7 +186,7 @@ export default function ContactForm() {
                         onCheckedChange={field.onChange} 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Enhancing decision-making with data</FormLabel>
+                    <FormLabel className="font-normal text-blue-600">Enhancing decision-making with data</FormLabel>
                   </FormItem>
                 )}
               />
@@ -202,7 +202,7 @@ export default function ContactForm() {
                         onCheckedChange={field.onChange} 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Streamlining operations</FormLabel>
+                    <FormLabel className="font-normal text-blue-600">Streamlining operations</FormLabel>
                   </FormItem>
                 )}
               />
@@ -218,7 +218,7 @@ export default function ContactForm() {
                         onCheckedChange={field.onChange} 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Improving productivity</FormLabel>
+                    <FormLabel className="font-normal text-blue-600">Improving productivity</FormLabel>
                   </FormItem>
                 )}
               />
@@ -234,7 +234,7 @@ export default function ContactForm() {
                         onCheckedChange={field.onChange} 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Other</FormLabel>
+                    <FormLabel className="font-normal text-blue-600">Other</FormLabel>
                   </FormItem>
                 )}
               />
@@ -246,12 +246,13 @@ export default function ContactForm() {
             name="additionalInfo"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>Anything else you want to share?</FormLabel>
+                <FormLabel className="text-blue-700">Anything else you want to share?</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder="Your answer" 
                     rows={3} 
                     {...field} 
+                    className="border-blue-200 focus:border-blue-400"
                   />
                 </FormControl>
               </FormItem>
@@ -261,7 +262,7 @@ export default function ContactForm() {
           <div className="flex justify-between items-center pt-4">
             <Button 
               type="submit" 
-              className="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition shadow-md"
+              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -270,7 +271,7 @@ export default function ContactForm() {
               type="reset" 
               variant="ghost" 
               onClick={() => form.reset()} 
-              className="px-4 py-2 text-primary hover:underline transition"
+              className="px-4 py-2 text-blue-600 hover:text-blue-800 hover:underline transition"
             >
               Clear form
             </Button>
