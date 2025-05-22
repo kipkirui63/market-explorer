@@ -203,28 +203,7 @@ export default function HomeSPA() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-primary-50 to-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-5xl font-bold text-center mb-8 text-blue-800">Ready to Make Your Business Smarter?</h2>
-          <p className="text-center text-blue-600 mb-16 max-w-3xl mx-auto text-lg">
-            Let's talk about how AI can work for you. Fill out the form below, and one of our AI consultants will get back to you within 24 hours.
-          </p>
-          
-          <div className="flex justify-center items-center space-x-16 mb-12">
-            <a href="tel:+13435801393" className="flex items-center text-blue-600 hover:text-blue-800 transition-colors text-lg">
-              <Phone className="h-6 w-6 mr-3" />
-              <span>+1 (343) 580-1393</span>
-            </a>
-            <a href="mailto:ai@crispvision.org" className="flex items-center text-blue-600 hover:text-blue-800 transition-colors text-lg">
-              <Mail className="h-6 w-6 mr-3" />
-              <span>ai@crispvision.org</span>
-            </a>
-          </div>
-          
-          <ContactForm />
-        </div>
-      </section>
+
     </SPALayout>
   );
 }
