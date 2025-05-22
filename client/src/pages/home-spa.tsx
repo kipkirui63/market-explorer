@@ -90,16 +90,20 @@ export default function HomeSPA() {
         </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="flex justify-center mb-4">
-            <img 
-              src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/brain.svg" 
-              alt="Crisp AI Logo" 
-              className="w-20 h-20"
-              style={{filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(175deg) brightness(89%) contrast(101%)'}}
-            />
+          <div className="flex justify-center items-center mb-12">
+            <div className="flex items-center">
+              <img 
+                src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/brain.svg" 
+                alt="Crisp AI Logo" 
+                className="w-20 h-20 mr-6"
+                style={{filter: 'invert(42%) sepia(93%) saturate(1352%) hue-rotate(175deg) brightness(89%) contrast(101%)'}}
+              />
+              <div className="text-left">
+                <h1 className="text-5xl md:text-6xl font-bold text-blue-800">Crisp AI</h1>
+                <p className="text-blue-500 text-xl">Artificial Intelligence</p>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-2">Crisp AI</h1>
-          <p className="text-blue-500 text-xl mb-8">Artificial Intelligence</p>
           
           <div className="w-full h-2 bg-blue-500 mb-12"></div>
           
