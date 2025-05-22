@@ -214,13 +214,16 @@ const services = [
 ];
 
 export default function Services() {
+  // Show only the first 3 services to match the layout in the image
+  const topServices = services.slice(0, 3);
+  
   return (
     <Layout>
-      <section id="services" className="py-24 bg-white">
+      <section id="services" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 text-primary-900">AI Solutions for Every Industry</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+          <h2 className="text-3xl font-bold text-center mb-12 text-primary">AI Solutions for Every Industry</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {topServices.map((service, index) => (
               <ServiceDetail key={index} {...service} />
             ))}
           </div>
