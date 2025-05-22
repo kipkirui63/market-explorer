@@ -38,11 +38,17 @@ export default function About() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Our Story</h2>
             <div className="space-y-6 text-gray-700">
+              <p className="text-blue-600 font-medium text-lg text-center">
+                No longer just a futuristic concept—AI is here to revolutionize your business. Whether you're in sales, marketing, healthcare, or government, Crisp AI helps you unlock the true potential of Artificial Intelligence.
+              </p>
               <p>
                 Founded in 2022, CrispAI emerged from a simple observation: while artificial intelligence was 
                 rapidly transforming industries, many businesses struggled to implement AI effectively. The 
                 technical complexities, resource requirements, and integration challenges created barriers that 
                 prevented organizations from realizing AI's full potential.
+              </p>
+              <p className="text-blue-600 font-medium text-lg text-center">
+                AI isn't one-size-fits-all, and neither are we.
               </p>
               <p>
                 Our founders, with backgrounds spanning machine learning, software engineering, and business 
