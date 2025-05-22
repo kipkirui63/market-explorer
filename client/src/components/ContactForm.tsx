@@ -108,9 +108,19 @@ export default function ContactForm() {
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Email <span className="text-red-500">*</span></FormLabel>
-                <FormControl>
-                  <Input placeholder="Your email" {...field} />
-                </FormControl>
+                <div className="flex items-center">
+                  <div className="flex-1 flex items-center border border-gray-300 rounded-md px-3 py-2 text-gray-700 bg-gray-50">
+                    {field.value || "youremail@example.com"}
+                    <a href="#" className="ml-auto text-blue-500 text-sm" onClick={(e) => {
+                      e.preventDefault();
+                      // This would normally integrate with a login system
+                      const newEmail = prompt("Enter your email address:");
+                      if (newEmail) field.onChange(newEmail);
+                    }}>
+                      Switch account
+                    </a>
+                  </div>
+                </div>
               </FormItem>
             )}
           />
