@@ -5,6 +5,7 @@ interface LeadershipMember {
   position: string;
   bio: string;
   image?: string;
+  initials?: string;
 }
 
 export default function LeadershipTeam() {
@@ -12,22 +13,26 @@ export default function LeadershipTeam() {
     {
       name: "Dr. Sarah Chen",
       position: "Chief Executive Officer",
-      bio: "Dr. Chen brings over 15 years of expertise in AI research and business transformation. Previously led AI initiatives at Fortune 100 companies and holds a Ph.D. in Computer Science from Stanford."
+      bio: "Dr. Chen brings over 15 years of expertise in AI research and business transformation. Previously led AI initiatives at Fortune 100 companies and holds a Ph.D. in Computer Science from Stanford.",
+      initials: "DSC"
     },
     {
       name: "Michael Rodriguez",
       position: "Chief Technology Officer",
-      bio: "With extensive experience in developing enterprise AI solutions, Michael has architected systems for global organizations. Former tech lead at Google's AI division with an MS in Machine Learning."
+      bio: "With extensive experience in developing enterprise AI solutions, Michael has architected systems for global organizations. Former tech lead at Google's AI division with an MS in Machine Learning.",
+      initials: "MR"
     },
     {
       name: "Jessica Wong",
       position: "Chief Operations Officer",
-      bio: "Jessica specializes in scaling AI operations across diverse industries. Her background in business strategy and AI implementation has helped numerous organizations achieve digital transformation."
+      bio: "Jessica specializes in scaling AI operations across diverse industries. Her background in business strategy and AI implementation has helped numerous organizations achieve digital transformation.",
+      initials: "JW"
     },
     {
       name: "David Patel",
       position: "VP of Business Development",
-      bio: "David excels at connecting business challenges with AI solutions. His dual background in business administration and data science allows him to bridge technical capabilities with market needs."
+      bio: "David excels at connecting business challenges with AI solutions. His dual background in business administration and data science allows him to bridge technical capabilities with market needs.",
+      initials: "DP"
     }
   ];
 
@@ -52,7 +57,7 @@ export default function LeadershipTeam() {
                 ) : (
                   <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
                     <span className="text-3xl font-bold text-white">
-                      {member.name.split(' ').map(n => n[0]).join('')}
+                      {member.initials || member.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                 )}
