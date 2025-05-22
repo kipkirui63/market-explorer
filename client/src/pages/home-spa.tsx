@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "wouter";
-import { ShoppingCart, Users, Server, Briefcase, Beaker, Building } from "lucide-react";
+import { ShoppingCart, Users, Server } from "lucide-react";
 import SPALayout from '@/components/SPALayout';
 import WaveBackground from "@/components/WaveBackground";
 import TestimonialCard from "@/components/TestimonialCard";
@@ -163,96 +163,14 @@ export default function HomeSPA() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-16 text-primary-900">AI Solutions for Every Industry</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceDetail 
-              icon={ShoppingCart}
-              title="AI for Retail"
-              description="Transform customer experiences and optimize inventory management with intelligent AI solutions."
-              benefits={[
-                'Increase sales by up to 25%',
-                'Reduce inventory costs by 30%',
-                'Personalize customer interactions'
-              ]}
-              useCases={[
-                'Intelligent inventory forecasting',
-                'Customer behavior analysis',
-                'Dynamic pricing optimization'
-              ]}
-            />
-            <ServiceDetail 
-              icon={Users}
-              title="AI for HR"
-              description="Streamline recruitment and improve employee engagement with cutting-edge AI tools."
-              benefits={[
-                'Reduce hiring time by 50%',
-                'Improve candidate quality',
-                'Enhance employee retention'
-              ]}
-              useCases={[
-                'Resume screening and analysis',
-                'Employee sentiment tracking',
-                'Performance prediction'
-              ]}
-            />
-            <ServiceDetail 
-              icon={Server}
-              title="AI for IT"
-              description="Modernize your IT infrastructure with AI capabilities that predict and prevent issues."
-              benefits={[
-                'Reduce downtime by 70%',
-                'Enhance security posture',
-                'Automate routine tasks'
-              ]}
-              useCases={[
-                'Predictive system maintenance',
-                'Automated security response',
-                'Intelligent resource allocation'
-              ]}
-            />
-            <ServiceDetail 
-              icon={Briefcase}
-              title="AI for Finance"
-              description="Leverage AI to detect fraud, automate processes, and gain predictive insights."
-              benefits={[
-                'Reduce fraud by up to 60%',
-                'Cut operational costs by 40%',
-                'Improve risk assessment accuracy'
-              ]}
-              useCases={[
-                'Fraud detection and prevention',
-                'Automated document processing',
-                'Algorithmic trading strategies'
-              ]}
-            />
-            <ServiceDetail 
-              icon={Beaker}
-              title="AI for Healthcare"
-              description="Transform patient care and operational efficiency with specialized healthcare AI."
-              benefits={[
-                'Improve diagnostic accuracy',
-                'Reduce administrative burden',
-                'Enhance patient outcomes'
-              ]}
-              useCases={[
-                'Medical image analysis',
-                'Patient risk stratification',
-                'Clinical documentation automation'
-              ]}
-            />
-            <ServiceDetail 
-              icon={Building}
-              title="AI for Manufacturing"
-              description="Optimize production and quality control with industrial AI solutions."
-              benefits={[
-                'Reduce defects by up to 50%',
-                'Optimize energy consumption',
-                'Increase equipment lifespan'
-              ]}
-              useCases={[
-                'Predictive maintenance',
-                'Quality control automation',
-                'Supply chain optimization'
-              ]}
-            />
+            {featuredServices.map((service, index) => (
+              <ServiceDetail key={index} {...service} />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/services" className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors">
+              View all solutions
+            </Link>
           </div>
         </div>
       </section>
