@@ -10,6 +10,8 @@ import Assessment from "@/pages/assessment";
 import Marketplace from "@/pages/Marketplace";
 import CartPage from "@/pages/CartPage";
 import AuthPage from "@/pages/auth-page";
+import Checkout from "@/pages/checkout";
+import CheckoutSuccess from "@/pages/checkout-success";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -25,6 +27,8 @@ function Router() {
       <Route path="/assessment" component={Assessment} />
       <Route path="/marketplace" component={Marketplace} />
       <ProtectedRoute path="/cart" component={CartPage} />
+      <ProtectedRoute path="/checkout" component={Checkout} />
+      <ProtectedRoute path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />
     </Switch>

@@ -82,8 +82,9 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
   };
   
   const checkout = () => {
-    // This would handle checkout logic in a real app
-    alert("Checkout functionality would be implemented here!");
+    // Close the dialog and redirect to checkout page
+    onOpenChange(false);
+    window.location.href = "/checkout";
   };
   
   return (
