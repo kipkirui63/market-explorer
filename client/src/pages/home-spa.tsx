@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "wouter";
-import { ShoppingCart, Users, Server } from "lucide-react";
+import { ShoppingCart, Users, Server, MessageCircle } from "lucide-react";
 import SPALayout from '@/components/SPALayout';
 import WaveBackground from "@/components/WaveBackground";
 import TestimonialCard from "@/components/TestimonialCard";
@@ -167,37 +167,53 @@ export default function HomeSPA() {
             {/* AI for Sales Card */}
             <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="mb-4">
-                <ShoppingCart className="w-10 h-10 text-gray-800" />
+                <ShoppingCart className="w-10 h-10 text-blue-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">AI for Sales</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-xl font-bold text-blue-800 mb-2">AI for Sales</h3>
+              <p className="text-blue-600 mb-4">
                 Transform your sales process with AI-powered insights and automation.
               </p>
               
               <div className="mb-4">
-                <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Key Benefits:</h4>
                 <ul className="space-y-1">
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Reduce sales cycle by up to 40%</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Reduce sales cycle by up to 40%</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Increase conversion rates by 35%</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Increase conversion rates by 35%</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Automate lead qualification and scoring</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Predict customer lifetime value</span>
                   </li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-800 mb-2">Use Cases:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Use Cases:</h4>
                 <ul className="space-y-1">
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">AI-powered sales forecasting</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">AI-powered sales forecasting</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Intelligent lead prioritization</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Intelligent lead prioritization</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Automated follow-up sequences</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Smart deal insights and recommendations</span>
                   </li>
                 </ul>
               </div>
@@ -206,76 +222,108 @@ export default function HomeSPA() {
             {/* AI for Marketing Card */}
             <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="mb-4">
-                <Users className="w-10 h-10 text-gray-800" />
+                <Users className="w-10 h-10 text-blue-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">AI for Marketing</h3>
-              <p className="text-gray-600 mb-4">
+              <h3 className="text-xl font-bold text-blue-800 mb-2">AI for Marketing</h3>
+              <p className="text-blue-600 mb-4">
                 Revolutionize your marketing strategies with AI-driven insights.
               </p>
               
               <div className="mb-4">
-                <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Key Benefits:</h4>
                 <ul className="space-y-1">
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Increase marketing ROI by 30%</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Increase marketing ROI by 30%</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Personalize customer experiences</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Personalize customer experiences</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Optimize campaign performance</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Predict market trends</span>
                   </li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-800 mb-2">Use Cases:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Use Cases:</h4>
                 <ul className="space-y-1">
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Dynamic content personalization</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Dynamic content personalization</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Predictive audience targeting</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Predictive audience targeting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">AI-powered A/B testing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Automated social media optimization</span>
                   </li>
                 </ul>
               </div>
             </div>
             
-            {/* AI for IT Card */}
+            {/* AI for Customer Support Card */}
             <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="mb-4">
-                <Server className="w-10 h-10 text-gray-800" />
+                <MessageCircle className="w-10 h-10 text-blue-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">AI for IT</h3>
-              <p className="text-gray-600 mb-4">
-                Modernize your IT infrastructure with AI capabilities.
+              <h3 className="text-xl font-bold text-blue-800 mb-2">AI for Customer Support</h3>
+              <p className="text-blue-600 mb-4">
+                Deliver exceptional customer service with AI assistance.
               </p>
               
               <div className="mb-4">
-                <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Key Benefits:</h4>
                 <ul className="space-y-1">
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Reduce downtime by 70%</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Reduce response time by 60%</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Enhance security</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Available 24/7/365</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Handle multiple queries simultaneously</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Improve customer satisfaction</span>
                   </li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-800 mb-2">Use Cases:</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">Use Cases:</h4>
                 <ul className="space-y-1">
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Predictive system maintenance</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Intelligent chatbots</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-gray-700 mr-2">•</span> 
-                    <span className="text-gray-600">Automated security response</span>
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Automated ticket routing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Sentiment analysis</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span> 
+                    <span className="text-blue-600">Predictive customer needs</span>
                   </li>
                 </ul>
               </div>
