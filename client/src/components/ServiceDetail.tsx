@@ -11,27 +11,25 @@ interface ServiceDetailProps {
 
 export default function ServiceDetail({ icon: Icon, title, description, benefits, useCases }: ServiceDetailProps) {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
-      <div className="mb-4">
-        <Icon className="h-8 w-8 text-primary mb-3" />
-        <h3 className="text-lg font-semibold mb-2 text-primary">{title}</h3>
-        <p className="text-gray-600 text-sm mb-4">{description}</p>
-      </div>
+    <div className="p-6 bg-gradient-to-br from-white to-primary-50 rounded-xl shadow-custom hover:shadow-lg transition-all duration-300 border border-primary-100">
+      <Icon className="h-10 w-10 text-primary-600 mb-4" />
+      <h3 className="text-xl font-semibold mb-2 text-primary-900">{title}</h3>
+      <p className="text-primary-700 mb-4">{description}</p>
       
       <div className="mb-4">
-        <h4 className="font-medium text-primary mb-2 text-sm">Key Benefits:</h4>
-        <ul className="list-disc pl-5 space-y-1 text-sm">
+        <h4 className="font-semibold text-primary-800 mb-2">Key Benefits:</h4>
+        <ul className="list-disc list-inside text-primary-700 space-y-1">
           {benefits.map((benefit, index) => (
-            <li key={index} className="text-gray-700">{benefit}</li>
+            <li key={index}>{benefit}</li>
           ))}
         </ul>
       </div>
       
       <div>
-        <h4 className="font-medium text-primary mb-2 text-sm">Use Cases:</h4>
-        <ul className="list-disc pl-5 space-y-1 text-sm">
+        <h4 className="font-semibold text-primary-800 mb-2">Use Cases:</h4>
+        <ul className="list-disc list-inside text-primary-700 space-y-1">
           {useCases.map((useCase, index) => (
-            <li key={index} className="text-gray-700">{useCase}</li>
+            <li key={index}>{useCase}</li>
           ))}
         </ul>
       </div>
