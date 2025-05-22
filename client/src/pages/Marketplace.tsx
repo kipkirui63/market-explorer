@@ -92,7 +92,7 @@ export default function Marketplace() {
             </div>
             <div className="md:w-1/3 flex justify-center md:justify-end mt-6 md:mt-0">
               <img 
-                src="/crispai_logo.png" 
+                src="/img/crispai_logo.png" 
                 alt="CrispAI Marketplace" 
                 className="h-32 md:h-40"
               />
