@@ -26,11 +26,11 @@ export default function CheckoutSuccess() {
           
           <h1 className="text-2xl font-bold mb-2">Payment Successful!</h1>
           <p className="text-gray-600 mb-8">
-            Thank you for your purchase. Your order has been successfully processed.
+            Thank you for your purchase. Your payment has been successfully processed.
           </p>
           
           <p className="mb-4 text-sm bg-blue-50 p-4 rounded-lg text-blue-700">
-            A confirmation email with your order details has been sent to your email address.
+            Order #CRA-{Math.floor(Math.random() * 10000).toString().padStart(4, '0')} has been created.
           </p>
           
           <div className="space-y-4 mt-8">
@@ -41,7 +41,7 @@ export default function CheckoutSuccess() {
             </Link>
             
             <p className="text-sm text-gray-500">
-              If you have any questions about your order, please contact our support team.
+              If you have any questions about your order, please contact our support team at ai@crispvision.org or call +1 (343) 580-1393.
             </p>
           </div>
         </div>
