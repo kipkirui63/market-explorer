@@ -131,7 +131,7 @@ export default function Marketplace() {
                 className="pl-10 py-1 pr-4 border border-gray-300 rounded"
               />
             </div>
-            <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium">Back to Website</Link>
+            <a href="#" className="text-gray-700">Home</a>
             <div className="relative">
               <a 
                 href="/cart" 
