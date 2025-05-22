@@ -59,10 +59,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return await res.json();
     },
     onSuccess: (user: SelectUser) => {
-      queryClient.setQueryData(["/api/user"], user);
+      // Don't automatically set the user data after registration
+      // This will prevent auto-login after registration
       toast({
         title: "Registration successful",
-        description: `Welcome, ${user.username}!`,
+        description: "Your account has been created. Please sign in with your credentials.",
         variant: "default",
       });
     },

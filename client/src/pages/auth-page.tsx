@@ -40,6 +40,15 @@ export default function AuthPage() {
     registerMutation.mutate({
       username: registerUsername,
       password: registerPassword
+    }, {
+      onSuccess: () => {
+        // Redirect to login form after successful registration
+        setIsLogin(true);
+        // Clear registration form fields
+        setRegisterUsername("");
+        setRegisterPassword("");
+        setConfirmPassword("");
+      }
     });
   };
 
