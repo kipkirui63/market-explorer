@@ -139,7 +139,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-gray-400 hover:text-white">
+                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
                         Refund Policy
                       </a>
                     </TooltipTrigger>
@@ -153,7 +153,7 @@ const Footer = () => {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <a href="#" className="text-gray-400 hover:text-white">
+                      <a href="#" className="text-blue-200 hover:text-white transition-colors">
                         License Information
                       </a>
                     </TooltipTrigger>
@@ -167,7 +167,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-6 mt-6 text-center text-gray-400 text-sm">
+        <div className="border-t border-blue-600 pt-6 mt-6 text-center text-blue-200 text-sm">
           <p>&copy; {new Date().getFullYear()} CrispAI. All rights reserved.</p>
         </div>
       </div>
