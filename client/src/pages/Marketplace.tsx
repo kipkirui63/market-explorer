@@ -125,12 +125,13 @@ export default function Marketplace() {
               </a>
             </div>
             <div className="w-full md:w-1/3 flex justify-center md:justify-end items-center">
-              <svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="40" cy="40" r="35" fill="white"/>
-                <circle cx="40" cy="40" r="15" stroke="#0076c6" stroke-width="6" fill="none"/>
-                <line x1="40" y1="5" x2="40" y2="75" stroke="#0076c6" stroke-width="6"/>
-                <text x="90" y="50" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white">CrispAI</text>
-              </svg>
+              <img
+                src="/crisp-logo.png"
+                alt="CrispAI Logo"
+                className="rounded-xl shadow-2xl w-3/4 h-auto 
+                         filter brightness-0 invert 
+                         sepia-[100%] saturate-[500%] hue-rotate-[172deg]"
+              />
             </div>
           </div>
         </div>
