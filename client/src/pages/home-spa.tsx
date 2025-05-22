@@ -135,21 +135,29 @@ export default function HomeSPA() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-gradient-to-br from-primary-50 to-white">
+      <section id="about" className="py-24 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-primary-900">Your AI Partners in Innovation</h2>
-              <p className="text-primary-800 mb-8 text-lg">
-                Crisp AI is more than just a consultancy—we're your trusted partner in transforming your business with cutting-edge AI solutions. From automating tedious processes to creating intelligent chatbots and leveraging advanced AI models, our mission is simple: make your business smarter, faster, and more innovative.
+              <h2 className="text-4xl font-bold mb-6 text-blue-800">Your AI Partners in Innovation</h2>
+              <p className="text-blue-600 mb-8 text-lg leading-relaxed">
+                Crisp AI is more than just a consultancy—we're your trusted partner in transforming your business with cutting-edge AI solutions. From automating tedious processes to creating intelligent chatbots and leveraging Microsoft Copilot, our mission is simple: make your business smarter, faster, and more innovative.
               </p>
+              
+              <div className="bg-white p-4 rounded-lg shadow-sm inline-flex items-center">
+                <div className="text-blue-400 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <p className="font-medium text-blue-600">Smarter Solutions, Faster Results</p>
+              </div>
             </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-400 opacity-10 rounded-2xl transform rotate-3"></div>
+            <div className="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80"
-                alt="AI Innovation"
-                className="rounded-2xl shadow-lg relative transform -rotate-3 hover:rotate-0 transition-transform duration-500"
+                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80"
+                alt="AI Robot Hand"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
