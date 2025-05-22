@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="230" height="80" viewBox="0 0 230 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main circle -->
+  <circle cx="40" cy="40" r="35" fill="white"/>
+  
+  <!-- Inner circle -->
+  <circle cx="40" cy="40" r="14" fill="none" stroke="white" stroke-width="0" stroke="#0076C6" stroke-width="6"/>
+  
+  <!-- Vertical line -->
+  <line x1="40" y1="5" x2="40" y2="75" stroke="#0076C6" stroke-width="6"/>
+  
+  <!-- Text "CrispAI" -->
+  <path d="M90 25H105V32H90V25Z" fill="white"/>
+  <path d="M90 35H97V60H90V35Z" fill="white"/>
+  <path d="M105 35H112V60H105V35Z" fill="white"/>
+  <path d="M120 35H127V60H120V35Z" fill="white"/>
+  <path d="M135 35H142V45H135V35Z" fill="white"/>
+  <path d="M150 50H157V60H150V50Z" fill="white"/>
+  <path d="M135 60H157V53H135V60Z" fill="white"/>
+  <path d="M165 35H185V42H172V45H182V52H172V60H165V35Z" fill="white"/>
+  <path d="M195 25H202V32H195V25Z" fill="white"/>
+  <path d="M195 35H202V60H195V35Z" fill="white"/>
+</svg>
