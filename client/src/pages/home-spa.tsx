@@ -161,16 +161,133 @@ export default function HomeSPA() {
       {/* Services Section */}
       <section id="services" className="py-24 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 text-primary-900">AI Solutions for Every Industry</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredServices.map((service, index) => (
-              <ServiceDetail key={index} {...service} />
-            ))}
+          <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">AI Solutions for Every Industry</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* AI for Sales Card */}
+            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div className="mb-4">
+                <ShoppingCart className="w-10 h-10 text-gray-800" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">AI for Sales</h3>
+              <p className="text-gray-600 mb-4">
+                Transform your sales process with AI-powered insights and automation.
+              </p>
+              
+              <div className="mb-4">
+                <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                <ul className="space-y-1">
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Reduce sales cycle by up to 40%</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Increase conversion rates by 35%</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Use Cases:</h4>
+                <ul className="space-y-1">
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">AI-powered sales forecasting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Intelligent lead prioritization</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* AI for Marketing Card */}
+            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div className="mb-4">
+                <Users className="w-10 h-10 text-gray-800" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">AI for Marketing</h3>
+              <p className="text-gray-600 mb-4">
+                Revolutionize your marketing strategies with AI-driven insights.
+              </p>
+              
+              <div className="mb-4">
+                <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                <ul className="space-y-1">
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Increase marketing ROI by 30%</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Personalize customer experiences</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Use Cases:</h4>
+                <ul className="space-y-1">
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Dynamic content personalization</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Predictive audience targeting</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* AI for IT Card */}
+            <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div className="mb-4">
+                <Server className="w-10 h-10 text-gray-800" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">AI for IT</h3>
+              <p className="text-gray-600 mb-4">
+                Modernize your IT infrastructure with AI capabilities.
+              </p>
+              
+              <div className="mb-4">
+                <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                <ul className="space-y-1">
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Reduce downtime by 70%</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Enhance security</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-2">Use Cases:</h4>
+                <ul className="space-y-1">
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Predictive system maintenance</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-gray-700 mr-2">•</span> 
+                    <span className="text-gray-600">Automated security response</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className="text-center mt-12">
-            <Link href="/services" className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors">
-              View all solutions
-            </Link>
+          
+          <div className="flex justify-center mt-8">
+            <div className="flex space-x-1">
+              <div className="w-8 h-1 bg-blue-500 rounded-full"></div>
+              <div className="w-2 h-1 bg-gray-300 rounded-full"></div>
+              <div className="w-2 h-1 bg-gray-300 rounded-full"></div>
+            </div>
           </div>
         </div>
       </section>
