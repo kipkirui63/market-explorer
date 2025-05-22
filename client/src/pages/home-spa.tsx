@@ -207,28 +207,29 @@ export default function HomeSPA() {
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12 text-blue-800">Contact Us</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 text-blue-800">Contact Us</h2>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold text-blue-800 mb-6">Have questions about our AI solutions?</h3>
-              <p className="text-blue-700 mb-4">
-                Ready to start your AI journey? Our team of expert consultants is here to help you navigate the exciting world of AI implementation.
-              </p>
-              
-              <div className="space-y-6 mt-8">
-                <div className="flex items-center space-x-4">
-                  <Phone className="h-6 w-6 text-blue-500" />
-                  <span className="text-blue-700">+1 (343) 580-1393</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <Mail className="h-6 w-6 text-blue-500" />
-                  <span className="text-blue-700">ai@crispvision.org</span>
-                </div>
+          <div className="flex flex-col items-center mb-16">
+            <h3 className="text-2xl font-semibold text-blue-700 mb-6">Have questions about our AI solutions?</h3>
+            <p className="text-blue-600 mb-10 text-center max-w-3xl">
+              Ready to start your AI journey? Our team of expert consultants is here to help you navigate the exciting world of AI implementation.
+            </p>
+            
+            <div className="flex flex-col md:flex-row gap-8 items-center justify-center mb-10">
+              <div className="flex items-center space-x-3">
+                <Phone className="h-6 w-6 text-blue-500" />
+                <span className="text-blue-600">+1 (343) 580-1393</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="h-6 w-6 text-blue-500" />
+                <span className="text-blue-600">ai@crispvision.org</span>
               </div>
             </div>
-            
-            <div className="bg-blue-50 p-8 rounded-lg shadow-xl">
+          </div>
+          
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-blue-50 p-8 rounded-lg shadow-lg">
+              <h3 className="text-2xl font-bold text-blue-700 mb-6 text-center">Let's Unlock Your Business Potential with AI!</h3>
               <ContactForm />
             </div>
           </div>
