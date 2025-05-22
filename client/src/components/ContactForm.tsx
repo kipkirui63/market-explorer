@@ -92,9 +92,9 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-sm p-8 border border-blue-100">
-      <h3 className="text-xl font-bold mb-4 text-blue-800">Let's Unlock Your Business Potential with AI!</h3>
-      <p className="text-blue-600 mb-6">
+    <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-10 border border-blue-100">
+      <h3 className="text-2xl font-bold mb-6 text-blue-800">Let's Unlock Your Business Potential with AI!</h3>
+      <p className="text-blue-600 mb-8 text-lg">
         Tell us about your business, your goals, and where AI can help make magic happen. 
         The more we know, the better we can tailor our solutions just for you. 
         Don't hold back—this is your space to shine.
@@ -107,11 +107,11 @@ export default function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>Email <span className="text-red-500">*</span></FormLabel>
+                <FormLabel className="text-blue-700 text-lg">Email <span className="text-red-500">*</span></FormLabel>
                 <div className="flex items-center">
-                  <div className="flex-1 flex items-center border border-gray-300 rounded-md px-3 py-2 text-gray-700 bg-gray-50">
+                  <div className="flex-1 flex items-center border border-blue-200 rounded-md px-4 py-3 text-blue-600 bg-blue-50 text-lg">
                     {field.value || "youremail@example.com"}
-                    <a href="#" className="ml-auto text-blue-500 text-sm" onClick={(e) => {
+                    <a href="#" className="ml-auto text-blue-500 text-md font-medium" onClick={(e) => {
                       e.preventDefault();
                       // This would normally integrate with a login system
                       const newEmail = prompt("Enter your email address:");
@@ -130,19 +130,19 @@ export default function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel className="text-blue-700">What's your Name? <span className="text-red-500">*</span></FormLabel>
+                <FormLabel className="text-blue-700 text-lg">What's your Name? <span className="text-red-500">*</span></FormLabel>
                 <FormControl>
-                  <Input placeholder="Your answer" {...field} className="border-blue-200 focus:border-blue-400" />
+                  <Input placeholder="Your answer" {...field} className="border-blue-200 focus:border-blue-400 py-6 text-lg" />
                 </FormControl>
               </FormItem>
             )}
           />
           
-          <div className="space-y-2">
-            <p className="block text-sm font-medium text-blue-700">
+          <div className="space-y-4 mt-4">
+            <p className="block text-lg font-medium text-blue-700">
               What's the biggest challenge or dream you'd love AI to tackle? Are there specific use cases you're curious about?
             </p>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <FormField
                 control={form.control}
                 name="taskAutomation"
@@ -151,10 +151,11 @@ export default function ContactForm() {
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
-                        onCheckedChange={field.onChange} 
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5" 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal text-blue-600">Automating repetitive tasks</FormLabel>
+                    <FormLabel className="font-normal text-blue-600 text-lg">Automating repetitive tasks</FormLabel>
                   </FormItem>
                 )}
               />
@@ -167,10 +168,11 @@ export default function ContactForm() {
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
-                        onCheckedChange={field.onChange} 
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5" 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal text-blue-600">Personalizing customer experiences</FormLabel>
+                    <FormLabel className="font-normal text-blue-600 text-lg">Personalizing customer experiences</FormLabel>
                   </FormItem>
                 )}
               />
@@ -183,10 +185,11 @@ export default function ContactForm() {
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
-                        onCheckedChange={field.onChange} 
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5" 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal text-blue-600">Enhancing decision-making with data</FormLabel>
+                    <FormLabel className="font-normal text-blue-600 text-lg">Enhancing decision-making with data</FormLabel>
                   </FormItem>
                 )}
               />
@@ -199,10 +202,11 @@ export default function ContactForm() {
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
-                        onCheckedChange={field.onChange} 
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5" 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal text-blue-600">Streamlining operations</FormLabel>
+                    <FormLabel className="font-normal text-blue-600 text-lg">Streamlining operations</FormLabel>
                   </FormItem>
                 )}
               />
@@ -215,10 +219,11 @@ export default function ContactForm() {
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
-                        onCheckedChange={field.onChange} 
+                        onCheckedChange={field.onChange}
+                        className="h-5 w-5" 
                       />
                     </FormControl>
-                    <FormLabel className="font-normal text-blue-600">Improving productivity</FormLabel>
+                    <FormLabel className="font-normal text-blue-600 text-lg">Improving productivity</FormLabel>
                   </FormItem>
                 )}
               />
