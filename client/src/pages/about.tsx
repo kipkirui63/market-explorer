@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { Sparkles, Award, BookOpen, Users, Code, Clock, ArrowUpRight } from 'lucide-react';
 import WaveBackground from '@/components/WaveBackground';
 import LeadershipTeam from '@/components/LeadershipTeam';
+import OurValues from '@/components/OurValues';
 
 export default function About() {
   return (
@@ -61,49 +62,7 @@ export default function About() {
       </section>
 
       {/* Our Values Section */}
-      <section className="py-16 bg-background-light">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Our Values</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow p-6 border border-gray-100">
-              <div className="text-primary-light mb-4">
-                <Award className="h-10 w-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Excellence</h3>
-              <p className="text-gray-700">
-                We are committed to delivering the highest quality solutions. We stay at the forefront 
-                of AI research and development, continuously refining our approaches to provide 
-                cutting-edge technology that works.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-lg shadow p-6 border border-gray-100">
-              <div className="text-primary-light mb-4">
-                <BookOpen className="h-10 w-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Transparency</h3>
-              <p className="text-gray-700">
-                We believe in clear communication and demystifying AI. We explain our solutions in 
-                understandable terms, set realistic expectations, and maintain open dialogue throughout 
-                the entire project lifecycle.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-lg shadow p-6 border border-gray-100">
-              <div className="text-primary-light mb-4">
-                <Users className="h-10 w-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Partnership</h3>
-              <p className="text-gray-700">
-                We view ourselves as long-term partners rather than vendors. We take the time to understand 
-                your business challenges, goals, and culture to develop solutions that align with your vision 
-                and grow with your organization.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <OurValues />
 
       {/* Our Team Section */}
       <LeadershipTeam />
