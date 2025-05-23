@@ -106,33 +106,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
     );
   };
 
-  // Check if user has purchased this product
+  // Check if user has purchased this product - for TESTING, all logged in users have access
   const hasUserPurchasedProduct = () => {
-    if (!user) return false;
-    
-    // Check if the user has orders that include this product
-    const userOrdersKey = `orders_${user.id}`;
-    const userOrders = JSON.parse(localStorage.getItem(userOrdersKey) || '[]');
-    
-    // For testing purposes, check if user has ANY orders (indicating they've made a purchase)
-    if (userOrders.length > 0) {
-      console.log("User has orders, allowing access to all products for testing");
-      return true;
-    }
-    
-    // Look through orders to see if this product is in any of them
-    for (const order of userOrders) {
-      try {
-        const orderItems = JSON.parse(order.items || '[]');
-        if (orderItems.some((item: any) => item.name === product.name)) {
-          return true;
-        }
-      } catch (e) {
-        console.error("Error parsing order items:", e);
-      }
-    }
-    
-    return false;
+    // If user is logged in, grant access to all products (for testing)
+    return !!user;
   };
 
   // Function to handle clicking on the product card
