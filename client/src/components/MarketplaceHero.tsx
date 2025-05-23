@@ -5,7 +5,7 @@ export default function MarketplaceHero() {
   return (
     <div 
       style={{
-        backgroundColor: "#0076c6",
+        backgroundColor: "#0078D4",
         borderRadius: "0.75rem"
       }} 
       className="mb-12 overflow-hidden"
@@ -21,7 +21,7 @@ export default function MarketplaceHero() {
             applications and AI agents to enhance<br />
             your workflow
           </p>
-          <a href="#products" className="inline-block bg-white text-blue-600 font-medium py-3 px-8 rounded-md hover:bg-blue-50 transition-colors">
+          <a href="#products" className="inline-block bg-white font-medium py-3 px-8 rounded-md hover:bg-blue-50 transition-colors" style={{ color: '#0078D4' }}>
             Browse Marketplace
           </a>
         </div>
