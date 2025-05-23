@@ -166,7 +166,7 @@ export default function HomeSPA() {
       {/* Services Section */}
       <section id="services" className="py-24 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">AI Solutions for Every Industry</h2>
+          <h2 className="text-4xl font-bold text-center mb-16" style={{ color: '#0078D4' }}>AI Solutions for Every Industry</h2>
           
           <ServiceCarousel />
         </div>
@@ -207,29 +207,29 @@ export default function HomeSPA() {
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 text-blue-800">Contact Us</h2>
+          <h2 className="text-4xl font-bold text-center mb-16" style={{ color: '#0078D4' }}>Contact Us</h2>
           
           <div className="flex flex-col items-center mb-16">
-            <h3 className="text-2xl font-semibold text-blue-700 mb-6">Have questions about our AI solutions?</h3>
-            <p className="text-blue-600 mb-10 text-center max-w-3xl">
+            <h3 className="text-2xl font-semibold mb-6 color-primary">Have questions about our AI solutions?</h3>
+            <p className="mb-10 text-center max-w-3xl color-primary">
               Ready to start your AI journey? Our team of expert consultants is here to help you navigate the exciting world of AI implementation.
             </p>
             
             <div className="flex flex-col md:flex-row gap-8 items-center justify-center mb-10">
               <div className="flex items-center space-x-3">
-                <Phone className="h-6 w-6 text-blue-500" />
-                <span className="text-blue-600">+1 (343) 580-1393</span>
+                <Phone className="h-6 w-6 color-primary" />
+                <span className="color-primary">+1 (343) 580-1393</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-6 w-6 text-blue-500" />
-                <span className="text-blue-600">ai@crispvision.org</span>
+                <Mail className="h-6 w-6 color-primary" />
+                <span className="color-primary">ai@crispvision.org</span>
               </div>
             </div>
           </div>
           
           <div className="max-w-3xl mx-auto">
             <div className="bg-blue-50 p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold text-blue-700 mb-6 text-center">Let's Unlock Your Business Potential with AI!</h3>
+              <h3 className="text-2xl font-bold mb-6 text-center color-primary">Let's Unlock Your Business Potential with AI!</h3>
               <ContactForm />
             </div>
           </div>

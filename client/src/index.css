@@ -10,6 +10,10 @@
   background-color: #0067b8;
 }
 
+.color-primary {
+  color: #0078D4;
+}
+
 @layer components {
   .bg-gradient-custom {
     background: linear-gradient(135deg, #0099cc 0%, #003366 100%);
