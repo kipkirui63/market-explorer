@@ -23,7 +23,7 @@ interface CartItem {
   quantity: number;
 }
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ cartItems, totalAmount }: { cartItems: CartItem[], totalAmount: string }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -41,10 +41,6 @@ const CheckoutForm = () => {
     setProcessing(true);
 
     try {
-      // Use the current cart items and total amount for the invoice
-      const itemsForInvoice = [...cartItems];
-      const amountForInvoice = parseFloat(totalAmount);
-      
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -63,8 +59,8 @@ const CheckoutForm = () => {
         try {
           // Generate an invoice for the purchase
           const invoiceResponse = await apiRequest("POST", "/api/create-invoice", {
-            cartItems: itemsForInvoice,
-            amount: amountForInvoice,
+            cartItems: cartItems,
+            amount: parseFloat(totalAmount),
             paymentIntentId: paymentIntent.id
           });
           
@@ -249,17 +245,9 @@ export default function Checkout() {
               <Elements 
                 stripe={stripePromise} 
                 options={{ 
-                  clientSecret,
-                  appearance: {
-                    theme: 'stripe',
-                    variables: {
-                      colorPrimary: '#0076c6',
-                      fontFamily: 'Inter, system-ui, sans-serif',
-                    },
-                    labels: 'floating'
-                  },
+                  clientSecret
                 }}>
-                <CheckoutForm />
+                <CheckoutForm cartItems={cartItems} totalAmount={totalAmount} />
               </Elements>
             </div>
 
