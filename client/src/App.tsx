@@ -13,6 +13,7 @@ import CartPage from "@/pages/CartPage";
 import AuthPage from "@/pages/auth-page";
 import CustomCheckout from "@/pages/custom-checkout";
 import CheckoutSuccess from "@/pages/checkout-success";
+
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 import { QueryClientProvider } from "@tanstack/react-query";
