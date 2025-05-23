@@ -41,6 +41,10 @@ const CheckoutForm = () => {
     setProcessing(true);
 
     try {
+      // Use the current cart items and total amount for the invoice
+      const itemsForInvoice = [...cartItems];
+      const amountForInvoice = parseFloat(totalAmount);
+      
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -56,18 +60,45 @@ const CheckoutForm = () => {
           variant: "destructive",
         });
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        // Clear the cart after successful payment
-        if (user) {
-          localStorage.removeItem(`cart_${user.id}`);
+        try {
+          // Generate an invoice for the purchase
+          const invoiceResponse = await apiRequest("POST", "/api/create-invoice", {
+            cartItems: itemsForInvoice,
+            amount: amountForInvoice,
+            paymentIntentId: paymentIntent.id
+          });
+          
+          const invoiceData = await invoiceResponse.json();
+          
+          // Clear the cart after successful payment
+          if (user) {
+            localStorage.removeItem(`cart_${user.id}`);
+          }
+          
+          toast({
+            title: "Payment Successful",
+            description: "Thank you for your purchase! Your invoice has been generated.",
+          });
+          
+          // Redirect to success page with invoice info
+          setLocation(`/checkout/success?invoice=${invoiceData.invoiceId}`);
+        } catch (invoiceError) {
+          console.error("Failed to generate invoice:", invoiceError);
+          
+          // Still consider the payment successful even if invoice generation fails
+          toast({
+            title: "Payment Successful",
+            description: "Thank you for your purchase! There was an issue generating your invoice, but your payment was processed successfully.",
+          });
+          
+          // Clear the cart after successful payment
+          if (user) {
+            localStorage.removeItem(`cart_${user.id}`);
+          }
+          
+          // Redirect to success page
+          setLocation("/checkout/success");
         }
-        
-        toast({
-          title: "Payment Successful",
-          description: "Thank you for your purchase!",
-        });
-        
-        // Redirect to success page
-        setLocation("/checkout/success");
       }
     } finally {
       setProcessing(false);
