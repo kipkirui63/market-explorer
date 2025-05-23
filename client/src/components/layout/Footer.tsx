@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="pt-12 pb-6 text-white" style={{ backgroundColor: '#0078D4' }}>
+    <footer className="bg-gradient-to-r from-[#005AA7] to-[#00C6FB] text-white pt-12 pb-6">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
