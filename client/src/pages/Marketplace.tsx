@@ -115,7 +115,7 @@ export default function Marketplace() {
                 key={category}
                 variant={activeCategory === category ? "default" : "outline"}
                 onClick={() => setActiveCategory(category)}
-                className={activeCategory === category ? "bg-blue-600" : ""}
+                className={activeCategory === category ? "cta-button" : ""}
               >
                 {category}
               </Button>
@@ -148,7 +148,7 @@ export default function Marketplace() {
               >
                 <ShoppingCart className="h-5 w-5" />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" style={{ backgroundColor: '#0078D4' }}>
                     {cartItemCount}
                   </span>
                 )}
