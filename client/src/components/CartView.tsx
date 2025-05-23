@@ -88,7 +88,7 @@ export default function CartView() {
           {!user && (
             <Button 
               onClick={() => window.location.href = "/auth"}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="cta-button"
             >
               Sign In
             </Button>
@@ -120,7 +120,7 @@ export default function CartView() {
             </div>
             
             <div className="flex flex-col items-end gap-2">
-              <div className="font-medium text-blue-500">
+              <div className="font-medium color-primary">
                 ${(parseFloat(item.price) * item.quantity).toFixed(2)}
               </div>
               
@@ -163,10 +163,10 @@ export default function CartView() {
         </Button>
         
         <Button 
-          className="flex-1 bg-blue-600 hover:bg-blue-700" 
+          className="flex-1 cta-button" 
           asChild
         >
-          <Link href="/checkout">Proceed to Checkout</Link>
+          <Link href="/custom-checkout">Proceed to Checkout (Test Mode)</Link>
         </Button>
       </div>
     </div>

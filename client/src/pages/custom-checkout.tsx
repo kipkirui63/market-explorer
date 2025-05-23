@@ -354,14 +354,39 @@ export default function CustomCheckout() {
                   </div>
                 </div>
                 
-                <div className="flex items-center text-sm text-gray-500 mt-2">
+                <div className="border-t border-gray-200 pt-4 mt-4">
+                  <h3 className="font-semibold text-sm mb-2">Test Mode Cards</h3>
+                  <div className="bg-blue-50 p-3 rounded-md">
+                    <p className="text-sm mb-2">For testing, use any of these cards:</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div className="flex flex-col">
+                        <span className="font-medium">Success payment:</span>
+                        <code className="bg-gray-100 px-2 py-1 rounded">4242 4242 4242 4242</code>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-medium">Requires authentication:</span>
+                        <code className="bg-gray-100 px-2 py-1 rounded">4000 0025 0000 3155</code>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-medium">Declined payment:</span>
+                        <code className="bg-gray-100 px-2 py-1 rounded">4000 0000 0000 0002</code>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-medium">For any test card:</span>
+                        <span>Use any future date & any 3 digits for CVV</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center text-sm text-gray-500 mt-4">
                   <Lock className="h-4 w-4 mr-2 text-green-500" />
                   <span>Your payment information is encrypted and secure</span>
                 </div>
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  className="w-full cta-button text-white"
                   disabled={processing}
                 >
                   {processing ? (
