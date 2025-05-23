@@ -62,22 +62,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const registerMutation = useMutation({
     mutationFn: async (credentials: InsertUser) => {
-      try {
-        const res = await apiRequest("POST", "/api/register", credentials);
-        // Check if the response is JSON
-        const contentType = res.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-          return await res.json();
-        } else {
-          // If it's not JSON, handle it as an error
-          const text = await res.text();
-          throw new Error("Server returned non-JSON response: " + 
-            (text.length > 100 ? text.substring(0, 100) + "..." : text));
-        }
-      } catch (error: any) {
-        console.error("Registration error:", error);
-        throw error;
-      }
+      const res = await apiRequest("POST", "/api/register", credentials);
+      const data = await res.json();
+      return data;
     },
     onSuccess: (response: any) => {
       // Don't automatically set the user data after registration
@@ -89,6 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
     },
     onError: (error: Error) => {
+      console.error("Registration error:", error);
       toast({
         title: "Registration failed",
         description: error.message || "Username already exists",
