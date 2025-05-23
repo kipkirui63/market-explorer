@@ -23,17 +23,24 @@ export async function apiRequest(
       credentials: "include",
     });
 
-    // Special handling for login/auth endpoints
-    if (url.includes('/api/login') || url.includes('/api/register')) {
-      // Check if the response is not JSON (e.g., HTML error page)
+    // Handle non-OK responses immediately
+    if (!res.ok) {
       const contentType = res.headers.get('content-type');
+      // If response is not JSON, provide a better error message
       if (contentType && !contentType.includes('application/json')) {
-        const text = await res.text();
         throw new Error('Server returned invalid response format. Please try again later.');
+      } else {
+        // Try to get JSON error message if available
+        try {
+          const errorData = await res.json();
+          throw new Error(errorData.message || `Error ${res.status}: ${res.statusText}`);
+        } catch (jsonError) {
+          // Fallback to status text if JSON parsing fails
+          throw new Error(`Error ${res.status}: ${res.statusText}`);
+        }
       }
     }
-
-    await throwIfResNotOk(res);
+    
     return res;
   } catch (error) {
     console.error(`API request error (${method} ${url}):`, error);
