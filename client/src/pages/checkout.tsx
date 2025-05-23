@@ -103,6 +103,30 @@ const CheckoutForm: React.FC<{ cartItems: CartItem[], totalAmount: string }> = (
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Test Mode Banner */}
+      <div className="mb-4 p-4 bg-blue-50 border border-blue-100 rounded-md">
+        <div className="flex items-center mb-2">
+          <div className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded mr-2">
+            TEST MODE
+          </div>
+          <span className="text-blue-800 font-medium">Stripe Payment Processing</span>
+        </div>
+        <p className="text-sm text-blue-700 mb-2">
+          This checkout is in test mode. Use these test cards:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+          <div className="bg-white p-2 rounded border border-blue-100">
+            <div className="font-medium">Success payment:</div>
+            <code className="text-green-700">4242 4242 4242 4242</code>
+          </div>
+          <div className="bg-white p-2 rounded border border-blue-100">
+            <div className="font-medium">Authentication required:</div>
+            <code className="text-orange-600">4000 0025 0000 3155</code>
+          </div>
+        </div>
+        <p className="text-xs text-blue-600 mt-2">Use any future date, any 3 digits for CVC, and any 5 digits for postal code</p>
+      </div>
+      
       <PaymentElement />
       
       <div className="flex items-center gap-2 text-sm text-gray-600 mt-4">
