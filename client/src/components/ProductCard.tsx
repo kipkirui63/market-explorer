@@ -148,7 +148,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               ? "bg-[#805AD5]" 
               : product.badge === "TRENDING" || product.badge === "BESTSELLER" 
                 ? "bg-[#F6AD55]" 
-                : "bg-blue-500"
+                : "cta-button"
           } text-white text-xs font-bold px-2 py-1 rounded`}>
             {product.badge}
           </div>
@@ -158,7 +158,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="flex justify-between items-start mb-3">
           <h3 className="text-xl font-semibold">{product.name}</h3>
           <div className="text-right">
-            <span className="text-lg font-bold text-blue-500 block">
+            <span className="text-lg font-bold color-primary block">
               ${parseFloat(product.price).toFixed(2)}
             </span>
             <span className="text-xs text-emerald-600 font-medium">7-day free trial</span>
@@ -176,7 +176,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             variant="ghost" 
             size="sm"
             onClick={showRating}
-            className="text-blue-500 hover:text-blue-700 hover:bg-blue-50"
+            className="color-primary hover:text-blue-700 hover:bg-blue-50"
           >
             <ThumbsUp className="h-4 w-4 mr-1" /> Rate
           </Button>
@@ -184,7 +184,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="flex">
           <Button
             onClick={handleAddToCart}
-            className="bg-blue-500 hover:bg-blue-600 text-white w-full"
+            className="cta-button text-white w-full"
           >
             Add to Cart
           </Button>
