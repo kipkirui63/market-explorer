@@ -9,12 +9,12 @@ interface ValueProps {
 
 const Value = ({ icon: Icon, title, description }: ValueProps) => {
   return (
-    <div className="p-6 bg-gradient-to-br from-white to-primary-50 rounded-xl shadow-custom hover:shadow-lg transition-all duration-300 border border-primary-100">
-      <div className="text-primary-600 mb-4">
+    <div className="p-6 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-custom hover:shadow-lg transition-all duration-300 border border-blue-100">
+      <div className="mb-4" style={{ color: '#0078D4' }}>
         <Icon className="h-10 w-10" />
       </div>
-      <h3 className="text-xl font-semibold mb-3 text-primary-900">{title}</h3>
-      <p className="text-primary-700">{description}</p>
+      <h3 className="text-xl font-semibold mb-3 text-blue-900">{title}</h3>
+      <p className="text-blue-700">{description}</p>
     </div>
   );
 };
@@ -41,7 +41,7 @@ export default function OurValues() {
   return (
     <section className="py-16 bg-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16 text-primary-900">Our Values</h2>
+        <h2 className="text-4xl font-bold text-center mb-16" style={{ color: '#0078D4' }}>Our Values</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {values.map((value, index) => (
