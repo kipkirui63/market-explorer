@@ -123,10 +123,10 @@ export default function HomeSPA() {
               <a href="#contact" className="cta-button text-white font-medium py-3 px-6 rounded-full transition-colors">
                 Get Started with Crisp AI Today!
               </a>
-              <Link href="/assessment" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
+              <Link href="/assessment" className="cta-button text-white font-medium py-3 px-6 rounded-full transition-colors">
                 Multi-Agent Resume Analyzer
               </Link>
-              <Link href="/marketplace" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
+              <Link href="/marketplace" className="cta-button text-white font-medium py-3 px-6 rounded-full transition-colors">
                 AI Recruitment Assistant
               </Link>
             </div>
