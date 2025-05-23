@@ -23,6 +23,16 @@ export async function apiRequest(
       credentials: "include",
     });
 
+    // Special handling for login/auth endpoints
+    if (url.includes('/api/login') || url.includes('/api/register')) {
+      // Check if the response is not JSON (e.g., HTML error page)
+      const contentType = res.headers.get('content-type');
+      if (contentType && !contentType.includes('application/json')) {
+        const text = await res.text();
+        throw new Error('Server returned invalid response format. Please try again later.');
+      }
+    }
+
     await throwIfResNotOk(res);
     return res;
   } catch (error) {
