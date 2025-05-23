@@ -23,7 +23,7 @@ interface CartItem {
   quantity: number;
 }
 
-const CheckoutForm = ({ cartItems, totalAmount }: { cartItems: CartItem[], totalAmount: string }) => {
+const CheckoutForm: React.FC<{ cartItems: CartItem[], totalAmount: string }> = ({ cartItems, totalAmount }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { toast } = useToast();
@@ -56,6 +56,7 @@ const CheckoutForm = ({ cartItems, totalAmount }: { cartItems: CartItem[], total
           variant: "destructive",
         });
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        console.log("Payment succeeded, generating invoice...");
         try {
           // Generate an invoice for the purchase
           const invoiceResponse = await apiRequest("POST", "/api/create-invoice", {
@@ -64,7 +65,10 @@ const CheckoutForm = ({ cartItems, totalAmount }: { cartItems: CartItem[], total
             paymentIntentId: paymentIntent.id
           });
           
+          console.log("Invoice response received");
+          
           const invoiceData = await invoiceResponse.json();
+          console.log("Invoice data:", invoiceData);
           
           // Clear the cart after successful payment
           if (user) {
@@ -103,26 +107,7 @@ const CheckoutForm = ({ cartItems, totalAmount }: { cartItems: CartItem[], total
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement options={{
-        // Customize the appearance of the payment element
-        appearance: {
-          theme: 'stripe',
-          variables: {
-            colorPrimary: '#0076c6',
-            colorBackground: '#ffffff',
-            colorText: '#30313d',
-            colorDanger: '#df1b41',
-            fontFamily: 'Inter, system-ui, sans-serif',
-            spacingUnit: '4px',
-            borderRadius: '4px'
-          },
-          rules: {
-            '.Input': {
-              padding: '12px',
-            }
-          }
-        }
-      }} />
+      <PaymentElement />
       
       <div className="flex items-center gap-2 text-sm text-gray-600 mt-4">
         <ShieldCheck className="h-4 w-4 text-green-500" />
