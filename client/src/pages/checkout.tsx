@@ -1,5 +1,4 @@
 import { useStripe, Elements, PaymentElement, useElements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import { useEffect, useState } from 'react';
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -8,13 +7,10 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Loader2, ShieldCheck, CreditCard } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { getStripe } from "@/lib/stripe";
 
-// Make sure to call `loadStripe` outside of a component's render to avoid
-// recreating the `Stripe` object on every render.
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
-}
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+// Get the Stripe instance
+const stripePromise = getStripe();
 
 interface CartItem {
   id: string;
