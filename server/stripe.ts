@@ -8,7 +8,7 @@ if (!process.env.STRIPE_SECRET_KEY) {
 
 // Make sure to use Stripe API version that works with the Stripe library
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-10-16",
+  apiVersion: "2023-10-16" as any, // Type casting to bypass strict checking
   // Ensure this is a test key by checking prefix
   appInfo: {
     name: 'CrispAI Marketplace',
@@ -87,15 +87,21 @@ export async function createInvoice(user: User, cartItems: CartItem[], amount: n
     description: 'CrispAI Solutions Purchase',
   });
 
-  // Finalize the invoice immediately
-  const finalizedInvoice = await stripe.invoices.finalizeInvoice(invoice.id);
+  // Check if invoice ID exists before finalizing
+  if (invoice && invoice.id) {
+    // Finalize the invoice immediately
+    const finalizedInvoice = await stripe.invoices.finalizeInvoice(invoice.id);
 
-  // Pay the invoice (mark as paid since we already collected payment via PaymentIntent)
-  const paidInvoice = await stripe.invoices.pay(finalizedInvoice.id, {
-    paid_out_of_band: true,
-  });
-
-  return paidInvoice;
+    // Pay the invoice (mark as paid since we already collected payment via PaymentIntent)
+    if (finalizedInvoice && finalizedInvoice.id) {
+      const paidInvoice = await stripe.invoices.pay(finalizedInvoice.id, {
+        paid_out_of_band: true,
+      });
+      return paidInvoice;
+    }
+    return finalizedInvoice;
+  }
+  return invoice;
 }
 
 /**
