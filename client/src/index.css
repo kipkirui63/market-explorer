@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.cta-button {
+  background-color: #0078D4;
+}
+
+.cta-button:hover {
+  background-color: #0067b8;
+}
+
 @layer components {
   .bg-gradient-custom {
     background: linear-gradient(135deg, #0099cc 0%, #003366 100%);
