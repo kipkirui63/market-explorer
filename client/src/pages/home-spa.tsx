@@ -120,7 +120,7 @@ export default function HomeSPA() {
             </p>
             
             <div className="flex flex-col md:flex-row justify-center gap-4">
-              <a href="#contact" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
+              <a href="#contact" className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
                 Get Started with Crisp AI Today!
               </a>
               <Link href="/assessment" className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-full transition-colors">
