@@ -166,7 +166,7 @@ export default function CartView() {
           className="flex-1 cta-button" 
           asChild
         >
-          <Link href="/custom-checkout">Proceed to Checkout (Test Mode)</Link>
+          <Link href="/checkout">Proceed to Checkout</Link>
         </Button>
       </div>
     </div>
