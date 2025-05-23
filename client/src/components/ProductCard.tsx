@@ -106,10 +106,37 @@ const ProductCard = ({ product }: ProductCardProps) => {
     );
   };
 
+  // Check if user has purchased this product
+  const hasUserPurchasedProduct = () => {
+    if (!user) return false;
+    
+    // Check if the user has orders that include this product
+    const userOrdersKey = `orders_${user.id}`;
+    const userOrders = JSON.parse(localStorage.getItem(userOrdersKey) || '[]');
+    
+    // Look through orders to see if this product is in any of them
+    for (const order of userOrders) {
+      try {
+        const orderItems = JSON.parse(order.items || '[]');
+        if (orderItems.some((item: any) => item.name === product.name)) {
+          return true;
+        }
+      } catch (e) {
+        console.error("Error parsing order items:", e);
+      }
+    }
+    
+    return false;
+  };
+
   // Function to handle clicking on the product card
   const handleProductClick = () => {
     if (hasExternalApp) {
-      window.open(productUrlMap[product.name], '_blank');
+      if (hasUserPurchasedProduct()) {
+        window.open(productUrlMap[product.name], '_blank');
+      } else {
+        alert(`Please purchase ${product.name} to access this feature.`);
+      }
     }
   };
 
@@ -117,7 +144,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const showDemo = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (hasExternalApp) {
-      window.open(productUrlMap[product.name], '_blank');
+      if (hasUserPurchasedProduct()) {
+        window.open(productUrlMap[product.name], '_blank');
+      } else {
+        alert(`Please purchase ${product.name} to access this feature.`);
+      }
     } else {
       alert(`Demo for ${product.name} would be shown here.`);
     }

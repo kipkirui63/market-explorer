@@ -4,19 +4,52 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, FileText, ExternalLink, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function CheckoutSuccess() {
   const [, location] = useLocation();
   const [invoiceId, setInvoiceId] = useState<string | null>(null);
+  const { user } = useAuth();
   
-  // Extract invoice ID from URL if present
+  // Extract invoice ID from URL if present and save order to local storage
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const invoice = params.get("invoice");
     if (invoice) {
       setInvoiceId(invoice);
+      
+      // If user is logged in, save this order to local storage
+      if (user) {
+        // Get cart items before we clear them
+        const cartKey = `cart_${user.id}`;
+        const cartItems = JSON.parse(localStorage.getItem(cartKey) || '[]');
+        
+        if (cartItems.length > 0) {
+          // Save the order details
+          const userOrdersKey = `orders_${user.id}`;
+          const existingOrders = JSON.parse(localStorage.getItem(userOrdersKey) || '[]');
+          
+          // Create a new order with items from cart
+          const newOrder = {
+            id: Date.now(),
+            userId: user.id,
+            stripeInvoiceId: invoice,
+            stripePaymentIntentId: params.get("payment_intent") || null,
+            amount: cartItems.reduce((sum: number, item: any) => sum + parseFloat(item.price) * (item.quantity || 1), 0) * 100,
+            status: 'completed',
+            items: JSON.stringify(cartItems),
+            createdAt: new Date().toISOString()
+          };
+          
+          // Add new order to existing orders
+          existingOrders.push(newOrder);
+          
+          // Save updated orders
+          localStorage.setItem(userOrdersKey, JSON.stringify(existingOrders));
+        }
+      }
     }
-  }, []);
+  }, [user]);
   
   return (
     <Layout>
