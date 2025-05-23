@@ -93,8 +93,7 @@ export default function ContactForm() {
 
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-10 border border-blue-100">
-      <h3 className="text-2xl font-bold mb-6 text-blue-800">Let's Unlock Your Business Potential with AI!</h3>
-      <p className="text-blue-600 mb-8 text-lg">
+      <p className="color-primary mb-8 text-lg">
         Tell us about your business, your goals, and where AI can help make magic happen. 
         The more we know, the better we can tailor our solutions just for you. 
         Don't hold back—this is your space to shine.
@@ -268,7 +267,7 @@ export default function ContactForm() {
           <div className="flex justify-between items-center pt-6">
             <Button 
               type="submit" 
-              className="px-8 py-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition shadow-md text-lg font-medium"
+              className="px-8 py-6 text-white rounded-md transition shadow-md text-lg font-medium cta-button"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
