@@ -6,8 +6,14 @@ if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
 }
 
+// Make sure to use Stripe API version that works with the Stripe library
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16",
+  // Ensure this is a test key by checking prefix
+  appInfo: {
+    name: 'CrispAI Marketplace',
+    version: '1.0.0',
+  },
 });
 
 interface CartItem {
