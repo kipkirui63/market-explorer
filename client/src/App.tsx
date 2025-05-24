@@ -27,7 +27,7 @@ function Router() {
       <Route path="/assessment" component={Assessment} />
       <Route path="/marketplace" component={Marketplace} />
       <ProtectedRoute path="/cart" component={CartPage} />
-      <ProtectedRoute path="/checkout" component={CustomCheckout} />
+      <Route path="/checkout" component={CustomCheckout} />
       <ProtectedRoute path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />

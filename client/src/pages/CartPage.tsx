@@ -182,9 +182,12 @@ export default function CartPage() {
                 
                 <Button 
                   className="flex-1 bg-blue-600 hover:bg-blue-700" 
-                  asChild
+                  onClick={() => {
+                    // Direct browser navigation works better than React router for checkout
+                    window.location.href = "/checkout";
+                  }}
                 >
-                  <Link href="/checkout">Proceed to Checkout</Link>
+                  Proceed to Checkout
                 </Button>
               </div>
             </div>
