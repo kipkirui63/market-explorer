@@ -29,13 +29,8 @@ export default function Marketplace() {
   
   // Function to update the cart item count
   const updateCartItemCount = () => {
-    if (!user) {
-      setCartItemCount(0);
-      return;
-    }
-    
-    const userCartKey = `cart_${user.id}`;
-    const cartItems = JSON.parse(localStorage.getItem(userCartKey) || '[]');
+    // Get cart items from the main cart storage
+    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     
     // Calculate total quantity across all items
     const totalQuantity = cartItems.reduce((total: number, item: any) => total + (item.quantity || 1), 0);

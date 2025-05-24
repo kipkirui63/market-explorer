@@ -21,13 +21,24 @@ export default function BasicCart() {
   
   useEffect(() => {
     loadCartItems();
-  }, []);
+  }, [user]);
   
   const loadCartItems = () => {
     try {
-      // Get cart from localStorage (use guest cart if not logged in)
-      const cartKey = user ? `cart_${user.id}` : 'cart_guest';
-      const items = JSON.parse(localStorage.getItem(cartKey) || '[]');
+      // First try to get from regular cart
+      let items = JSON.parse(localStorage.getItem('cart') || '[]');
+      
+      // If empty, try user specific cart
+      if (items.length === 0 && user) {
+        items = JSON.parse(localStorage.getItem(`cart_${user.id}`) || '[]');
+      }
+      
+      // If still empty, try guest cart
+      if (items.length === 0) {
+        items = JSON.parse(localStorage.getItem('cart_guest') || '[]');
+      }
+      
+      console.log("Cart items loaded:", items);
       setCartItems(items);
       
       // Calculate subtotal
@@ -54,10 +65,15 @@ export default function BasicCart() {
   
   const removeItem = (itemId: string) => {
     try {
-      const cartKey = user ? `cart_${user.id}` : 'cart_guest';
       const updatedItems = cartItems.filter(item => item.id !== itemId);
       
-      localStorage.setItem(cartKey, JSON.stringify(updatedItems));
+      // Update all possible cart storages to ensure consistency
+      localStorage.setItem('cart', JSON.stringify(updatedItems));
+      localStorage.setItem('cart_guest', JSON.stringify(updatedItems));
+      if (user) {
+        localStorage.setItem(`cart_${user.id}`, JSON.stringify(updatedItems));
+      }
+      
       setCartItems(updatedItems);
       
       // Recalculate totals
