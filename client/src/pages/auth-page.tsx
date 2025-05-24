@@ -23,9 +23,19 @@ export default function AuthPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const [loginError, setLoginError] = useState("");
+  
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(loginEmail)) {
+      setLoginError("Please enter a valid email address");
+      return;
+    }
+    
+    setLoginError("");
     loginMutation.mutate({
       email: loginEmail,
       password: loginPassword
@@ -34,6 +44,13 @@ export default function AuthPage() {
 
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(registerEmail)) {
+      setPasswordError("Please enter a valid email address");
+      return;
+    }
     
     if (registerPassword !== confirmPassword) {
       setPasswordError("Passwords do not match");
@@ -101,6 +118,9 @@ export default function AuthPage() {
                     autoComplete="email"
                     className="h-10"
                   />
+                  {loginError && (
+                    <p className="text-sm text-red-500">{loginError}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
