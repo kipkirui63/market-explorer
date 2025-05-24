@@ -53,16 +53,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
       return;
     }
     
-    // Get the appropriate cart key
-    let cartKey = 'cart_guest';
-    if (user && user.id) {
-      cartKey = `cart_${user.id}`;
-    }
-    
     try {
-      // Get existing cart items from localStorage or initialize empty array
+      // Get existing cart items from the main 'cart' storage
       let existingCart = [];
-      const cartData = localStorage.getItem(cartKey);
+      const cartData = localStorage.getItem('cart');
       
       if (cartData) {
         existingCart = JSON.parse(cartData);
@@ -84,8 +78,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         });
       }
       
-      // Save updated cart to localStorage
-      localStorage.setItem(cartKey, JSON.stringify(existingCart));
+      // Save the cart to all storage locations for consistency
+      localStorage.setItem('cart', JSON.stringify(existingCart));
+      localStorage.setItem('cart_guest', JSON.stringify(existingCart));
+      
+      if (user && user.id) {
+        localStorage.setItem(`cart_${user.id}`, JSON.stringify(existingCart));
+      }
       
       // Dispatch storage event to notify other components that cart has changed
       window.dispatchEvent(new Event('storage'));
