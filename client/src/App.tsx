@@ -9,7 +9,7 @@ import Services from "@/pages/services";
 import Contact from "@/pages/contact";
 import Assessment from "@/pages/assessment";
 import Marketplace from "@/pages/Marketplace";
-import CartPage from "@/pages/CartPage";
+import BasicCart from "@/pages/BasicCart";
 import AuthPage from "@/pages/auth-page";
 import SimpleCheckout from "@/pages/SimpleCheckout";
 import CheckoutSuccess from "@/pages/checkout-success";
@@ -26,7 +26,7 @@ function Router() {
       <Route path="/classic" component={Home} />
       <Route path="/assessment" component={Assessment} />
       <Route path="/marketplace" component={Marketplace} />
-      <ProtectedRoute path="/cart" component={CartPage} />
+      <Route path="/cart" component={BasicCart} />
       <Route path="/checkout" component={SimpleCheckout} />
       <ProtectedRoute path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/auth" component={AuthPage} />
