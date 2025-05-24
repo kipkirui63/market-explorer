@@ -108,30 +108,41 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
       return;
     }
     
+    // If user is not logged in, redirect to auth page and save return location
+    if (!user) {
+      // Store current location to redirect back after login
+      localStorage.setItem('redirectAfterAuth', '/checkout');
+      
+      // Close the dialog first
+      onOpenChange(false);
+      
+      // Navigate to auth page
+      window.location.assign("/auth");
+      return;
+    }
+    
     // Set loading state
     setIsCheckingOut(true);
     
     try {
       // Save cart items to localStorage before redirecting
-      let cartKey = 'cart_guest';
-      if (user && user.id) {
-        cartKey = `cart_${user.id}`;
-      }
+      const cartKey = `cart_${user.id}`;
       localStorage.setItem(cartKey, JSON.stringify(cartItems));
       
       // Close the dialog first
       onOpenChange(false);
       
-      // Use a short timeout to avoid race conditions and allow the dialog to close properly
-      setTimeout(() => {
-        // Use proper navigation instead of direct location change
-        // This prevents unexpected redirects to home
-        window.location.assign("/checkout");
-      }, 100);
+      // Navigate directly to checkout - no need for timeout
+      window.location.assign("/checkout");
     } catch (error) {
       console.error('Error during checkout:', error);
       setIsCheckingOut(false);
-      alert('There was an error processing your checkout. Please try again.');
+      
+      // Use a more user-friendly error
+      const errorMessage = document.createElement('div');
+      errorMessage.innerHTML = '<p>There was an error processing your checkout. Please try again.</p>';
+      document.body.appendChild(errorMessage);
+      setTimeout(() => document.body.removeChild(errorMessage), 3000);
     }
   };
   

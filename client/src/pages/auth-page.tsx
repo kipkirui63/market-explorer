@@ -55,9 +55,15 @@ export default function AuthPage() {
     });
   };
 
-  // If user is already logged in, redirect to home page
+  // If user is already logged in, redirect to saved page or home
   if (user) {
-    return <Redirect to="/" />;
+    // Check if there's a redirect URL saved from previous navigation
+    const redirectTo = localStorage.getItem('redirectAfterAuth') || '/';
+    
+    // Clean up the stored redirect
+    localStorage.removeItem('redirectAfterAuth');
+    
+    return <Redirect to={redirectTo} />;
   }
 
   return (

@@ -43,9 +43,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
     // Prevent the click from bubbling up to the parent card
     e.stopPropagation();
     
+    // Store the current URL to redirect back after login
+    localStorage.setItem('redirectAfterAuth', window.location.pathname);
+    
     // If user is not logged in, redirect to auth page
     if (!user) {
-      window.location.href = "/auth";
+      // Use a more reliable navigation method
+      window.location.assign("/auth");
       return;
     }
     
