@@ -117,7 +117,7 @@ export function setupAuth(app: Express) {
       });
     }
     
-    passport.authenticate("local", (err, user, info) => {
+    passport.authenticate("local", (err: any, user: any, info: any) => {
       if (err) {
         console.error("Authentication error:", err);
         return res.status(500).json({ 
@@ -158,7 +158,16 @@ export function setupAuth(app: Express) {
   });
 
   app.get("/api/user", (req, res) => {
-    if (!req.isAuthenticated()) return res.sendStatus(401);
-    res.json(req.user);
+    // Set content type for API user info responses
+    res.setHeader('Content-Type', 'application/json');
+    
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated", success: false });
+    }
+    
+    res.status(200).json({
+      ...req.user,
+      success: true
+    });
   });
 }
