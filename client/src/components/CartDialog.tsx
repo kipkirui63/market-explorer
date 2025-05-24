@@ -223,10 +223,12 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
                 
                 <Button 
                   className="w-full" 
-                  onClick={checkout}
-                  disabled={isCheckingOut || cartItems.length === 0}
+                  onClick={() => {
+                    window.location.href = "/checkout";
+                  }}
+                  disabled={cartItems.length === 0}
                 >
-                  {isCheckingOut ? "Processing..." : "Checkout"}
+                  Checkout
                 </Button>
               </div>
             </>
