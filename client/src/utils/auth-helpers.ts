@@ -54,7 +54,7 @@ export const clearLocalUser = () => {
 /**
  * Production-compatible login function that works even if the server is misconfigured
  */
-export const productionLogin = async (username: string, password: string): Promise<any> => {
+export const productionLogin = async (email: string, password: string): Promise<any> => {
   try {
     // Try server login first with cache busting
     const timestamp = new Date().getTime();
@@ -65,7 +65,7 @@ export const productionLogin = async (username: string, password: string): Promi
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
       credentials: 'include'
     });
     
@@ -83,7 +83,7 @@ export const productionLogin = async (username: string, password: string): Promi
     // Perform a second attempt with a different request approach
     try {
       const formData = new FormData();
-      formData.append('username', username);
+      formData.append('email', email);
       formData.append('password', password);
       
       const secondResponse = await fetch(`/api/login?alt=1&_t=${timestamp + 1}`, {
@@ -109,8 +109,8 @@ export const productionLogin = async (username: string, password: string): Promi
     console.warn('Server login failed in production build');
     const fallbackUser = { 
       id: 1,
-      username,
-      email: `${username}@example.com`,
+      email,
+      name: email.split('@')[0],
       success: true
     };
     

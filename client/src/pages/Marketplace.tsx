@@ -148,7 +148,7 @@ export default function Marketplace() {
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1 text-primary">
                   <User className="h-4 w-4" />
-                  <span className="font-medium">{user.username}</span>
+                  <span className="font-medium">{user.name || user.email}</span>
                 </div>
               </div>
             ) : (
