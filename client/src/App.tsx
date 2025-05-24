@@ -28,7 +28,7 @@ function Router() {
       <Route path="/marketplace" component={Marketplace} />
       <Route path="/cart" component={BasicCart} />
       <Route path="/checkout" component={SimpleCheckout} />
-      <ProtectedRoute path="/checkout/success" component={CheckoutSuccess} />
+      <Route path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />
     </Switch>
@@ -40,8 +40,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <TooltipProvider>
-          <Toaster />
           <Router />
+          <Toaster />
         </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>
