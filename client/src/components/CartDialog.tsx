@@ -54,9 +54,14 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
   };
   
   const updateQuantity = (itemId: string, newQuantity: number) => {
-    if (!user || newQuantity < 1) return;
+    if (newQuantity < 1) return;
     
-    const userCartKey = `cart_${user.id}`;
+    // Get the appropriate cart key
+    let cartKey = 'cart_guest';
+    if (user && user.id) {
+      cartKey = `cart_${user.id}`;
+    }
+    
     const updatedItems = cartItems.map(item => {
       if (item.id === itemId) {
         return { ...item, quantity: newQuantity };
@@ -64,7 +69,7 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
       return item;
     });
     
-    localStorage.setItem(userCartKey, JSON.stringify(updatedItems));
+    localStorage.setItem(cartKey, JSON.stringify(updatedItems));
     setCartItems(updatedItems);
     
     // Recalculate total
@@ -76,12 +81,15 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
   };
   
   const removeItem = (itemId: string) => {
-    if (!user) return;
+    // Get the appropriate cart key
+    let cartKey = 'cart_guest';
+    if (user && user.id) {
+      cartKey = `cart_${user.id}`;
+    }
     
-    const userCartKey = `cart_${user.id}`;
     const updatedItems = cartItems.filter(item => item.id !== itemId);
     
-    localStorage.setItem(userCartKey, JSON.stringify(updatedItems));
+    localStorage.setItem(cartKey, JSON.stringify(updatedItems));
     setCartItems(updatedItems);
     
     // Recalculate total
