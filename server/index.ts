@@ -6,7 +6,20 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Detect ajax requests and properly handle content-type
 app.use((req, res, next) => {
+  // Force API endpoints to always use JSON content type
+  if (req.path.startsWith('/api')) {
+    res.setHeader('Content-Type', 'application/json');
+  }
+
+  // Always prefer JSON responses for XHR/AJAX requests
+  const isAjaxRequest = req.xhr || req.headers['x-requested-with'] === 'XMLHttpRequest';
+  if (isAjaxRequest && !res.getHeader('Content-Type')) {
+    res.setHeader('Content-Type', 'application/json');
+  }
+  
+  // Logging setup
   const start = Date.now();
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
@@ -14,6 +27,10 @@ app.use((req, res, next) => {
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
+    // Make sure we're sending JSON content type
+    if (!res.getHeader('Content-Type')) {
+      res.setHeader('Content-Type', 'application/json');
+    }
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
 

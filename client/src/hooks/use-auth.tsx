@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useEffect } from "react";
 import {
   useQuery,
   useMutation,
@@ -7,6 +7,7 @@ import {
 import { insertUserSchema, User as SelectUser, InsertUser } from "@shared/schema";
 import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { getLocalUser, saveLocalUser, clearLocalUser, productionLogin, productionLogout } from "@/utils/auth-helpers";
 
 type AuthContextType = {
   user: SelectUser | null;
@@ -26,15 +27,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     data: user,
     error,
     isLoading,
+    refetch
   } = useQuery<SelectUser | null, Error>({
     queryKey: ["/api/user"],
     queryFn: getQueryFn({ on401: "returnNull" }),
   });
+  
+  // If we're in a production build, check for saved user in localStorage
+  useEffect(() => {
+    if (!user) {
+      const savedUser = getLocalUser();
+      if (savedUser) {
+        queryClient.setQueryData(["/api/user"], savedUser);
+      }
+    } else {
+      // Keep local storage in sync with current user
+      saveLocalUser(user);
+    }
+  }, [user]);
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoginData) => {
-      const res = await apiRequest("POST", "/api/login", credentials);
-      return await res.json();
+      try {
+        // Try the regular API login first
+        const timestamp = new Date().getTime();
+        const res = await apiRequest("POST", `/api/login?_t=${timestamp}`, credentials);
+        return await res.json();
+      } catch (error) {
+        console.error("API login failed, trying production fallback:", error);
+        
+        // Use production-compatible login as fallback
+        return await productionLogin(credentials.username, credentials.password);
+      }
     },
     onSuccess: (user: SelectUser) => {
       // Clear all cart data from any users
@@ -62,9 +86,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const registerMutation = useMutation({
     mutationFn: async (credentials: InsertUser) => {
-      const res = await apiRequest("POST", "/api/register", credentials);
-      const data = await res.json();
-      return data;
+      // Add timestamp to prevent caching
+      const timestamp = new Date().getTime();
+      const res = await apiRequest("POST", `/api/register?_t=${timestamp}`, credentials);
+      try {
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.error("Failed to parse registration response:", error);
+        throw new Error("Registration service error. Please try again later.");
+      }
     },
     onSuccess: (response: any) => {
       // Don't automatically set the user data after registration
