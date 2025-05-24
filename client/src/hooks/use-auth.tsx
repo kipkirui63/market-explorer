@@ -18,7 +18,7 @@ type AuthContextType = {
   registerMutation: UseMutationResult<SelectUser, Error, InsertUser>;
 };
 
-type LoginData = Pick<InsertUser, "username" | "password">;
+type LoginData = Pick<InsertUser, "email" | "password">;
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.error("API login failed, trying production fallback:", error);
         
         // Use production-compatible login as fallback
-        return await productionLogin(credentials.username, credentials.password);
+        return await productionLogin(credentials.email, credentials.password);
       }
     },
     onSuccess: (user: SelectUser) => {
@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       queryClient.setQueryData(["/api/user"], user);
       toast({
         title: "Login successful",
-        description: `Welcome back, ${user.username}!`,
+        description: `Welcome back, ${user.name || user.email}!`,
         variant: "default",
       });
     },
