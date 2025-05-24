@@ -8,7 +8,7 @@ import createMemoryStore from "memorystore";
 export interface IStorage {
   // User operations
   getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: number, data: Partial<User>): Promise<User | undefined>;
   updateStripeCustomerId(userId: number, stripeCustomerId: string): Promise<User | undefined>;
@@ -38,19 +38,19 @@ export class MemStorage implements IStorage {
     // Add default users for testing
     const defaultAdmin: User = {
       id: this.currentId++,
-      username: "admin",
-      password: "241f86f01627cb622477a4358b5196dac3121f7d85c913878637f2304090b25e56c96defceb514aae14f8442f5fb9d84d2b0a94e086c115b243c3fa621b58fea.bbed7c3735f5316bd3241abe71a316ba",
       email: "admin@crispai.com",
+      password: "241f86f01627cb622477a4358b5196dac3121f7d85c913878637f2304090b25e56c96defceb514aae14f8442f5fb9d84d2b0a94e086c115b243c3fa621b58fea.bbed7c3735f5316bd3241abe71a316ba",
+      name: "Admin User",
       stripeCustomerId: null,
       createdAt: new Date()
     };
     
-    // Add a test user with simple credentials (username: test, password: test123)
+    // Add a test user with simple credentials (email: test@crispai.com, password: test123)
     const testUser: User = {
       id: this.currentId++,
-      username: "test",
-      password: "11f86a4b7df75abb2bc524547c2240adffd9e04f4b1c5d97ba91b6a51f50332187cb6b70d6bac42edd271fa5bbd2732ebd34429bb9cad2e4fc2a7ff7da230a10.da5cccb6ff78b26c",
       email: "test@crispai.com",
+      password: "11f86a4b7df75abb2bc524547c2240adffd9e04f4b1c5d97ba91b6a51f50332187cb6b70d6bac42edd271fa5bbd2732ebd34429bb9cad2e4fc2a7ff7da230a10.da5cccb6ff78b26c",
+      name: "Test User",
       stripeCustomerId: null,
       createdAt: new Date()
     };
@@ -69,9 +69,9 @@ export class MemStorage implements IStorage {
     return this.users.get(id);
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
+  async getUserByEmail(email: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.email === email,
     );
   }
 
