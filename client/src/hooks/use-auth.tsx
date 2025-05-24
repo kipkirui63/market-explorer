@@ -119,10 +119,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logoutMutation = useMutation({
     mutationFn: async () => {
       try {
-        await apiRequest("POST", "/api/logout");
+        // Add timestamp to prevent caching
+        const timestamp = new Date().getTime();
+        await apiRequest("POST", `/api/logout?_t=${timestamp}`);
+        // Clear local storage user data
+        clearLocalUser();
       } catch (error) {
-        console.error("API logout failed, using fallback:", error);
-        await productionLogout();
+        console.error("API logout failed:", error);
+        // Always clear local storage even if server logout fails
+        clearLocalUser();
       }
     },
     onSuccess: () => {

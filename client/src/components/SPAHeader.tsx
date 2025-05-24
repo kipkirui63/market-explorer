@@ -120,22 +120,14 @@ export default function SPAHeader() {
             Marketplace
           </Link>
           {user && (
-            <>
-              <Link href="/orders" className="transition text-gray-600 hover:text-primary">
-                <span className="flex items-center">
-                  <FileText className="h-4 w-4 mr-1" />
-                  Orders
-                </span>
-              </Link>
-              <Button 
-                variant="ghost" 
-                className="flex items-center text-gray-600 hover:text-primary"
-                onClick={handleLogout}
-              >
-                <LogOut className="h-4 w-4 mr-1" />
-                Logout
-              </Button>
-            </>
+            <Button 
+              variant="ghost" 
+              className="flex items-center text-gray-600 hover:text-primary"
+              onClick={handleLogout}
+            >
+              <LogOut className="h-4 w-4 mr-1" />
+              Logout
+            </Button>
           )}
         </nav>
         
@@ -204,22 +196,16 @@ export default function SPAHeader() {
             Marketplace
           </Link>
           {user && (
-            <>
-              <Link href="/orders" className="flex items-center py-2 text-gray-600 hover:text-primary" onClick={closeMenu}>
-                <FileText className="h-4 w-4 mr-2" />
-                Orders
-              </Link>
-              <button 
-                className="flex items-center py-2 text-gray-600 hover:text-primary" 
-                onClick={() => {
-                  handleLogout();
-                  closeMenu();
-                }}
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </button>
-            </>
+            <button 
+              className="flex items-center py-2 text-gray-600 hover:text-primary" 
+              onClick={() => {
+                handleLogout();
+                closeMenu();
+              }}
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </button>
           )}
         </div>
       </div>
