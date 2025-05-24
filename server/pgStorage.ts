@@ -30,16 +30,16 @@ export class PostgresStorage implements IStorage {
     return result[0];
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    const result = await db.select().from(users).where(eq(users.username, username)).limit(1);
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
     return result[0];
   }
 
   async createUser(user: InsertUser): Promise<User> {
     const result = await db.insert(users).values({
-      username: user.username,
+      email: user.email,
       password: user.password,
-      email: user.email || null
+      name: user.name || null
     }).returning();
     
     return result[0];

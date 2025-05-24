@@ -13,11 +13,12 @@ export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
   
   // Login state
-  const [loginUsername, setLoginUsername] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   
   // Register state
-  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerName, setRegisterName] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -26,7 +27,7 @@ export default function AuthPage() {
     e.preventDefault();
     
     loginMutation.mutate({
-      username: loginUsername,
+      email: loginEmail,
       password: loginPassword
     });
   };
@@ -41,14 +42,16 @@ export default function AuthPage() {
     
     setPasswordError("");
     registerMutation.mutate({
-      username: registerUsername,
-      password: registerPassword
+      email: registerEmail,
+      password: registerPassword,
+      name: registerName
     }, {
       onSuccess: () => {
         // Redirect to login form after successful registration
         setIsLogin(true);
         // Clear registration form fields
-        setRegisterUsername("");
+        setRegisterEmail("");
+        setRegisterName("");
         setRegisterPassword("");
         setConfirmPassword("");
       }
@@ -86,15 +89,16 @@ export default function AuthPage() {
               // Login Form
               <form onSubmit={handleLoginSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <label htmlFor="login-username" className="text-sm font-medium">
-                    Username
+                  <label htmlFor="login-email" className="text-sm font-medium">
+                    Email
                   </label>
                   <Input
-                    id="login-username"
-                    value={loginUsername}
-                    onChange={(e) => setLoginUsername(e.target.value)}
-                    placeholder="test"
-                    autoComplete="username"
+                    id="login-email"
+                    type="email"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    autoComplete="email"
                     className="h-10"
                   />
                 </div>
@@ -126,15 +130,30 @@ export default function AuthPage() {
               // Register Form
               <form onSubmit={handleRegisterSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <label htmlFor="register-username" className="text-sm font-medium">
-                    Username
+                  <label htmlFor="register-email" className="text-sm font-medium">
+                    Email
                   </label>
                   <Input
-                    id="register-username"
-                    value={registerUsername}
-                    onChange={(e) => setRegisterUsername(e.target.value)}
-                    placeholder="Choose a username"
-                    autoComplete="username"
+                    id="register-email"
+                    type="email"
+                    value={registerEmail}
+                    onChange={(e) => setRegisterEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    autoComplete="email"
+                    className="h-10"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="register-name" className="text-sm font-medium">
+                    Name (optional)
+                  </label>
+                  <Input
+                    id="register-name"
+                    value={registerName}
+                    onChange={(e) => setRegisterName(e.target.value)}
+                    placeholder="Your name"
+                    autoComplete="name"
                     className="h-10"
                   />
                 </div>
