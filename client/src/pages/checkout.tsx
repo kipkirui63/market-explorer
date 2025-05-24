@@ -203,7 +203,10 @@ export default function Checkout() {
             title: "Empty Cart",
             description: "Your cart is empty. Add items before checkout.",
           });
-          setLocation("/marketplace");
+          // Use direct navigation instead of setLocation to prevent redirection issues
+          setTimeout(() => {
+            window.location.assign("/marketplace");
+          }, 100);
           return;
         }
 
