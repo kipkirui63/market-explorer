@@ -7,7 +7,7 @@ import {
 import { insertUserSchema, User as SelectUser, InsertUser } from "@shared/schema";
 import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { getLocalUser, saveLocalUser, clearLocalUser, productionLogin, productionLogout } from "@/utils/auth-helpers";
+import { getLocalUser, saveLocalUser, clearLocalUser, productionLogin, productionLogout, productionRegister } from "@/utils/auth-helpers";
 
 type AuthContextType = {
   user: SelectUser | null;
@@ -86,15 +86,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const registerMutation = useMutation({
     mutationFn: async (credentials: InsertUser) => {
-      // Add timestamp to prevent caching
-      const timestamp = new Date().getTime();
-      const res = await apiRequest("POST", `/api/register?_t=${timestamp}`, credentials);
       try {
+        // First try the normal API request
+        const timestamp = new Date().getTime();
+        const res = await apiRequest("POST", `/api/register?_t=${timestamp}`, credentials);
         const data = await res.json();
         return data;
       } catch (error) {
-        console.error("Failed to parse registration response:", error);
-        throw new Error("Registration service error. Please try again later.");
+        console.error("Registration API failed, using production fallback:", error);
+        
+        // Use our robust production registration function as fallback
+        return await productionRegister(credentials);
       }
     },
     onSuccess: (response: any) => {
