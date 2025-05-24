@@ -13,35 +13,94 @@ export async function apiRequest(
   data?: unknown | undefined,
 ): Promise<Response> {
   try {
-    const res = await fetch(url, {
-      method,
-      headers: {
-        ...(data ? { "Content-Type": "application/json" } : {}),
-        "Accept": "application/json"
-      },
-      body: data ? JSON.stringify(data) : undefined,
-      credentials: "include",
-    });
+    // Special handling for auth endpoints - they get extra retries
+    const isAuthRequest = url.includes('/api/login') || url.includes('/api/register') || url.includes('/api/user');
+    const maxRetries = isAuthRequest ? 2 : 0;
+    let retries = 0;
+    let lastError: Error | null = null;
+    
+    while (retries <= maxRetries) {
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: {
+            ...(data ? { "Content-Type": "application/json" } : {}),
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest", // Helps identify AJAX requests
+          },
+          body: data ? JSON.stringify(data) : undefined,
+          credentials: "include",
+          // Use a cache-busting query parameter for auth requests when retrying
+          ...(retries > 0 && { cache: 'no-store' })
+        });
 
-    // Handle non-OK responses immediately
-    if (!res.ok) {
-      const contentType = res.headers.get('content-type');
-      // If response is not JSON, provide a better error message
-      if (contentType && !contentType.includes('application/json')) {
-        throw new Error('Server returned invalid response format. Please try again later.');
-      } else {
-        // Try to get JSON error message if available
-        try {
-          const errorData = await res.json();
-          throw new Error(errorData.message || `Error ${res.status}: ${res.statusText}`);
-        } catch (jsonError) {
-          // Fallback to status text if JSON parsing fails
-          throw new Error(`Error ${res.status}: ${res.statusText}`);
+        // For auth endpoints during production builds, clone the response before reading
+        // This preserves the response for later JSON parsing
+        if (isAuthRequest) {
+          const clonedRes = res.clone();
+          
+          // Check content type first
+          const contentType = res.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            // Try to get the text to see what's being returned
+            const text = await res.text();
+            
+            if (text.includes('<!DOCTYPE html>') || text.includes('<html>')) {
+              // If we got HTML instead of JSON, retry or throw a clearer error
+              if (retries < maxRetries) {
+                console.warn(`Received HTML instead of JSON, retrying (${retries + 1}/${maxRetries})...`);
+                retries++;
+                await new Promise(r => setTimeout(r, 500)); // Add a small delay before retrying
+                continue;
+              }
+              throw new Error('Authentication service temporarily unavailable. Please try again later.');
+            }
+            
+            throw new Error('Server returned invalid response format. Please try again later.');
+          }
+          
+          // Check for error status codes and handle them appropriately
+          if (!res.ok) {
+            try {
+              const errorData = await clonedRes.json();
+              throw new Error(errorData.message || `Error ${res.status}: ${res.statusText}`);
+            } catch (jsonError) {
+              throw new Error(`Error ${res.status}: ${res.statusText}`);
+            }
+          }
+          
+          return clonedRes;
         }
+        
+        // Regular non-auth endpoint handling
+        if (!res.ok) {
+          const contentType = res.headers.get('content-type');
+          if (contentType && !contentType.includes('application/json')) {
+            throw new Error('Server returned invalid response format. Please try again later.');
+          } else {
+            try {
+              const errorData = await res.json();
+              throw new Error(errorData.message || `Error ${res.status}: ${res.statusText}`);
+            } catch (jsonError) {
+              throw new Error(`Error ${res.status}: ${res.statusText}`);
+            }
+          }
+        }
+        
+        return res;
+      } catch (error) {
+        lastError = error as Error;
+        if (retries >= maxRetries) break;
+        retries++;
+        await new Promise(r => setTimeout(r, 500)); // Add a small delay before retrying
       }
     }
     
-    return res;
+    // If we've exhausted retries, throw the last error
+    if (lastError) throw lastError;
+    
+    // This should never happen, but TypeScript wants a return value here
+    throw new Error('Unknown error occurred during API request');
   } catch (error) {
     console.error(`API request error (${method} ${url}):`, error);
     throw error;
