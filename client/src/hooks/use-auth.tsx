@@ -118,7 +118,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      await apiRequest("POST", "/api/logout");
+      try {
+        await apiRequest("POST", "/api/logout");
+      } catch (error) {
+        console.error("API logout failed, using fallback:", error);
+        await productionLogout();
+      }
     },
     onSuccess: () => {
       // Clear all cart data when logging out
