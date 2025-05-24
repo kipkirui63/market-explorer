@@ -49,35 +49,46 @@ const ProductCard = ({ product }: ProductCardProps) => {
       return;
     }
     
-    // Use user-specific cart key
-    const userCartKey = `cart_${user.id}`;
-    
-    // Get existing cart items from localStorage or initialize empty array
-    const existingCart = localStorage.getItem(userCartKey) 
-      ? JSON.parse(localStorage.getItem(userCartKey) || '[]') 
-      : [];
-    
-    // Check if this product is already in cart
-    const existingItem = existingCart.find((item: any) => item.id === product.id);
-    
-    if (existingItem) {
-      // Increment quantity if already in cart
-      existingItem.quantity = (existingItem.quantity || 1) + 1;
-    } else {
-      // Add new item to cart with quantity 1
-      existingCart.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: 1
-      });
+    // Get the appropriate cart key
+    let cartKey = 'cart_guest';
+    if (user && user.id) {
+      cartKey = `cart_${user.id}`;
     }
     
-    // Save updated cart to localStorage with user-specific key
-    localStorage.setItem(userCartKey, JSON.stringify(existingCart));
-    
-    // Dispatch storage event to notify other components that cart has changed
-    window.dispatchEvent(new Event('storage'));
+    try {
+      // Get existing cart items from localStorage or initialize empty array
+      let existingCart = [];
+      const cartData = localStorage.getItem(cartKey);
+      
+      if (cartData) {
+        existingCart = JSON.parse(cartData);
+      }
+      
+      // Check if this product is already in cart
+      const existingItem = existingCart.find((item: any) => item.id === product.id);
+      
+      if (existingItem) {
+        // Increment quantity if already in cart
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+      } else {
+        // Add new item to cart with quantity 1
+        existingCart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        });
+      }
+      
+      // Save updated cart to localStorage
+      localStorage.setItem(cartKey, JSON.stringify(existingCart));
+      
+      // Dispatch storage event to notify other components that cart has changed
+      window.dispatchEvent(new Event('storage'));
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      alert('There was an error adding this item to your cart. Please try again.');
+    }
   };
 
   const renderRatingStars = (rating: string) => {
