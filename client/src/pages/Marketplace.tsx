@@ -136,14 +136,7 @@ export default function Marketplace() {
               <button 
                 className="text-gray-700" 
                 onClick={() => {
-                  if (!user) {
-                    // Store current location to redirect back after login
-                    localStorage.setItem('redirectAfterAuth', '/marketplace');
-                    // If not logged in, redirect to auth page without alert
-                    window.location.assign("/auth");
-                    return;
-                  }
-                  // Open the cart dialog for logged in users
+                  // Always open cart dialog, handle auth in the dialog if needed
                   setCartOpen(true);
                 }}
               >
