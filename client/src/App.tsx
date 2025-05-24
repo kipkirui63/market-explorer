@@ -11,7 +11,7 @@ import Assessment from "@/pages/assessment";
 import Marketplace from "@/pages/Marketplace";
 import CartPage from "@/pages/CartPage";
 import AuthPage from "@/pages/auth-page";
-import CustomCheckout from "@/pages/custom-checkout";
+import SimpleCheckout from "@/pages/SimpleCheckout";
 import CheckoutSuccess from "@/pages/checkout-success";
 
 import { AuthProvider } from "@/hooks/use-auth";
@@ -27,7 +27,7 @@ function Router() {
       <Route path="/assessment" component={Assessment} />
       <Route path="/marketplace" component={Marketplace} />
       <ProtectedRoute path="/cart" component={CartPage} />
-      <Route path="/checkout" component={CustomCheckout} />
+      <Route path="/checkout" component={SimpleCheckout} />
       <ProtectedRoute path="/checkout/success" component={CheckoutSuccess} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />
