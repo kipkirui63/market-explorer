@@ -136,8 +136,8 @@ export default function Marketplace() {
               <button 
                 className="text-gray-700" 
                 onClick={() => {
-                  // Always open cart dialog, handle auth in the dialog if needed
-                  setCartOpen(true);
+                  // Direct navigation to cart page
+                  window.location.href = "/cart";
                 }}
               >
                 <ShoppingCart className="h-5 w-5" />
