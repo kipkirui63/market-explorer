@@ -132,8 +132,11 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
       // Close the dialog first
       onOpenChange(false);
       
-      // Navigate directly to checkout - no need for timeout
-      window.location.assign("/checkout");
+      // Use Link's navigate function instead of window.location
+      // This keeps us in the React routing context
+      setTimeout(() => {
+        window.location.href = "/checkout";
+      }, 100);
     } catch (error) {
       console.error('Error during checkout:', error);
       setIsCheckingOut(false);
