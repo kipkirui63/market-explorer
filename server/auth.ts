@@ -106,21 +106,46 @@ export function setupAuth(app: Express) {
   });
 
   app.post("/api/login", (req, res, next) => {
+    // Set content type for login responses
+    res.setHeader('Content-Type', 'application/json');
+    
+    // Validate request body
+    if (!req.body || !req.body.username || !req.body.password) {
+      return res.status(400).json({ 
+        message: "Missing username or password", 
+        success: false 
+      });
+    }
+    
     passport.authenticate("local", (err, user, info) => {
       if (err) {
-        return next(err);
+        console.error("Authentication error:", err);
+        return res.status(500).json({ 
+          message: "Authentication error occurred", 
+          success: false 
+        });
       }
       
       if (!user) {
-        return res.status(401).json({ message: "Invalid username or password" });
+        return res.status(401).json({ 
+          message: "Invalid username or password", 
+          success: false 
+        });
       }
       
       req.login(user, (loginErr) => {
         if (loginErr) {
-          return next(loginErr);
+          console.error("Login error:", loginErr);
+          return res.status(500).json({ 
+            message: "Login error occurred", 
+            success: false 
+          });
         }
         
-        return res.status(200).json(user);
+        return res.status(200).json({
+          ...user,
+          success: true
+        });
       });
     })(req, res, next);
   });
