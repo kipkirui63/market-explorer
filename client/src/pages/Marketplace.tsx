@@ -133,17 +133,18 @@ export default function Marketplace() {
             </div>
             <a href="#" className="text-gray-700">Home</a>
             <div className="relative">
-              <a 
-                href="/cart" 
+              <button 
                 className="text-gray-700" 
-                onClick={(e) => {
+                onClick={() => {
                   if (!user) {
-                    e.preventDefault();
+                    // Store current location to redirect back after login
+                    localStorage.setItem('redirectAfterAuth', '/marketplace');
                     // If not logged in, redirect to auth page without alert
-                    window.location.href = "/auth";
+                    window.location.assign("/auth");
                     return;
                   }
-                  // Let the link navigate to the cart page when logged in
+                  // Open the cart dialog for logged in users
+                  setCartOpen(true);
                 }}
               >
                 <ShoppingCart className="h-5 w-5" />
@@ -152,7 +153,7 @@ export default function Marketplace() {
                     {cartItemCount}
                   </span>
                 )}
-              </a>
+              </button>
             </div>
             
             {user ? (
