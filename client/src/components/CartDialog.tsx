@@ -100,10 +100,36 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
     setTotalAmount(total);
   };
   
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
   const checkout = () => {
-    // Close the dialog and redirect to checkout page
-    onOpenChange(false);
-    window.location.href = "/checkout";
+    // Prevent checkout if cart is empty
+    if (cartItems.length === 0) {
+      return;
+    }
+    
+    // Set loading state
+    setIsCheckingOut(true);
+    
+    try {
+      // Save cart items to localStorage before redirecting
+      let cartKey = 'cart_guest';
+      if (user && user.id) {
+        cartKey = `cart_${user.id}`;
+      }
+      localStorage.setItem(cartKey, JSON.stringify(cartItems));
+      
+      // Use timeout to give UI time to update before redirecting
+      setTimeout(() => {
+        // Close the dialog and redirect to checkout page
+        onOpenChange(false);
+        window.location.href = "/checkout";
+      }, 500);
+    } catch (error) {
+      console.error('Error during checkout:', error);
+      setIsCheckingOut(false);
+      alert('There was an error processing your checkout. Please try again.');
+    }
   };
   
   return (
@@ -181,8 +207,9 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
                 <Button 
                   className="w-full" 
                   onClick={checkout}
+                  disabled={isCheckingOut || cartItems.length === 0}
                 >
-                  Checkout
+                  {isCheckingOut ? "Processing..." : "Checkout"}
                 </Button>
               </div>
             </>
