@@ -24,7 +24,17 @@ export function ProtectedRoute({
   if (!user) {
     return (
       <Route path={path}>
-        <Redirect to="/auth" />
+        {() => {
+          // Save the current path for redirection after login
+          localStorage.setItem('redirectAfterAuth', path);
+          
+          // Use window.location for a complete page refresh
+          // This works better than Redirect for our specific case
+          window.location.href = "/auth";
+          
+          // Still need to return something for React
+          return <div className="hidden">Redirecting...</div>;
+        }}
       </Route>
     );
   }
