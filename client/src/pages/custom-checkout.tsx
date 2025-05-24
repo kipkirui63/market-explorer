@@ -47,12 +47,16 @@ export default function CustomCheckout() {
 
   useEffect(() => {
     if (!user) {
-      setLocation('/auth');
+      // Store current path for redirection after login
+      localStorage.setItem('redirectAfterAuth', '/checkout');
+      
+      // Use direct navigation instead of React router
+      window.location.href = '/auth';
       return;
     }
     
     loadCartItems();
-  }, [user, setLocation]);
+  }, [user]);
   
   const loadCartItems = () => {
     if (!user) return;
@@ -67,7 +71,8 @@ export default function CustomCheckout() {
         description: "Your cart is empty. Add items before checkout.",
         variant: "destructive",
       });
-      setLocation('/marketplace');
+      // Use direct navigation instead of React router
+      window.location.href = '/marketplace';
       return;
     }
     
@@ -172,8 +177,8 @@ export default function CustomCheckout() {
         description: "Thank you for your purchase!",
       });
       
-      // Redirect to success page
-      setLocation('/checkout/success');
+      // Redirect to success page - use direct navigation instead of React router
+      window.location.href = '/checkout/success';
     }, 2000);
   };
   
