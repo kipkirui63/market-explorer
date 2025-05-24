@@ -39,12 +39,21 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  // Add middleware specifically for API routes to ensure JSON responses
+  app.use('/api', (req: Request, res: Response, next: NextFunction) => {
+    // Set content type to JSON for all API responses
+    res.setHeader('Content-Type', 'application/json');
+    next();
+  });
+
+  // Improved error handler
+  app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    throw err;
+    // Make sure we set the proper content type and don't throw after handling
+    res.status(status).json({ message, error: true });
+    console.error(`Error handling request: ${req.method} ${req.path}`, err);
   });
 
   // importantly only setup vite in development and after
