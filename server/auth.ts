@@ -53,20 +53,18 @@ export function setupAuth(app: Express) {
   passport.use(
     new LocalStrategy(async (username, password, done) => {
       try {
-        // Accept any credentials for testing purposes
-        // This makes authentication simple and reliable
         const user = await storage.getUserByUsername(username);
-        if (user) {
-          return done(null, user);
+        if (!user) {
+          return done(null, false);
         }
         
-        // If the user doesn't exist, create one on the fly
-        const newUser = await storage.createUser({
-          username: username,
-          password: await hashPassword(password)
-        });
+        // Check password
+        const isPasswordValid = await comparePasswords(password, user.password);
+        if (!isPasswordValid) {
+          return done(null, false);
+        }
         
-        return done(null, newUser);
+        return done(null, user);
       } catch (error) {
         console.error("Authentication error:", error);
         return done(null, false);
