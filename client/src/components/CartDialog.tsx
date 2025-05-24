@@ -22,24 +22,35 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
   const [totalAmount, setTotalAmount] = useState("0.00");
   
   useEffect(() => {
-    if (user && open) {
+    if (open) {
       loadCartItems();
     }
   }, [user, open]);
   
   const loadCartItems = () => {
-    if (!user) return;
+    let cartKey = 'cart_guest';
     
-    const userCartKey = `cart_${user.id}`;
-    const items = JSON.parse(localStorage.getItem(userCartKey) || '[]');
-    setCartItems(items);
+    // If user is logged in, use their ID for cart key
+    if (user && user.id) {
+      cartKey = `cart_${user.id}`;
+    }
     
-    // Calculate total amount
-    const total = items.reduce(
-      (sum: number, item: CartItem) => sum + parseFloat(item.price) * (item.quantity || 1), 
-      0
-    ).toFixed(2);
-    setTotalAmount(total);
+    try {
+      const items = JSON.parse(localStorage.getItem(cartKey) || '[]');
+      setCartItems(items);
+      
+      // Calculate total amount
+      const total = items.reduce(
+        (sum: number, item: CartItem) => sum + parseFloat(item.price) * (item.quantity || 1), 
+        0
+      ).toFixed(2);
+      setTotalAmount(total);
+    } catch (error) {
+      console.error('Error loading cart items:', error);
+      // If there's an error parsing the cart, reset it
+      setCartItems([]);
+      setTotalAmount("0.00");
+    }
   };
   
   const updateQuantity = (itemId: string, newQuantity: number) => {
