@@ -51,25 +51,28 @@ export function setupAuth(app: Express) {
   app.use(passport.session());
 
   passport.use(
-    new LocalStrategy(async (username, password, done) => {
-      try {
-        const user = await storage.getUserByUsername(username);
-        if (!user) {
+    new LocalStrategy(
+      { usernameField: 'email' }, // Change the default 'username' field to 'email'
+      async (email, password, done) => {
+        try {
+          const user = await storage.getUserByEmail(email);
+          if (!user) {
+            return done(null, false);
+          }
+          
+          // Check password
+          const isPasswordValid = await comparePasswords(password, user.password);
+          if (!isPasswordValid) {
+            return done(null, false);
+          }
+          
+          return done(null, user);
+        } catch (error) {
+          console.error("Authentication error:", error);
           return done(null, false);
         }
-        
-        // Check password
-        const isPasswordValid = await comparePasswords(password, user.password);
-        if (!isPasswordValid) {
-          return done(null, false);
-        }
-        
-        return done(null, user);
-      } catch (error) {
-        console.error("Authentication error:", error);
-        return done(null, false);
       }
-    }),
+    ),
   );
 
   passport.serializeUser((user, done) => done(null, user.id));
@@ -80,9 +83,9 @@ export function setupAuth(app: Express) {
 
   app.post("/api/register", async (req, res, next) => {
     try {
-      const existingUser = await storage.getUserByUsername(req.body.username);
+      const existingUser = await storage.getUserByEmail(req.body.email);
       if (existingUser) {
-        return res.status(400).json({ message: "Username already exists" });
+        return res.status(400).json({ message: "Email already exists" });
       }
 
       // Create user with hashed password
