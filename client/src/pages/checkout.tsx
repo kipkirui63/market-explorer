@@ -68,7 +68,11 @@ const CheckoutForm: React.FC<{ cartItems: CartItem[], totalAmount: string }> = (
           
           // Clear the cart after successful payment
           if (user) {
-            localStorage.removeItem(`cart_${user.id}`);
+            let cartKey = 'cart_guest';
+            if (user.id) {
+              cartKey = `cart_${user.id}`;
+            }
+            localStorage.removeItem(cartKey);
           }
           
           toast({
@@ -89,7 +93,11 @@ const CheckoutForm: React.FC<{ cartItems: CartItem[], totalAmount: string }> = (
           
           // Clear the cart after successful payment
           if (user) {
-            localStorage.removeItem(`cart_${user.id}`);
+            let cartKey = 'cart_guest';
+            if (user.id) {
+              cartKey = `cart_${user.id}`;
+            }
+            localStorage.removeItem(cartKey);
           }
           
           // Redirect to success page
@@ -162,65 +170,78 @@ export default function Checkout() {
   const { user } = useAuth();
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
-      setLocation("/auth");
-      return;
-    }
-
-    // Get cart items from localStorage
-    const userCartKey = `cart_${user.id}`;
-    const items = JSON.parse(localStorage.getItem(userCartKey) || '[]');
-    setCartItems(items);
-    
-    if (items.length === 0) {
-      toast({
-        title: "Empty Cart",
-        description: "Your cart is empty. Add items before checkout.",
-        variant: "destructive",
-      });
-      setLocation("/marketplace");
-      return;
-    }
-
-    // Calculate total amount
-    const total = items.reduce(
-      (sum: number, item: CartItem) => sum + parseFloat(item.price) * (item.quantity || 1), 
-      0
-    );
-    
-    // Add 7% tax
-    const tax = total * 0.07;
-    const totalWithTax = total + tax;
-    
-    setTotalAmount(totalWithTax.toFixed(2));
-
-    // Create PaymentIntent on the server
-    const createPaymentIntent = async () => {
+    const initCheckout = async () => {
       try {
+        // Handle not logged in users
+        if (!user) {
+          toast({
+            title: "Login Required",
+            description: "Please log in to continue with checkout",
+          });
+          setLocation("/auth");
+          return;
+        }
+
+        // Get cart items from localStorage
+        let cartKey = 'cart_guest';
+        if (user && user.id) {
+          cartKey = `cart_${user.id}`;
+        }
+        
+        const cartData = localStorage.getItem(cartKey);
+        const loadedItems = cartData ? JSON.parse(cartData) : [];
+        setCartItems(loadedItems);
+        
+        if (loadedItems.length === 0) {
+          toast({
+            title: "Empty Cart",
+            description: "Your cart is empty. Add items before checkout.",
+          });
+          setLocation("/marketplace");
+          return;
+        }
+
+        // Calculate total amount
+        const total = loadedItems.reduce(
+          (sum: number, item: CartItem) => sum + parseFloat(item.price) * (item.quantity || 1), 
+          0
+        );
+        
+        // Add 7% tax
+        const tax = total * 0.07;
+        const totalWithTax = total + tax;
+        const formattedTotal = totalWithTax.toFixed(2);
+        
+        setTotalAmount(formattedTotal);
+
+        // Create PaymentIntent on the server
         const response = await apiRequest("POST", "/api/create-payment-intent", { 
           amount: totalWithTax,
-          cartItems: items 
+          cartItems: loadedItems 
         });
         
         const data = await response.json();
         setClientSecret(data.clientSecret);
       } catch (error: any) {
-        console.error("Payment intent error:", error);
+        console.error("Checkout initialization error:", error);
         toast({
           title: "Error",
-          description: error?.message || "Failed to initialize payment. Please try again.",
+          description: error?.message || "Failed to initialize checkout. Please try again.",
           variant: "destructive",
         });
-        setLocation("/cart");
+        setLocation("/marketplace");
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    createPaymentIntent();
+    initCheckout();
   }, [user, setLocation, toast]);
 
-  if (!clientSecret) {
+  if (isLoading || !clientSecret) {
     return (
       <Layout>
         <div className="container mx-auto py-8">
@@ -281,7 +302,7 @@ export default function Checkout() {
                   </div>
                   <div className="flex justify-between mb-2">
                     <span>Tax (7%)</span>
-                    <span>${(parseFloat(totalAmount) * 0.07 / 1.07).toFixed(2)}</span>
+                    <span>${(parseFloat(totalAmount) - parseFloat(totalAmount) / 1.07).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total</span>
@@ -291,8 +312,8 @@ export default function Checkout() {
               </div>
 
               <div className="text-center">
-                <Link href="/cart">
-                  <Button variant="link">Return to Cart</Button>
+                <Link href="/marketplace">
+                  <Button variant="link">Return to Marketplace</Button>
                 </Link>
               </div>
             </div>
