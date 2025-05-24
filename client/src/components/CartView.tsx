@@ -164,9 +164,12 @@ export default function CartView() {
         
         <Button 
           className="flex-1 cta-button" 
-          asChild
+          onClick={() => {
+            // Direct navigation prevents issues with React Router
+            window.location.href = "/checkout";
+          }}
         >
-          <Link href="/checkout">Proceed to Checkout</Link>
+          Proceed to Checkout
         </Button>
       </div>
     </div>
