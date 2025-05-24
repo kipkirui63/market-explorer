@@ -5,9 +5,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Brain } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
+  const { toast } = useToast();
   const [isLogin, setIsLogin] = useState(true);
   
   // Login state
@@ -22,6 +24,7 @@ export default function AuthPage() {
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
     loginMutation.mutate({
       username: loginUsername,
       password: loginPassword
