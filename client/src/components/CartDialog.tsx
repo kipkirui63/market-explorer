@@ -119,12 +119,15 @@ export default function CartDialog({ open, onOpenChange }: CartDialogProps) {
       }
       localStorage.setItem(cartKey, JSON.stringify(cartItems));
       
-      // Use timeout to give UI time to update before redirecting
+      // Close the dialog first
+      onOpenChange(false);
+      
+      // Use a short timeout to avoid race conditions and allow the dialog to close properly
       setTimeout(() => {
-        // Close the dialog and redirect to checkout page
-        onOpenChange(false);
-        window.location.href = "/checkout";
-      }, 500);
+        // Use proper navigation instead of direct location change
+        // This prevents unexpected redirects to home
+        window.location.assign("/checkout");
+      }, 100);
     } catch (error) {
       console.error('Error during checkout:', error);
       setIsCheckingOut(false);
