@@ -181,7 +181,10 @@ export default function Checkout() {
             title: "Login Required",
             description: "Please log in to continue with checkout",
           });
-          setLocation("/auth");
+          // Save current location to redirect back after login
+          localStorage.setItem('redirectAfterAuth', '/checkout');
+          // Use direct navigation to prevent any race conditions
+          window.location.assign("/auth");
           return;
         }
 
