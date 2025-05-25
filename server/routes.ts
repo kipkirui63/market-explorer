@@ -122,6 +122,126 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Subscription endpoints
+  
+  // Check if user has access to premium features
+  app.get("/api/subscription/check-access", async (req: Request, res: Response) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ hasAccess: false, message: "Not authenticated" });
+    }
+    
+    try {
+      const hasAccess = await storage.checkUserSubscriptionAccess(req.user.id);
+      res.json({ 
+        hasAccess, 
+        status: req.user.subscriptionStatus,
+        trialEndsAt: req.user.trialEndsAt
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  // Create or get a subscription for the user
+  app.post("/api/subscription/create", async (req: Request, res: Response) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "You must be logged in to subscribe" });
+    }
+    
+    try {
+      let user = req.user;
+      
+      // If user already has an active subscription, return it
+      if (user.stripeSubscriptionId && 
+          (user.subscriptionStatus === 'active' || user.subscriptionStatus === 'trialing')) {
+        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
+        
+        return res.json({
+          subscriptionId: subscription.id,
+          clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+          status: subscription.status
+        });
+      }
+      
+      // If user doesn't have a Stripe customer ID, create one
+      if (!user.stripeCustomerId) {
+        const customer = await stripe.customers.create({
+          email: user.email,
+          name: user.name || undefined
+        });
+        
+        user = await storage.updateStripeCustomerId(user.id, customer.id);
+      }
+      
+      // Create a new subscription with a 7-day trial
+      const subscription = await stripe.subscriptions.create({
+        customer: user.stripeCustomerId,
+        items: [{
+          price: 'price_monthly', // Replace with your actual price ID from Stripe
+        }],
+        payment_behavior: 'default_incomplete',
+        trial_period_days: 7,
+        expand: ['latest_invoice.payment_intent'],
+      });
+      
+      // Update user with subscription info
+      const trialEnd = new Date();
+      trialEnd.setDate(trialEnd.getDate() + 7);
+      
+      await storage.updateUserSubscription(
+        user.id, 
+        subscription.id, 
+        subscription.status, 
+        trialEnd
+      );
+      
+      res.json({
+        subscriptionId: subscription.id,
+        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
+        status: subscription.status,
+        trialEnd: trialEnd
+      });
+    } catch (error: any) {
+      console.error('Subscription creation error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  // Cancel a subscription
+  app.post("/api/subscription/cancel", async (req: Request, res: Response) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "You must be logged in to cancel a subscription" });
+    }
+    
+    try {
+      const user = req.user;
+      
+      if (!user.stripeSubscriptionId) {
+        return res.status(400).json({ message: "No active subscription found" });
+      }
+      
+      // Cancel the subscription at period end
+      const subscription = await stripe.subscriptions.update(user.stripeSubscriptionId, {
+        cancel_at_period_end: true
+      });
+      
+      // Update user subscription status
+      await storage.updateUserSubscription(
+        user.id, 
+        subscription.id, 
+        'canceling', 
+      );
+      
+      res.json({ 
+        success: true, 
+        message: "Subscription will be canceled at the end of the billing period" 
+      });
+    } catch (error: any) {
+      console.error('Subscription cancellation error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

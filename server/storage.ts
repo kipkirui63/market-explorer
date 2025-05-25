@@ -46,6 +46,9 @@ export class MemStorage implements IStorage {
       password: "241f86f01627cb622477a4358b5196dac3121f7d85c913878637f2304090b25e56c96defceb514aae14f8442f5fb9d84d2b0a94e086c115b243c3fa621b58fea.bbed7c3735f5316bd3241abe71a316ba",
       name: "Admin User",
       stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      subscriptionStatus: "active", // Admin has permanent access
+      trialEndsAt: null,
       createdAt: new Date()
     };
     
@@ -56,6 +59,9 @@ export class MemStorage implements IStorage {
       password: "11f86a4b7df75abb2bc524547c2240adffd9e04f4b1c5d97ba91b6a51f50332187cb6b70d6bac42edd271fa5bbd2732ebd34429bb9cad2e4fc2a7ff7da230a10.da5cccb6ff78b26c",
       name: "Test User",
       stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      subscriptionStatus: "inactive",
+      trialEndsAt: null,
       createdAt: new Date()
     };
     
@@ -81,11 +87,19 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentId++;
+    
+    // Calculate trial end date (7 days from now)
+    const trialEndsAt = new Date();
+    trialEndsAt.setDate(trialEndsAt.getDate() + 7);
+    
     const user: User = { 
       ...insertUser, 
       id,
       name: insertUser.name || null,
       stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      subscriptionStatus: "trialing", // Start with trial status
+      trialEndsAt, // 7-day trial
       createdAt: new Date()
     };
     this.users.set(id, user);
@@ -103,6 +117,30 @@ export class MemStorage implements IStorage {
 
   async updateStripeCustomerId(userId: number, stripeCustomerId: string): Promise<User | undefined> {
     return this.updateUser(userId, { stripeCustomerId });
+  }
+  
+  // Subscription operations
+  async updateUserSubscription(userId: number, stripeSubscriptionId: string, status: string, trialEndsAt?: Date): Promise<User | undefined> {
+    return this.updateUser(userId, { 
+      stripeSubscriptionId, 
+      subscriptionStatus: status,
+      trialEndsAt: trialEndsAt || null 
+    });
+  }
+
+  async checkUserSubscriptionAccess(userId: number): Promise<boolean> {
+    const user = await this.getUser(userId);
+    if (!user) return false;
+
+    // Grant access if user has an active subscription
+    if (user.subscriptionStatus === 'active') return true;
+
+    // Grant access if user is in trial period
+    if (user.trialEndsAt && new Date(user.trialEndsAt) > new Date()) {
+      return true;
+    }
+
+    return false;
   }
 
   // Order operations

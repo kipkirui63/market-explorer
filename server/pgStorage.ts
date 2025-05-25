@@ -58,6 +58,30 @@ export class PostgresStorage implements IStorage {
     return this.updateUser(userId, { stripeCustomerId });
   }
 
+  // Subscription operations
+  async updateUserSubscription(userId: number, stripeSubscriptionId: string, status: string, trialEndsAt?: Date): Promise<User | undefined> {
+    return this.updateUser(userId, { 
+      stripeSubscriptionId, 
+      subscriptionStatus: status,
+      trialEndsAt: trialEndsAt || null 
+    });
+  }
+
+  async checkUserSubscriptionAccess(userId: number): Promise<boolean> {
+    const user = await this.getUser(userId);
+    if (!user) return false;
+
+    // Grant access if user has an active subscription
+    if (user.subscriptionStatus === 'active') return true;
+
+    // Grant access if user is in trial period
+    if (user.trialEndsAt && new Date(user.trialEndsAt) > new Date()) {
+      return true;
+    }
+
+    return false;
+  }
+
   // Order operations
   async createOrder(order: InsertOrder): Promise<Order> {
     const result = await db.insert(orders).values({
