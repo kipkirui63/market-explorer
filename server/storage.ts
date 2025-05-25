@@ -13,6 +13,10 @@ export interface IStorage {
   updateUser(id: number, data: Partial<User>): Promise<User | undefined>;
   updateStripeCustomerId(userId: number, stripeCustomerId: string): Promise<User | undefined>;
   
+  // Subscription operations
+  updateUserSubscription(userId: number, stripeSubscriptionId: string, status: string, trialEndsAt?: Date): Promise<User | undefined>;
+  checkUserSubscriptionAccess(userId: number): Promise<boolean>;
+  
   // Order operations
   createOrder(order: InsertOrder): Promise<Order>;
   getOrdersByUser(userId: number): Promise<Order[]>;
