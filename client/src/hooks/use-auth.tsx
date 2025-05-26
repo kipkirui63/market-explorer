@@ -7,7 +7,7 @@ import {
 import { insertUserSchema, User as SelectUser, InsertUser } from "@shared/schema";
 import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { getLocalUser, saveLocalUser, clearLocalUser, productionLogin, productionLogout, productionRegister } from "@/utils/auth-helpers";
+
 
 type AuthContextType = {
   user: SelectUser | null;
@@ -33,18 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     queryFn: getQueryFn({ on401: "returnNull" }),
   });
   
-  // If we're in a production build, check for saved user in localStorage
-  useEffect(() => {
-    if (!user) {
-      const savedUser = getLocalUser();
-      if (savedUser) {
-        queryClient.setQueryData(["/api/user"], savedUser);
-      }
-    } else {
-      // Keep local storage in sync with current user
-      saveLocalUser(user);
-    }
-  }, [user]);
+  // No local storage fallbacks for security
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoginData) => {
@@ -79,21 +68,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const registerMutation = useMutation({
     mutationFn: async (credentials: InsertUser) => {
-      try {
-        // First try the normal API request
-        const timestamp = new Date().getTime();
-        const res = await apiRequest("POST", `/api/register?_t=${timestamp}`, credentials);
-        const data = await res.json();
-        return data;
-      } catch (error) {
-        console.error("Registration API failed, creating fallback response:", error);
-        
-        // Create a fallback response for when server returns HTML instead of JSON
-        return {
-          success: true,
-          message: "Registration successful. Please log in with your new account."
-        };
-      }
+      const timestamp = new Date().getTime();
+      const res = await apiRequest("POST", `/api/register?_t=${timestamp}`, credentials);
+      return await res.json();
     },
     onSuccess: (response: any) => {
       // Don't automatically set the user data after registration
@@ -116,17 +93,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      try {
-        // Add timestamp to prevent caching
-        const timestamp = new Date().getTime();
-        await apiRequest("POST", `/api/logout?_t=${timestamp}`);
-        // Clear local storage user data
-        clearLocalUser();
-      } catch (error) {
-        console.error("API logout failed:", error);
-        // Always clear local storage even if server logout fails
-        clearLocalUser();
-      }
+      // Add timestamp to prevent caching
+      const timestamp = new Date().getTime();
+      await apiRequest("POST", `/api/logout?_t=${timestamp}`);
     },
     onSuccess: () => {
       // Clear all cart data when logging out
