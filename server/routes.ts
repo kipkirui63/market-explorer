@@ -195,10 +195,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         items: [{
           price_data: {
             currency: 'usd',
-            product_data: {
-              name: agentPlan.name,
-              description: agentPlan.description,
-            },
+            product: agentPlan.name,
             recurring: {
               interval: 'month',
             },
