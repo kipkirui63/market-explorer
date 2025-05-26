@@ -29,8 +29,13 @@ export default function Marketplace() {
   
   // Function to update the cart item count
   const updateCartItemCount = () => {
-    // Get cart items from the main cart storage
-    const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+    let cartItems = [];
+    
+    // Only get cart items if user is logged in
+    if (user && user.id) {
+      cartItems = JSON.parse(localStorage.getItem(`cart_${user.id}`) || '[]');
+    }
+    // If no user is logged in, cart count should be 0
     
     // Calculate total quantity across all items
     const totalQuantity = cartItems.reduce((total: number, item: any) => total + (item.quantity || 1), 0);
