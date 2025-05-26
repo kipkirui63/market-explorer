@@ -146,24 +146,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
-  // Create or get a subscription for the user
-  app.post("/api/subscription/create", async (req: Request, res: Response) => {
+  // Create or get a subscription for a specific agent
+  app.post("/api/agent/:agentId/subscribe", async (req: Request, res: Response) => {
     if (!req.isAuthenticated()) {
       return res.status(401).json({ message: "You must be logged in to subscribe" });
     }
     
     try {
+      const { agentId } = req.params;
       let user = req.user;
       
-      // If user already has an active subscription, return it
-      if (user.stripeSubscriptionId && 
-          (user.subscriptionStatus === 'active' || user.subscriptionStatus === 'trialing')) {
-        const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
-        
+      // Import agent plans from schema
+      const { AGENT_PLANS } = await import("@shared/schema");
+      
+      // Validate agent ID
+      if (!AGENT_PLANS[agentId as keyof typeof AGENT_PLANS]) {
+        return res.status(400).json({ message: "Invalid agent ID" });
+      }
+      
+      const agentPlan = AGENT_PLANS[agentId as keyof typeof AGENT_PLANS];
+      
+      // Check if user already has a subscription for this agent
+      const existingSubscription = await storage.getAgentSubscription(user.id, agentId);
+      if (existingSubscription && 
+          (existingSubscription.status === 'active' || existingSubscription.status === 'trialing')) {
         return res.json({
-          subscriptionId: subscription.id,
-          clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
-          status: subscription.status
+          message: "Already subscribed to this agent",
+          subscription: existingSubscription
         });
       }
       
@@ -175,40 +184,125 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
         
         user = await storage.updateStripeCustomerId(user.id, customer.id);
+        if (!user) {
+          throw new Error("Failed to update user with Stripe customer ID");
+        }
       }
       
       // Create a new subscription with a 7-day trial
       const subscription = await stripe.subscriptions.create({
-        customer: user.stripeCustomerId,
+        customer: user.stripeCustomerId!,
         items: [{
-          // Use price ID from Stripe dashboard
-          // For testing purposes, we'll use 'price_1NAq6FCZ6qsJgndJaZqGM9QM' as placeholder
-          price: process.env.STRIPE_PRICE_ID || 'price_1NAq6FCZ6qsJgndJaZqGM9QM',
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: agentPlan.name,
+              description: agentPlan.description,
+            },
+            recurring: {
+              interval: 'month',
+            },
+            unit_amount: Math.round(agentPlan.monthlyPrice * 100), // Convert to cents
+          },
         }],
         payment_behavior: 'default_incomplete',
         trial_period_days: 7,
         expand: ['latest_invoice.payment_intent'],
       });
       
-      // Update user with subscription info
+      // Calculate trial end date
       const trialEnd = new Date();
       trialEnd.setDate(trialEnd.getDate() + 7);
       
-      await storage.updateUserSubscription(
-        user.id, 
-        subscription.id, 
-        subscription.status, 
-        trialEnd
-      );
+      // Store agent subscription in database
+      const agentSubscription = await storage.createAgentSubscription({
+        userId: user.id,
+        agentId: agentId,
+        stripeSubscriptionId: subscription.id,
+        status: subscription.status,
+        priceId: subscription.items.data[0].price.id,
+        currentPeriodStart: subscription.current_period_start ? new Date(subscription.current_period_start * 1000) : null,
+        currentPeriodEnd: subscription.current_period_end ? new Date(subscription.current_period_end * 1000) : null,
+        trialEnd: trialEnd
+      });
+      
+      // Add agent to user's subscribed agents list
+      await storage.addAgentToUser(user.id, agentId);
       
       res.json({
+        message: "Subscription created successfully",
+        agentId: agentId,
+        agentName: agentPlan.name,
+        monthlyPrice: agentPlan.monthlyPrice,
         subscriptionId: subscription.id,
         clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
         status: subscription.status,
-        trialEnd: trialEnd
+        trialEnd: trialEnd,
+        subscription: agentSubscription
       });
     } catch (error: any) {
-      console.error('Subscription creation error:', error);
+      console.error('Agent subscription creation error:', error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  // Start trial for a specific agent (free 7-day trial)
+  app.post("/api/agent/:agentId/start-trial", async (req: Request, res: Response) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "You must be logged in to start a trial" });
+    }
+    
+    try {
+      const { agentId } = req.params;
+      const user = req.user;
+      
+      // Import agent plans from schema
+      const { AGENT_PLANS } = await import("@shared/schema");
+      
+      // Validate agent ID
+      if (!AGENT_PLANS[agentId as keyof typeof AGENT_PLANS]) {
+        return res.status(400).json({ message: "Invalid agent ID" });
+      }
+      
+      const agentPlan = AGENT_PLANS[agentId as keyof typeof AGENT_PLANS];
+      
+      // Check if user already has access to this agent
+      const hasAccess = await storage.checkAgentAccess(user.id, agentId);
+      if (hasAccess) {
+        return res.json({
+          message: "You already have access to this agent",
+          agentId: agentId
+        });
+      }
+      
+      // Calculate trial end date (7 days from now)
+      const trialEnd = new Date();
+      trialEnd.setDate(trialEnd.getDate() + 7);
+      
+      // Create a trial subscription record
+      const trialSubscription = await storage.createAgentSubscription({
+        userId: user.id,
+        agentId: agentId,
+        stripeSubscriptionId: `trial_${user.id}_${agentId}_${Date.now()}`, // Temporary trial ID
+        status: 'trialing',
+        priceId: 'trial_price',
+        currentPeriodStart: new Date(),
+        currentPeriodEnd: trialEnd,
+        trialEnd: trialEnd
+      });
+      
+      // Add agent to user's subscribed agents list
+      await storage.addAgentToUser(user.id, agentId);
+      
+      res.json({
+        message: "7-day free trial started successfully!",
+        agentId: agentId,
+        agentName: agentPlan.name,
+        trialEnd: trialEnd,
+        subscription: trialSubscription
+      });
+    } catch (error: any) {
+      console.error('Trial activation error:', error);
       res.status(500).json({ error: error.message });
     }
   });
