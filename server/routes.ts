@@ -189,18 +189,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
+      // Use existing Stripe price IDs (these need to be created in your Stripe dashboard)
+      const stripePriceIds = {
+        'resume-analyzer': process.env.STRIPE_RESUME_ANALYZER_PRICE_ID || 'price_test_resume',
+        'business-intelligence': process.env.STRIPE_BUSINESS_INTEL_PRICE_ID || 'price_test_business',
+        'sop-assistant': process.env.STRIPE_SOP_ASSISTANT_PRICE_ID || 'price_test_sop',
+        'ai-recruitment': process.env.STRIPE_AI_RECRUITMENT_PRICE_ID || 'price_test_recruitment',
+        'crisp-write': process.env.STRIPE_CRISP_WRITE_PRICE_ID || 'price_test_write'
+      };
+
+      const priceId = stripePriceIds[agentId as keyof typeof stripePriceIds];
+      
       // Create a new subscription with a 7-day trial
       const subscription = await stripe.subscriptions.create({
         customer: user.stripeCustomerId!,
         items: [{
-          price_data: {
-            currency: 'usd',
-            product: agentPlan.name,
-            recurring: {
-              interval: 'month',
-            },
-            unit_amount: Math.round(agentPlan.monthlyPrice * 100), // Convert to cents
-          },
+          price: priceId,
         }],
         payment_behavior: 'default_incomplete',
         trial_period_days: 7,
