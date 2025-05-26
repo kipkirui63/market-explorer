@@ -122,19 +122,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Subscription endpoints
+  // Agent-specific subscription endpoints
   
-  // Check if user has access to premium features
-  app.get("/api/subscription/check-access", async (req: Request, res: Response) => {
+  // Check if user has access to a specific agent
+  app.get("/api/agent/:agentId/check-access", async (req: Request, res: Response) => {
     if (!req.isAuthenticated()) {
       return res.status(401).json({ hasAccess: false, message: "Not authenticated" });
     }
     
     try {
-      const hasAccess = await storage.checkUserSubscriptionAccess(req.user.id);
+      const { agentId } = req.params;
+      const hasAccess = await storage.checkAgentAccess(req.user.id, agentId);
+      const subscriptions = await storage.getUserAgentSubscriptions(req.user.id);
+      
       res.json({ 
-        hasAccess, 
-        status: req.user.subscriptionStatus,
+        hasAccess,
+        agentId,
+        userSubscriptions: subscriptions,
         trialEndsAt: req.user.trialEndsAt
       });
     } catch (error: any) {
