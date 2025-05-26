@@ -189,13 +189,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      // Use existing Stripe price IDs (these need to be created in your Stripe dashboard)
+      // Your actual Stripe price IDs from your dashboard
       const stripePriceIds = {
-        'resume-analyzer': process.env.STRIPE_RESUME_ANALYZER_PRICE_ID || 'price_test_resume',
-        'business-intelligence': process.env.STRIPE_BUSINESS_INTEL_PRICE_ID || 'price_test_business',
-        'sop-assistant': process.env.STRIPE_SOP_ASSISTANT_PRICE_ID || 'price_test_sop',
-        'ai-recruitment': process.env.STRIPE_AI_RECRUITMENT_PRICE_ID || 'price_test_recruitment',
-        'crisp-write': process.env.STRIPE_CRISP_WRITE_PRICE_ID || 'price_test_write'
+        'resume-analyzer': 'price_1RStsNFYQzmKjK0kYXBk1gj2',     // $19.00/month
+        'business-intelligence': 'price_1RStjfFYQzmKjK0ku6LEyrad', // $39.00/month
+        'sop-assistant': 'price_1RStqqFYQzmKjK0k6gfU3MPp',        // $19.00/month
+        'ai-recruitment': 'price_1RStwdFYQzmKjK0kkfEmaEBg',       // $19.00/month
+        'crisp-write': 'price_1RStpLFYQzmKjK0kqqh4Q9fA'           // $89.99/month
       };
 
       const priceId = stripePriceIds[agentId as keyof typeof stripePriceIds];
