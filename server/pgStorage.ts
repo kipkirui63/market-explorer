@@ -1,6 +1,6 @@
 import { users, orders, agentSubscriptions, type User, type InsertUser, type Order, type InsertOrder, type AgentSubscription, type InsertAgentSubscription } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
 import pg from "pg";
@@ -81,8 +81,10 @@ export class PostgresStorage implements IStorage {
   async getAgentSubscription(userId: number, agentId: string): Promise<AgentSubscription | undefined> {
     const result = await db.select()
       .from(agentSubscriptions)
-      .where(eq(agentSubscriptions.userId, userId))
-      .where(eq(agentSubscriptions.agentId, agentId))
+      .where(and(
+        eq(agentSubscriptions.userId, userId),
+        eq(agentSubscriptions.agentId, agentId)
+      ))
       .limit(1);
     return result[0];
   }
