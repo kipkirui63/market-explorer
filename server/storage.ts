@@ -1,4 +1,4 @@
-import { users, type User, type InsertUser, type Order, type InsertOrder, orders } from "@shared/schema";
+import { users, type User, type InsertUser, type Order, type InsertOrder, orders, agentSubscriptions, type AgentSubscription, type InsertAgentSubscription } from "@shared/schema";
 import session from "express-session";
 import createMemoryStore from "memorystore";
 
@@ -13,9 +13,13 @@ export interface IStorage {
   updateUser(id: number, data: Partial<User>): Promise<User | undefined>;
   updateStripeCustomerId(userId: number, stripeCustomerId: string): Promise<User | undefined>;
   
-  // Subscription operations
-  updateUserSubscription(userId: number, stripeSubscriptionId: string, status: string, trialEndsAt?: Date): Promise<User | undefined>;
-  checkUserSubscriptionAccess(userId: number): Promise<boolean>;
+  // Agent subscription operations
+  createAgentSubscription(subscription: InsertAgentSubscription): Promise<AgentSubscription>;
+  getUserAgentSubscriptions(userId: number): Promise<AgentSubscription[]>;
+  getAgentSubscription(userId: number, agentId: string): Promise<AgentSubscription | undefined>;
+  updateAgentSubscription(id: number, data: Partial<AgentSubscription>): Promise<AgentSubscription | undefined>;
+  checkAgentAccess(userId: number, agentId: string): Promise<boolean>;
+  addAgentToUser(userId: number, agentId: string): Promise<User | undefined>;
   
   // Order operations
   createOrder(order: InsertOrder): Promise<Order>;
