@@ -48,17 +48,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoginData) => {
-      try {
-        // Try the regular API login first
-        const timestamp = new Date().getTime();
-        const res = await apiRequest("POST", `/api/login?_t=${timestamp}`, credentials);
-        return await res.json();
-      } catch (error) {
-        console.error("API login failed, trying production fallback:", error);
-        
-        // Use production-compatible login as fallback
-        return await productionLogin(credentials.email, credentials.password);
-      }
+      // Only use the secure server API - no fallbacks
+      const timestamp = new Date().getTime();
+      const res = await apiRequest("POST", `/api/login?_t=${timestamp}`, credentials);
+      return await res.json();
     },
     onSuccess: (user: SelectUser) => {
       // Clear all cart data from any users
