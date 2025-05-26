@@ -25,18 +25,13 @@ export default function BasicCart() {
   
   const loadCartItems = () => {
     try {
-      // First try to get from regular cart
-      let items = JSON.parse(localStorage.getItem('cart') || '[]');
+      let items: CartItem[] = [];
       
-      // If empty, try user specific cart
-      if (items.length === 0 && user) {
+      // Only load cart items if user is logged in
+      if (user && user.id) {
         items = JSON.parse(localStorage.getItem(`cart_${user.id}`) || '[]');
       }
-      
-      // If still empty, try guest cart
-      if (items.length === 0) {
-        items = JSON.parse(localStorage.getItem('cart_guest') || '[]');
-      }
+      // If no user is logged in, cart should be empty
       
       console.log("Cart items loaded:", items);
       setCartItems(items);

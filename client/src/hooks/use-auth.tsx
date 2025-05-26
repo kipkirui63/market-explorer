@@ -138,7 +138,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     onSuccess: () => {
       // Clear all cart data when logging out
       Object.keys(localStorage).forEach(key => {
-        if (key.startsWith('cart_')) {
+        if (key.startsWith('cart_') || key === 'cart' || key === 'cart_guest') {
           localStorage.removeItem(key);
         }
       });
