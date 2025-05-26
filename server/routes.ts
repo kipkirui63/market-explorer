@@ -177,7 +177,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const subscription = await stripe.subscriptions.create({
         customer: user.stripeCustomerId,
         items: [{
-          price: 'price_monthly', // Replace with your actual price ID from Stripe
+          // Use price ID from Stripe dashboard
+          // For testing purposes, we'll use 'price_1NAq6FCZ6qsJgndJaZqGM9QM' as placeholder
+          price: process.env.STRIPE_PRICE_ID || 'price_1NAq6FCZ6qsJgndJaZqGM9QM',
         }],
         payment_behavior: 'default_incomplete',
         trial_period_days: 7,
