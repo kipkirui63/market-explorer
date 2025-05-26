@@ -206,9 +206,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         items: [{
           price: priceId,
         }],
-        payment_behavior: 'default_incomplete',
         trial_period_days: 7,
-        expand: ['latest_invoice.payment_intent'],
       });
       
       // Calculate trial end date
@@ -231,12 +229,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       await storage.addAgentToUser(user.id, agentId);
       
       res.json({
-        message: "Subscription created successfully",
+        message: "Subscription created successfully with 7-day trial",
         agentId: agentId,
         agentName: agentPlan.name,
         monthlyPrice: agentPlan.monthlyPrice,
         subscriptionId: subscription.id,
-        clientSecret: subscription.latest_invoice?.payment_intent?.client_secret,
         status: subscription.status,
         trialEnd: trialEnd,
         subscription: agentSubscription
