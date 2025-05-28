@@ -110,8 +110,13 @@ export function setupAuth(app: Express) {
     // Set content type for login responses
     res.setHeader('Content-Type', 'application/json');
     
+    // Debug: Log the request body to see what we're actually receiving
+    console.log("Login request body:", req.body);
+    console.log("Request headers:", req.headers);
+    
     // Validate request body
     if (!req.body || !req.body.email || !req.body.password) {
+      console.log("Validation failed - missing email or password");
       return res.status(400).json({ 
         message: "Missing email or password", 
         success: false 
@@ -120,6 +125,7 @@ export function setupAuth(app: Express) {
     
     // Additional validation for empty values
     if (!req.body.email.trim() || !req.body.password.trim()) {
+      console.log("Validation failed - empty email or password");
       return res.status(400).json({ 
         message: "Email and password cannot be empty", 
         success: false 
