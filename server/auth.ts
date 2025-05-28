@@ -40,10 +40,8 @@ export function setupAuth(app: Express) {
     saveUninitialized: false,
     store: storage.sessionStore,
     cookie: {
-      secure: false, // Allow cookies over HTTP for hosted environments
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'lax' // Allow cross-site requests for hosted deployment
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
   };
 
@@ -85,8 +83,6 @@ export function setupAuth(app: Express) {
 
   app.post("/api/register", async (req, res, next) => {
     try {
-      console.log("Registration request body:", req.body);
-      
       const existingUser = await storage.getUserByEmail(req.body.email);
       if (existingUser) {
         return res.status(400).json({ message: "Email already exists" });
@@ -94,19 +90,10 @@ export function setupAuth(app: Express) {
 
       // Create user with hashed password
       const hashedPassword = await hashPassword(req.body.password);
-      console.log("Creating user with data:", {
-        email: req.body.email,
-        name: req.body.name,
-        hashedPassword: "***"
-      });
-      
       const user = await storage.createUser({
-        email: req.body.email,
+        ...req.body,
         password: hashedPassword,
-        name: req.body.name || null,
       });
-
-      console.log("User created successfully:", { id: user.id, email: user.email });
 
       // Return success without auto-login
       res.status(201).json({ 
@@ -124,9 +111,9 @@ export function setupAuth(app: Express) {
     res.setHeader('Content-Type', 'application/json');
     
     // Validate request body
-    if (!req.body || !req.body.email || !req.body.password) {
+    if (!req.body || !req.body.username || !req.body.password) {
       return res.status(400).json({ 
-        message: "Missing email or password", 
+        message: "Missing username or password", 
         success: false 
       });
     }

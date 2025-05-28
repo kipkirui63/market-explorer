@@ -1,11 +1,7 @@
-import dotenv from 'dotenv';
-// Load environment variables first
-dotenv.config();
-
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-// Database migrations removed - using in-memory storage
+import { runMigrations } from "./db";
 import { setupAuth } from "./auth";
 
 const app = express();
@@ -70,8 +66,9 @@ app.use((req, res, next) => {
   let server;
   
   try {
-    // Using simple in-memory storage - no database setup needed
-    console.log("In-memory storage initialized successfully");
+    // Initialize database
+    await runMigrations();
+    console.log("Database initialized successfully");
     
     // Set up authentication
     setupAuth(app);
