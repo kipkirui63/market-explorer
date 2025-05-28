@@ -74,9 +74,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
   };
 
-  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // Prevent the click from bubbling up to the parent card
-    e.stopPropagation();
+  const handleAddToCart = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    // Prevent the click from bubbling up to the parent card if event exists
+    e?.stopPropagation();
     
     // Store the current URL to redirect back after login
     localStorage.setItem('redirectAfterAuth', window.location.pathname);
@@ -161,21 +161,25 @@ const ProductCard = ({ product }: ProductCardProps) => {
     return !!user;
   };
 
-  // Function to handle clicking on the product card
+  // Function to handle clicking on the product card (agent link)
   const handleProductClick = () => {
-    // Check authentication and subscription before allowing access
+    // Check authentication first
     if (!user) {
       localStorage.setItem('redirectAfterAuth', window.location.pathname);
       window.location.href = '/auth';
       return;
     }
     
+    // If not paid (or trial not started) → redirect to cart and auto-add product
     if (!hasAgentAccess) {
+      // Auto-add product to cart
+      handleAddToCart();
+      // Redirect to cart
       window.location.href = '/cart';
       return;
     }
     
-    // Only allow access if user has subscription
+    // If trial active or subscription valid → allow access to agent site
     if (hasExternalApp) {
       const url = productUrlMap[product.name];
       window.open(url, '_blank');
@@ -255,28 +259,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
         </div>
         <div className="flex">
-          {hasExternalApp ? (
-            <Button
-              onClick={handleAgentAccess}
-              className={`w-full text-white ${hasAgentAccess ? 'cta-button' : 'bg-gray-400 hover:bg-gray-500'}`}
-              disabled={!user}
-            >
-              {!user ? (
-                'Login to Access'
-              ) : !hasAgentAccess ? (
-                'Subscribe to Access'
-              ) : (
-                'Access Agent'
-              )}
-            </Button>
-          ) : (
-            <Button
-              onClick={handleAddToCart}
-              className="cta-button text-white w-full"
-            >
-              Add to Cart
-            </Button>
-          )}
+          <Button
+            onClick={handleAddToCart}
+            className="cta-button text-white w-full"
+          >
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>
