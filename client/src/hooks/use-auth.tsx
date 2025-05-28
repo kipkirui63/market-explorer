@@ -83,11 +83,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onError: (error: Error) => {
       console.error("Registration error:", error);
-      toast({
-        title: "Registration failed",
-        description: error.message || "Username already exists",
-        variant: "destructive",
-      });
+      // Check if this is actually a successful registration being treated as error
+      if (error.message && error.message.includes("Registration successful")) {
+        toast({
+          title: "Registration successful",
+          description: "Your account has been created. Please sign in with your credentials.",
+          variant: "default",
+        });
+      } else {
+        toast({
+          title: "Registration failed",
+          description: error.message || "Username already exists",
+          variant: "destructive",
+        });
+      }
     },
   });
 
