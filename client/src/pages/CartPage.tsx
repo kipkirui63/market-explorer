@@ -209,6 +209,7 @@ export default function CartPage() {
             </div>
           </div>
         )}
+        </div>
       </div>
     </Layout>
   );
