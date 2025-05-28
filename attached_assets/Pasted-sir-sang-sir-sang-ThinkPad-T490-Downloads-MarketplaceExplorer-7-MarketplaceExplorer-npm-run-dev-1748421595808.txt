@@ -1,0 +1,212 @@
+sir-sang@sir-sang-ThinkPad-T490:~/Downloads/MarketplaceExplorer (7)/MarketplaceExplorer$ npm run dev
+
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+Generated temporary SESSION_SECRET
+Running database migrations...
+Error running migrations: AggregateError [ETIMEDOUT]: 
+    at internalConnectMultiple (node:net:1139:18)
+    at internalConnectMultiple (node:net:1215:5)
+    at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+    at listOnTimeout (node:internal/timers:610:11)
+    at process.processTimers (node:internal/timers:543:7)
+    at cachedError (file:///home/sir-sang/Downloads/MarketplaceExplorer%20(7)/MarketplaceExplorer/node_modules/postgres/src/query.js:170:23)
+    at new Query (file:///home/sir-sang/Downloads/MarketplaceExplorer%20(7)/MarketplaceExplorer/node_modules/postgres/src/query.js:36:24)
+    at sql (file:///home/sir-sang/Downloads/MarketplaceExplorer%20(7)/MarketplaceExplorer/node_modules/postgres/src/index.js:112:11)
+    at runMigrations (/home/sir-sang/Downloads/MarketplaceExplorer (7)/MarketplaceExplorer/server/db.ts:26:11) {
+  code: 'ETIMEDOUT',
+  [errors]: [
+    Error: connect ETIMEDOUT 18.236.35.18:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '18.236.35.18',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b2c:92f3:5c5a:b24:4481:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b2c:92f3:5c5a:b24:4481',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 18.236.14.165:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '18.236.14.165',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b30:d28d:658c:574f:408f:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b30:d28d:658c:574f:408f',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 44.236.99.237:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '44.236.99.237',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b04:7827:8c76:39d1:f7da:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b04:7827:8c76:39d1:f7da',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 35.84.214.33:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '35.84.214.33',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b13:6fd4:8b4:96f:e269:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b13:6fd4:8b4:96f:e269',
+      port: 5432
+    }
+  ]
+}
+Failed to initialize the application: AggregateError [ETIMEDOUT]: 
+    at internalConnectMultiple (node:net:1139:18)
+    at internalConnectMultiple (node:net:1215:5)
+    at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+    at listOnTimeout (node:internal/timers:610:11)
+    at process.processTimers (node:internal/timers:543:7)
+    at cachedError (file:///home/sir-sang/Downloads/MarketplaceExplorer%20(7)/MarketplaceExplorer/node_modules/postgres/src/query.js:170:23)
+    at new Query (file:///home/sir-sang/Downloads/MarketplaceExplorer%20(7)/MarketplaceExplorer/node_modules/postgres/src/query.js:36:24)
+    at sql (file:///home/sir-sang/Downloads/MarketplaceExplorer%20(7)/MarketplaceExplorer/node_modules/postgres/src/index.js:112:11)
+    at runMigrations (/home/sir-sang/Downloads/MarketplaceExplorer (7)/MarketplaceExplorer/server/db.ts:26:11) {
+  code: 'ETIMEDOUT',
+  [errors]: [
+    Error: connect ETIMEDOUT 18.236.35.18:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '18.236.35.18',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b2c:92f3:5c5a:b24:4481:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b2c:92f3:5c5a:b24:4481',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 18.236.14.165:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '18.236.14.165',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b30:d28d:658c:574f:408f:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b30:d28d:658c:574f:408f',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 44.236.99.237:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '44.236.99.237',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b04:7827:8c76:39d1:f7da:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b04:7827:8c76:39d1:f7da',
+      port: 5432
+    },
+    Error: connect ETIMEDOUT 35.84.214.33:5432
+        at createConnectionError (node:net:1677:14)
+        at Timeout.internalConnectMultipleTimeout (node:net:1736:38)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -110,
+      code: 'ETIMEDOUT',
+      syscall: 'connect',
+      address: '35.84.214.33',
+      port: 5432
+    },
+    Error: connect ENETUNREACH 2600:1f14:3392:6b13:6fd4:8b4:96f:e269:5432 - Local (:::0)
+        at internalConnectMultiple (node:net:1211:16)
+        at Timeout.internalConnectMultipleTimeout (node:net:1741:5)
+        at listOnTimeout (node:internal/timers:610:11)
+        at process.processTimers (node:internal/timers:543:7) {
+      errno: -101,
+      code: 'ENETUNREACH',
+      syscall: 'connect',
+      address: '2600:1f14:3392:6b13:6fd4:8b4:96f:e269',
+      port: 5432
+    }
+  ]
+}
+sir-sang@sir-sang-ThinkPad-T490:~/Downloads/MarketplaceExplorer (7)/MarketplaceExplorer$ 
