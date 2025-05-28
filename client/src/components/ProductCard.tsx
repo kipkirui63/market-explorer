@@ -167,12 +167,26 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   // Function to handle clicking on the product card
   const handleProductClick = () => {
+    // Check authentication and subscription before allowing access
+    if (!user) {
+      localStorage.setItem('redirectAfterAuth', window.location.pathname);
+      window.location.href = '/auth';
+      return;
+    }
+    
+    if (!hasAgentAccess) {
+      toast({
+        title: "Subscription Required",
+        description: "Start your 7-day free trial to access AI agents. Then $29/month.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Only allow access if user has subscription
     if (hasExternalApp) {
-      if (hasUserPurchasedProduct()) {
-        window.open(productUrlMap[product.name], '_blank');
-      } else {
-        alert(`Please purchase ${product.name} to access this feature.`);
-      }
+      const url = productUrlMap[product.name];
+      window.open(url, '_blank');
     }
   };
 
