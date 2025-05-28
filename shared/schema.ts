@@ -6,7 +6,6 @@ export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
-  name: text("name"),
   stripeCustomerId: text("stripe_customer_id"),
   stripeSubscriptionId: text("stripe_subscription_id"),
   subscriptionStatus: text("subscription_status").default("inactive"),
@@ -17,7 +16,6 @@ export const users = pgTable("users", {
 export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   password: true,
-  name: true,
 });
 
 export const orders = pgTable("orders", {
