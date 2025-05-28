@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Star, ThumbsUp } from "lucide-react";
+import { Star, ThumbsUp, Lock } from "lucide-react";
 import { ProductImage } from "@/components/ProductImages";
 import { useAuth } from "@/hooks/use-auth";
+import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 
 interface Product {
   id: string;
@@ -32,13 +34,51 @@ const productUrlMap: Record<string, string> = {
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [isRatingOpen, setIsRatingOpen] = useState(false);
+  const { toast } = useToast();
   
   // Get user from auth context
   const { user } = useAuth();
   
+  // Check subscription access
+  const { data: subscriptionAccess } = useQuery({
+    queryKey: ['/api/subscription-access'],
+    enabled: !!user,
+  });
+  
   // Check if this product has an external app URL
   const hasExternalApp = !!productUrlMap[product.name];
   
+  // Determine if user has access to this agent
+  const hasAgentAccess = user && subscriptionAccess?.hasAccess;
+  
+  const handleAgentAccess = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    
+    // If user is not logged in, redirect to auth page
+    if (!user) {
+      localStorage.setItem('redirectAfterAuth', window.location.pathname);
+      window.location.href = '/auth';
+      return;
+    }
+    
+    // If user doesn't have subscription access, show subscription required message
+    if (!hasAgentAccess) {
+      toast({
+        title: "Subscription Required",
+        description: "Start your 7-day free trial to access AI agents. Then $29/month.",
+        variant: "default",
+      });
+      // Could redirect to subscription page here
+      return;
+    }
+    
+    // If user has access, open the external app
+    if (hasExternalApp) {
+      const url = productUrlMap[product.name];
+      window.open(url, '_blank');
+    }
+  };
+
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Prevent the click from bubbling up to the parent card
     e.stopPropagation();
