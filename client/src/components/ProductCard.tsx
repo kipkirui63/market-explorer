@@ -61,13 +61,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
       return;
     }
     
-    // If user doesn't have subscription access, show subscription required message
+    // If user doesn't have subscription access, block access
     if (!hasAgentAccess) {
-      toast({
-        title: "Subscription Required",
-        description: "Start your 7-day free trial to access AI agents. Then $29/month.",
-        variant: "destructive",
-      });
       return;
     }
     
@@ -175,11 +170,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
     
     if (!hasAgentAccess) {
-      toast({
-        title: "Subscription Required",
-        description: "Start your 7-day free trial to access AI agents. Then $29/month.",
-        variant: "destructive",
-      });
       return;
     }
     
@@ -270,15 +260,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
               disabled={!user}
             >
               {!user ? (
-                <>
-                  <Lock className="h-4 w-4 mr-2" />
-                  Login to Access
-                </>
+                'Login to Access'
               ) : !hasAgentAccess ? (
-                <>
-                  <Lock className="h-4 w-4 mr-2" />
-                  Subscribe to Access
-                </>
+                'Subscribe to Access'
               ) : (
                 'Access Agent'
               )}
