@@ -111,9 +111,17 @@ export function setupAuth(app: Express) {
     res.setHeader('Content-Type', 'application/json');
     
     // Validate request body
-    if (!req.body || !req.body.username || !req.body.password) {
+    if (!req.body || !req.body.email || !req.body.password) {
       return res.status(400).json({ 
-        message: "Missing username or password", 
+        message: "Missing email or password", 
+        success: false 
+      });
+    }
+    
+    // Additional validation for empty values
+    if (!req.body.email.trim() || !req.body.password.trim()) {
+      return res.status(400).json({ 
+        message: "Email and password cannot be empty", 
         success: false 
       });
     }
