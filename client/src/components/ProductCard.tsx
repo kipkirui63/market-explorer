@@ -61,8 +61,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       return;
     }
     
-    // If user doesn't have subscription access, block access
+    // If user doesn't have subscription access, redirect to cart
     if (!hasAgentAccess) {
+      window.location.href = '/cart';
       return;
     }
     
@@ -170,6 +171,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
     
     if (!hasAgentAccess) {
+      window.location.href = '/cart';
       return;
     }
     
