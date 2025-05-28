@@ -85,6 +85,8 @@ export function setupAuth(app: Express) {
 
   app.post("/api/register", async (req, res, next) => {
     try {
+      console.log("Registration request body:", req.body);
+      
       const existingUser = await storage.getUserByEmail(req.body.email);
       if (existingUser) {
         return res.status(400).json({ message: "Email already exists" });
@@ -92,10 +94,19 @@ export function setupAuth(app: Express) {
 
       // Create user with hashed password
       const hashedPassword = await hashPassword(req.body.password);
-      const user = await storage.createUser({
-        ...req.body,
-        password: hashedPassword,
+      console.log("Creating user with data:", {
+        email: req.body.email,
+        name: req.body.name,
+        hashedPassword: "***"
       });
+      
+      const user = await storage.createUser({
+        email: req.body.email,
+        password: hashedPassword,
+        name: req.body.name || null,
+      });
+
+      console.log("User created successfully:", { id: user.id, email: user.email });
 
       // Return success without auto-login
       res.status(201).json({ 
