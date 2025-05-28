@@ -108,6 +108,30 @@ export class MemStorage implements IStorage {
     return this.updateUser(userId, { stripeCustomerId });
   }
 
+  // Subscription operations
+  async updateUserSubscription(userId: number, stripeSubscriptionId: string, status: string, trialEndsAt?: Date): Promise<User | undefined> {
+    return this.updateUser(userId, { 
+      stripeSubscriptionId, 
+      subscriptionStatus: status,
+      trialEndsAt 
+    });
+  }
+
+  async checkUserSubscriptionAccess(userId: number): Promise<boolean> {
+    const user = await this.getUser(userId);
+    if (!user) return false;
+    
+    // Check if user has active subscription
+    if (user.subscriptionStatus === 'active') return true;
+    
+    // Check if user is still in trial period
+    if (user.subscriptionStatus === 'trialing' && user.trialEndsAt && new Date() < user.trialEndsAt) {
+      return true;
+    }
+    
+    return false;
+  }
+
   // Order operations
   async createOrder(orderData: InsertOrder): Promise<Order> {
     const id = this.currentOrderId++;
