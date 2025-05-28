@@ -66,9 +66,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
       toast({
         title: "Subscription Required",
         description: "Start your 7-day free trial to access AI agents. Then $29/month.",
-        variant: "default",
+        variant: "destructive",
       });
-      // Could redirect to subscription page here
       return;
     }
     
@@ -250,12 +249,34 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Button>
         </div>
         <div className="flex">
-          <Button
-            onClick={handleAddToCart}
-            className="cta-button text-white w-full"
-          >
-            Add to Cart
-          </Button>
+          {hasExternalApp ? (
+            <Button
+              onClick={handleAgentAccess}
+              className={`w-full text-white ${hasAgentAccess ? 'cta-button' : 'bg-gray-400 hover:bg-gray-500'}`}
+              disabled={!user}
+            >
+              {!user ? (
+                <>
+                  <Lock className="h-4 w-4 mr-2" />
+                  Login to Access
+                </>
+              ) : !hasAgentAccess ? (
+                <>
+                  <Lock className="h-4 w-4 mr-2" />
+                  Subscribe to Access
+                </>
+              ) : (
+                'Access Agent'
+              )}
+            </Button>
+          ) : (
+            <Button
+              onClick={handleAddToCart}
+              className="cta-button text-white w-full"
+            >
+              Add to Cart
+            </Button>
+          )}
         </div>
       </div>
     </div>
