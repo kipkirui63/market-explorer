@@ -40,10 +40,12 @@ export async function runMigrations() {
       queryClient.exec(`
         CREATE TABLE IF NOT EXISTS users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          username TEXT NOT NULL UNIQUE,
+          email TEXT NOT NULL UNIQUE,
           password TEXT NOT NULL,
-          email TEXT,
+          name TEXT,
           stripe_customer_id TEXT,
+          subscribed_agents TEXT DEFAULT '[]',
+          trial_ends_at DATETIME,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
       `);
@@ -78,10 +80,12 @@ export async function runMigrations() {
       await queryClient`
         CREATE TABLE IF NOT EXISTS users (
           id SERIAL PRIMARY KEY,
-          username TEXT NOT NULL UNIQUE,
+          email TEXT NOT NULL UNIQUE,
           password TEXT NOT NULL,
-          email TEXT,
+          name TEXT,
           stripe_customer_id TEXT,
+          subscribed_agents TEXT[] DEFAULT '{}',
+          trial_ends_at TIMESTAMP,
           created_at TIMESTAMP DEFAULT NOW()
         )
       `;
