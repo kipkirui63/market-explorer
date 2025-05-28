@@ -37,20 +37,50 @@ export default function Marketplace() {
     setCartItemCount(totalQuantity);
   };
   
-  // Product data based on the provided productUrlMap
+  // Product data - mix of AI agents and regular products
   const products = [
     {
       id: "1",
+      name: "AI Strategy Template Pack",
+      description: "Complete collection of AI implementation templates, roadmaps, and best practices for businesses starting their AI journey.",
+      price: "19.99",
+      rating: "4.8",
+      reviewCount: 42,
+      badge: "POPULAR",
+      image: "ai-strategy-templates",
+    },
+    {
+      id: "2",
+      name: "Business Automation Guide",
+      description: "Step-by-step guide to automate your business processes using AI tools and workflows. Includes real-world case studies.",
+      price: "29.99",
+      rating: "4.9",
+      reviewCount: 38,
+      badge: "NEW",
+      image: "automation-guide",
+    },
+    {
+      id: "3",
+      name: "Custom AI Consultation",
+      description: "One-on-one consultation session with our AI experts to discuss your specific business needs and implementation strategy.",
+      price: "199.99",
+      rating: "5.0",
+      reviewCount: 15,
+      badge: "PREMIUM",
+      image: "ai-consultation",
+    },
+    {
+      id: "4",
       name: "Business Intelligent Agent",
       description: "Intelligent agent that converts natural language queries into optimized SQL code instantly with AI-powered translation.",
       price: "39.00",
       rating: "5.0",
       reviewCount: 28,
-      badge: "NEW",
+      badge: "AI AGENT",
       image: "business-intelligent-agent",
     },
     {
-      id: "2",
+      id: "5",
       name: "AI Recruitment Assistant",
       description: "Streamlines talent acquisition with intelligent resume screening, candidate matching, and automated interview scheduling.",
       price: "19.00",
