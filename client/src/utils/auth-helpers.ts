@@ -105,17 +105,8 @@ export const productionLogin = async (email: string, password: string): Promise<
       console.error('Second login attempt failed:', secondAttemptError);
     }
     
-    // Final fallback
-    console.warn('Server login failed in production build');
-    const fallbackUser = { 
-      id: 1,
-      email,
-      name: email.split('@')[0],
-      success: true
-    };
-    
-    saveLocalUser(fallbackUser);
-    return fallbackUser;
+    // No fallback - throw error if login fails
+    throw new Error('Invalid email or password');
   } catch (error) {
     console.error('Login failed:', error);
     throw error;
