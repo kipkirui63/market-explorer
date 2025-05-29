@@ -32,7 +32,7 @@ def main():
         ], check=False)
         
         # Start the development server
-        print("Starting Django development server...")
+        print("Starting Django development server on port 8000...")
         subprocess.run([
             sys.executable, 'manage.py', 'runserver', '0.0.0.0:8000'
         ], check=True)
