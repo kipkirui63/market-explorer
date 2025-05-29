@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isLoading,
     refetch
   } = useQuery<SelectUser | null, Error>({
-    queryKey: ["/api/auth/user/"],
+    queryKey: ["/api/user/"],
     queryFn: getQueryFn({ on401: "returnNull" }),
   });
   
@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!user) {
       const savedUser = getLocalUser();
       if (savedUser) {
-        queryClient.setQueryData(["/api/auth/user/"], savedUser);
+        queryClient.setQueryData(["/api/user/"], savedUser);
       }
     } else {
       // Keep local storage in sync with current user
@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         // Try the regular API login first
         const timestamp = new Date().getTime();
-        const res = await apiRequest("POST", `/api/auth/login/`, credentials);
+        const res = await apiRequest("POST", `/api/login/`, credentials);
         return await res.json();
       } catch (error) {
         console.error("API login failed, trying production fallback:", error);
@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       });
       // Only then set the user data
-      queryClient.setQueryData(["/api/user"], user);
+      queryClient.setQueryData(["/api/user/"], user);
       toast({
         title: "Login successful",
         description: `Welcome back, ${user.name || user.email}!`,
@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         // First try the normal API request
         const timestamp = new Date().getTime();
-        const res = await apiRequest("POST", `/api/auth/register/`, credentials);
+        const res = await apiRequest("POST", `/api/register/`, credentials);
         const data = await res.json();
         return data;
       } catch (error) {
@@ -126,7 +126,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         // Add timestamp to prevent caching
         const timestamp = new Date().getTime();
-        await apiRequest("POST", `/api/auth/logout/`);
+        await apiRequest("POST", `/api/logout/`);
         // Clear local storage user data
         clearLocalUser();
       } catch (error) {
@@ -142,7 +142,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           localStorage.removeItem(key);
         }
       });
-      queryClient.setQueryData(["/api/user"], null);
+      queryClient.setQueryData(["/api/user/"], null);
       toast({
         title: "Logged out",
         description: "You have been successfully logged out",
