@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Trash2, ArrowLeft } from 'lucide-react';
+import { Trash2, ArrowLeft, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/use-auth';
 import Layout from '@/components/Layout';
 import { Link } from 'wouter';
 import { ProductImage } from '@/components/ProductImages';
+import SubscriptionManager from '@/components/SubscriptionManager';
 
 interface CartItem {
   id: string;
@@ -84,8 +85,23 @@ export default function CartPage() {
   
   return (
     <Layout>
-      <div className="container mx-auto max-w-3xl px-4 py-8">
-        {!user && (
+      <div className="container mx-auto max-w-4xl px-4 py-8">
+        {/* AI Agent Subscription - Always show when user is logged in */}
+        {user && (
+          <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border-2 border-blue-200">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-blue-900 flex items-center justify-center">
+                <Star className="h-6 w-6 mr-2 text-yellow-500" />
+                Access All AI Agents
+              </h2>
+              <p className="text-blue-700 mt-2">Start your 7-day free trial to unlock all AI tools</p>
+            </div>
+            <SubscriptionManager />
+          </div>
+        )}
+
+        <div className="max-w-3xl mx-auto">
+          {!user && (
           <div className="bg-white rounded-lg shadow-md p-6">
             <h1 className="text-xl font-bold mb-4">Your Cart</h1>
             <div className="text-center py-10">
@@ -193,6 +209,7 @@ export default function CartPage() {
             </div>
           </div>
         )}
+        </div>
       </div>
     </Layout>
   );
