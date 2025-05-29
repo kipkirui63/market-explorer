@@ -4,19 +4,20 @@ import { z } from "zod";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
-  password: text("password").notNull(),
   email: text("email").notNull().unique(),
-  stripeCustomerId: text("stripe_customer_id"),
-  createdAt: timestamp("created_at").defaultNow(),
+  password: text("password").notNull(),
   name: text("name"),
+  stripeCustomerId: text("stripe_customer_id"),
   stripeSubscriptionId: text("stripe_subscription_id"),
-  subscriptionStatus: text("subscription_status"),
+  subscriptionStatus: text("subscription_status").default("inactive"),
   trialEndsAt: timestamp("trial_ends_at"),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
   email: true,
   password: true,
+  name: true,
 });
 
 export const orders = pgTable("orders", {
