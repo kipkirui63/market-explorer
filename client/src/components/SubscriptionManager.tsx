@@ -91,14 +91,10 @@ export default function SubscriptionManager() {
   // Create subscription mutation
   const createSubscriptionMutation = useMutation({
     mutationFn: async () => {
-      console.log('Creating subscription...');
       const response = await apiRequest('POST', '/api/create-subscription');
-      const data = await response.json();
-      console.log('Subscription response:', data);
-      return data;
+      return response.json();
     },
     onSuccess: (data) => {
-      console.log('Subscription created successfully:', data);
       setClientSecret(data.clientSecret);
       toast({
         title: "Subscription Created",

@@ -61,9 +61,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
       return;
     }
     
-    // If user doesn't have subscription access, redirect to cart
+    // If user doesn't have subscription access, show subscription required message
     if (!hasAgentAccess) {
-      window.location.href = '/cart';
+      toast({
+        title: "Subscription Required",
+        description: "Start your 7-day free trial to access AI agents. Then $29/month.",
+        variant: "default",
+      });
+      // Could redirect to subscription page here
       return;
     }
     
@@ -74,9 +79,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
     }
   };
 
-  const handleAddToCart = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    // Prevent the click from bubbling up to the parent card if event exists
-    e?.stopPropagation();
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Prevent the click from bubbling up to the parent card
+    e.stopPropagation();
     
     // Store the current URL to redirect back after login
     localStorage.setItem('redirectAfterAuth', window.location.pathname);
@@ -161,28 +166,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
     return !!user;
   };
 
-  // Function to handle clicking on the product card (agent link)
+  // Function to handle clicking on the product card
   const handleProductClick = () => {
-    // Check authentication first
-    if (!user) {
-      localStorage.setItem('redirectAfterAuth', window.location.pathname);
-      window.location.href = '/auth';
-      return;
-    }
-    
-    // If not paid (or trial not started) → redirect to cart and auto-add product
-    if (!hasAgentAccess) {
-      // Auto-add product to cart
-      handleAddToCart();
-      // Redirect to cart
-      window.location.href = '/cart';
-      return;
-    }
-    
-    // If trial active or subscription valid → allow access to agent site
     if (hasExternalApp) {
-      const url = productUrlMap[product.name];
-      window.open(url, '_blank');
+      if (hasUserPurchasedProduct()) {
+        window.open(productUrlMap[product.name], '_blank');
+      } else {
+        alert(`Please purchase ${product.name} to access this feature.`);
+      }
     }
   };
 
