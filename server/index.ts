@@ -18,14 +18,19 @@ app.use('/api', createProxyMiddleware({
 }));
 
 (async () => {
-  const server = app.listen(5000, '0.0.0.0');
-  
-  // Setup Vite for frontend serving
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
-  }
+  try {
+    const server = app.listen(5000, '0.0.0.0');
+    
+    // Setup Vite for frontend serving
+    if (app.get("env") === "development") {
+      await setupVite(app, server);
+    } else {
+      serveStatic(app);
+    }
 
-  log(`Frontend server running on port 5000, proxying API to Django on port 8000`);
+    log(`Frontend server running on port 5000, proxying API to Django on port 8000`);
+  } catch (error) {
+    console.error('Failed to start frontend server:', error);
+    process.exit(1);
+  }
 })();
