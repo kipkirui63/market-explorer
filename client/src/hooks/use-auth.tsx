@@ -4,7 +4,21 @@ import {
   useMutation,
   UseMutationResult,
 } from "@tanstack/react-query";
-import { insertUserSchema, User as SelectUser, InsertUser } from "@shared/schema";
+// Define types locally since we've removed the shared schema
+type SelectUser = {
+  id: number;
+  email: string;
+  username: string;
+  name?: string;
+  subscription_status?: string;
+  trial_ends_at?: string;
+};
+
+type InsertUser = {
+  email: string;
+  username: string;
+  password: string;
+};
 import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { getLocalUser, saveLocalUser, clearLocalUser, productionLogin, productionLogout, productionRegister } from "@/utils/auth-helpers";
