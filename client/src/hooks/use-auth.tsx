@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     isLoading,
     refetch
   } = useQuery<SelectUser | null, Error>({
-    queryKey: ["/api/user"],
+    queryKey: ["/api/auth/user/"],
     queryFn: getQueryFn({ on401: "returnNull" }),
   });
   
@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!user) {
       const savedUser = getLocalUser();
       if (savedUser) {
-        queryClient.setQueryData(["/api/user"], savedUser);
+        queryClient.setQueryData(["/api/auth/user/"], savedUser);
       }
     } else {
       // Keep local storage in sync with current user
@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         // Try the regular API login first
         const timestamp = new Date().getTime();
-        const res = await apiRequest("POST", `/api/login?_t=${timestamp}`, credentials);
+        const res = await apiRequest("POST", `/api/auth/login/`, credentials);
         return await res.json();
       } catch (error) {
         console.error("API login failed, trying production fallback:", error);
@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         // First try the normal API request
         const timestamp = new Date().getTime();
-        const res = await apiRequest("POST", `/api/register?_t=${timestamp}`, credentials);
+        const res = await apiRequest("POST", `/api/auth/register/`, credentials);
         const data = await res.json();
         return data;
       } catch (error) {
@@ -126,7 +126,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         // Add timestamp to prevent caching
         const timestamp = new Date().getTime();
-        await apiRequest("POST", `/api/logout?_t=${timestamp}`);
+        await apiRequest("POST", `/api/auth/logout/`);
         // Clear local storage user data
         clearLocalUser();
       } catch (error) {
