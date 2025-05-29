@@ -21,7 +21,9 @@ export async function apiRequest(
     
     while (retries <= maxRetries) {
       try {
-        const res = await fetch(url, {
+        // Update URL to point to Django backend
+        const apiUrl = url.startsWith('/api') ? `http://localhost:8000${url}` : url;
+        const res = await fetch(apiUrl, {
           method,
           headers: {
             ...(data ? { "Content-Type": "application/json" } : {}),
@@ -114,7 +116,10 @@ export const getQueryFn: <T>(options: {
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
     try {
-      const res = await fetch(queryKey[0] as string, {
+      // Update URL to point to Django backend  
+      const url = queryKey[0] as string;
+      const apiUrl = url.startsWith('/api') ? `http://localhost:8000${url}` : url;
+      const res = await fetch(apiUrl, {
         credentials: "include",
         headers: {
           "Accept": "application/json"
