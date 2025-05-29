@@ -56,6 +56,14 @@ app.use('/api', createProxyMiddleware({
       serveStatic(app);
     }
 
+    // Fallback route for SPA
+    app.get('*', (req, res) => {
+      if (!req.path.startsWith('/api')) {
+        // Let Vite handle the routing for the React app
+        res.redirect('/');
+      }
+    });
+
     log(`Frontend server running on port 5000, proxying API to Django on port 8000`);
   } catch (error) {
     console.error('Failed to start frontend server:', error);
