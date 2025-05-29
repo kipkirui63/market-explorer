@@ -1,8 +1,40 @@
 import express, { type Request, Response } from "express";
 import { setupVite, serveStatic, log } from "./vite";
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { spawn } from 'child_process';
 
 const app = express();
+
+// Start Django backend
+const startDjango = () => {
+  log("Starting Django backend...");
+  const django = spawn('python', ['manage.py', 'runserver', '0.0.0.0:8000'], {
+    cwd: './backend',
+    stdio: ['ignore', 'pipe', 'pipe']
+  });
+
+  django.stdout.on('data', (data) => {
+    const output = data.toString();
+    if (output.includes('Starting development server')) {
+      log("Django backend started on port 8000");
+    }
+  });
+
+  django.stderr.on('data', (data) => {
+    console.error('Django error:', data.toString());
+  });
+
+  django.on('close', (code) => {
+    console.log(`Django process exited with code ${code}`);
+    // Restart Django if it crashes
+    setTimeout(startDjango, 2000);
+  });
+
+  return django;
+};
+
+// Start Django backend
+const djangoProcess = startDjango();
 
 // Proxy API requests to Django backend
 app.use('/api', createProxyMiddleware({
@@ -10,10 +42,6 @@ app.use('/api', createProxyMiddleware({
   changeOrigin: true,
   pathRewrite: {
     '^/api': '/api'
-  },
-  onError: (err, req, res) => {
-    console.error('Proxy error:', err);
-    res.status(500).json({ error: 'Backend service unavailable' });
   }
 }));
 
